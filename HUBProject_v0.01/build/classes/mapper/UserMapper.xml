@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.mapper.UserMapper">
+	<resultMap type="User" id="userMap">
+		
+	</resultMap>
+
+	<sql id="selectUser">
+		SELECT 
+		FROM 
+	</sql>
+
+	<insert id="insertUser" parameterType="Bucketlist">
+
+	</insert>
+
+	<update id="updateUser" parameterType="Bucketlist">
+
+	</update>
+
+	<delete id="deleteUser" parameterType="int">
+
+	</delete>
+	
+	<select id="selectUserByUserId" parameterType="String" resultType="User">
+		<include refid="selectUser" />
+	</select>
+
+	<select id="selectUserByConnChain" parameterType="String" resultMap="userMap">
+		<include refid="selectUser" />
+		
+	</select>
+
+</mapper>

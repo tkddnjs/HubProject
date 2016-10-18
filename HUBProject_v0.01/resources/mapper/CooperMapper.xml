@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.mapper.CooperMapper">
+	<resultMap type="Cooper" id="cooperMap">
+		
+	</resultMap>
+
+	<sql id="selectCooper">
+		SELECT 
+		FROM 
+	</sql>
+
+	<insert id="insertCooper" parameterType="Cooper">
+
+	</insert>
+
+	<update id="updateCooper" parameterType="Cooper">
+
+	</update>
+
+	<delete id="deleteCooper" parameterType="int">
+
+	</delete>
+	
+	<select id="selectAll" resultMap="CooperMap">
+		<include refid="selectCooper" />
+	</select>
+
+	<select id="selectCooperByCoId" parameterType="int" resultType="Cooper">
+		<include refid="selectCooper" />
+		
+	</select>
+	
+</mapper>

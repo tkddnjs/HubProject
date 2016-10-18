@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="store.mapper.BucketlistMapper">
+	<resultMap type="Bucketlist" id="bucketlistMap">
+		
+	</resultMap>
+
+	<sql id="selectBucketlist">
+		SELECT 
+		FROM 
+	</sql>
+
+	<insert id="insertBucketlist" parameterType="Bucketlist">
+
+	</insert>
+
+	<update id="updateBucketlist" parameterType="Bucketlist">
+
+	</update>
+
+	<delete id="deleteBucketlist" parameterType="int">
+
+	</delete>
+	
+	<select id="selectAll" resultMap="bucketlistMap">
+		<include refid="selectBucketlist" />
+	</select>
+
+	<select id="selectBucketlistByBucketlistId" parameterType="int" resultMap="bucketlistMap">
+		<include refid="selectBucketlist" />
+		
+	</select>
+
+	<select id="selectBucketlistByConnChain" parameterType="String" resultMap="bucketlistMap">
+		<include refid="selectBucketlist" />
+		
+	</select>
+	
+</mapper>
