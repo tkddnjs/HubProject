@@ -1,4 +1,4 @@
-package controller.post;
+package controller.friends;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,18 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.logic.PostServiceLogic;
-import service.pacade.PostService;
+import service.logic.FriendServiceLogic;
+import service.pacade.FriendService;
 
-@WebServlet("/searchPost.do")
-public class SearchPostController extends HttpServlet {
+@WebServlet("/searchFriend.do")
+public class FindFriendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private PostService service;	
+	private FriendService service;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		service = new PostServiceLogic();
+		service = new FriendServiceLogic();
 		
 	}
 

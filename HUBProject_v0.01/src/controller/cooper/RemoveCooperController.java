@@ -1,4 +1,4 @@
-package controller.bucketlist;
+package controller.cooper;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,18 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.logic.BucketlistServiceLogic;
-import service.pacade.BucketlistService;
+import service.logic.CooperServiceLogic;
+import service.pacade.CooperService;
 
-@WebServlet("/deleteBucketlist.do")
-public class DeleteBucketlistController extends HttpServlet {
+@WebServlet("/deleteCompany.do")
+public class RemoveCooperController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private BucketlistService service;
+	private CooperService service;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		service = new BucketlistServiceLogic();
+		service = new CooperServiceLogic();
 		
 	}
 

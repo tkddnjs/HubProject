@@ -1,4 +1,4 @@
-package controller.cooper;
+package controller.friends;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,18 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.logic.CooperServiceLogic;
-import service.pacade.CooperService;
+import service.logic.FriendServiceLogic;
+import service.pacade.FriendService;
 
-@WebServlet("/updateCompany.do")
-public class UpdateCooperController extends HttpServlet {
+@WebServlet("/deleteFriend.do")
+public class RemoveFriendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private CooperService service;
+	private FriendService service;
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		service = new CooperServiceLogic();
+		service = new FriendServiceLogic();
 		
 	}
 

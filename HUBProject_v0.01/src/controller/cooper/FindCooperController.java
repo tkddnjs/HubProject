@@ -1,4 +1,4 @@
-package controller.group;
+package controller.cooper;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,18 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.logic.GroupServiceLogic;
-import service.pacade.GroupService;
+import service.logic.CooperServiceLogic;
+import service.pacade.CooperService;
 
-@WebServlet("/updateGroup.do")
-public class UpdateGroupController extends HttpServlet {
+@WebServlet("/searchCompany.do")
+public class FindCooperController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private GroupService service;
+	private CooperService service;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		service = new GroupServiceLogic();
+		service = new CooperServiceLogic();
 		
 	}
 

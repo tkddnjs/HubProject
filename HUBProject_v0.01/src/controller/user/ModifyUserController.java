@@ -1,4 +1,4 @@
-package controller.bucketlist;
+package controller.user;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,18 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import service.logic.BucketlistServiceLogic;
-import service.pacade.BucketlistService;
+import service.logic.UserServiceLogic;
+import service.pacade.UserService;
 
-@WebServlet("/updateBucketlist.do")
-public class UpdateBucketlistController extends HttpServlet {
+@WebServlet("/updateUser.do")
+public class ModifyUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private BucketlistService service;
-	
+	private UserService service;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		service = new BucketlistServiceLogic();
+		service = new UserServiceLogic();
+		
 	}
 
 }
