@@ -41,7 +41,7 @@ public class UserStoreLogic implements UserStore {
 	}
 
 	@Override
-	public List<User> selectUserByConnChain(List<String> connChains) {
+	public List<User> selectUsersByConnChains(List<String> connChains) {
 		// TODO Auto-generated method stub
 		return null;
 	}

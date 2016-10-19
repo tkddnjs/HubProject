@@ -35,19 +35,19 @@ public class PostStoreLogic implements PostStore {
 	}
 
 	@Override
-	public List<Post> selectPost(String userId, String friendId) {
+	public List<Post> selectPosts(String userId, String friendId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Post> selectSendPost(String userId) {
+	public List<Post> selectSendPosts(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Post> selectReceivePost(String userId) {
+	public List<Post> selectReceivePosts(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

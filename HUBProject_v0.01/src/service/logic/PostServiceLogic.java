@@ -34,13 +34,13 @@ public class PostServiceLogic implements PostService {
 	}
 
 	@Override
-	public Post findPost(String userId, String toUserId) {
+	public List<Post> findPosts(String userId, String toUserId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Post findPostByTransmit(String userId, String transmit) {
+	public List<Post> findPostsByTransmit(String userId, String transmit) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -52,31 +52,31 @@ public class GroupServiceLogic implements GroupService {
 	}
 
 	@Override
-	public List<Group> findGroupByGroupId(int groupId) {
+	public Group findGroupByGroupId(int groupId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Group> findGroupByUserId(String userId) {
+	public List<Group> findGroupsByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Group> findGroupByConnChain(List<String> connChain) {
+	public List<Group> findGroupsByConnChains(List<String> connChain) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Group> findGroupByGroupName(String groupName) {
+	public List<Group> findGroupsByGroupName(String groupName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Group> findGroupByLocal(String local) {
+	public List<Group> findGroupsByLocal(String local) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -65,7 +65,7 @@ public class GroupStoreLogic implements GroupStore {
 	}
 
 	@Override
-	public List<Group> selectGroupsByConnChain(List<String> ConnChains) {
+	public List<Group> selectGroupsByConnChains(List<String> ConnChains) {
 		// TODO Auto-generated method stub
 		return null;
 	}

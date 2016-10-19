@@ -11,5 +11,5 @@ public interface BucketlistStore {
 	int deleteBucketlist(int bucketlistId);
 	List<Bucketlist> selectAll();
 	Bucketlist selectBucketlistByBucketlistId(int bucketlistId);
-	List<Bucketlist> selectBucketlistByConnChain(List<String> connChains);
+	List<Bucketlist> selectBucketlistsByConnChains(List<String> connChains);
 }

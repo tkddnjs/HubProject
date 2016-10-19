@@ -49,7 +49,7 @@ public class BucketlistStoreLogic implements BucketlistStore {
 	}
 
 	@Override
-	public List<Bucketlist> selectBucketlistByConnChain(List<String> connChains) {
+	public List<Bucketlist> selectBucketlistsByConnChains(List<String> connChains) {
 		// TODO Auto-generated method stub
 		return null;
 	}

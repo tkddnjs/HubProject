@@ -12,9 +12,9 @@ public interface GroupService {
 	int joinGroup(int groupId, String userId);
 	int exitGroup(int groupId, String userId);
 	List<Group> findAll();
-	List<Group> findGroupByGroupId(int groupId);
-	List<Group> findGroupByUserId(String userId);
-	List<Group> findGroupByConnChain(List<String> connChain);
-	List<Group> findGroupByGroupName(String groupName);
-	List<Group> findGroupByLocal(String local);
+	Group findGroupByGroupId(int groupId);
+	List<Group> findGroupsByUserId(String userId);
+	List<Group> findGroupsByConnChains(List<String> connChain);
+	List<Group> findGroupsByGroupName(String groupName);
+	List<Group> findGroupsByLocal(String local);
 }

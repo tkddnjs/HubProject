@@ -19,13 +19,13 @@ public class ListServiceLogic implements ListService {
 	}
 	
 	@Override
-	public User findUserByConnChain(String connChain) {
+	public User findUsersByConnChain(String connChain) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Bucketlist findBucketlistByConnChain(String connChain) {
+	public Bucketlist findBucketlistsByConnChain(String connChain) {
 		// TODO Auto-generated method stub
 		return null;
 	}

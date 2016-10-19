@@ -5,6 +5,6 @@ import domain.User;
 
 public interface ListService {
 
-	User findUserByConnChain(String connChain);
-	Bucketlist findBucketlistByConnChain(String connChain);
+	User findUsersByConnChain(String connChain);
+	Bucketlist findBucketlistsByConnChain(String connChain);
 }

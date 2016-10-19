@@ -35,7 +35,7 @@ public class FriendStoreLogic implements FriendStore {
 	}
 
 	@Override
-	public List<Friend> selectFriendsByConnChain(List<String> connChains) {
+	public List<Friend> selectFriendsByConnChains(List<String> connChains) {
 		// TODO Auto-generated method stub
 		return null;
 	}

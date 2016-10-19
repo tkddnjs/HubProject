@@ -34,7 +34,7 @@ public class FriendServiceLogic implements FriendService {
 	}
 
 	@Override
-	public List<Friend> findFriendsByConnChain(String connChain) {
+	public List<Friend> findFriendsByConnChains(List<String> connChains) {
 		// TODO Auto-generated method stub
 		return null;
 	}

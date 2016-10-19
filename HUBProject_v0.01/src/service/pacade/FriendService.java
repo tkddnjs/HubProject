@@ -9,6 +9,6 @@ public interface FriendService {
 	int registerFriend(Friend friend);
 	int removeFriend(String friendId);
 	List<Friend> findAll();
-	List<Friend> findFriendsByConnChain(String connChain);
+	List<Friend> findFriendsByConnChains(List<String> connChains);
 	List<Friend> findFriendsByRelation(String relation);
 }
