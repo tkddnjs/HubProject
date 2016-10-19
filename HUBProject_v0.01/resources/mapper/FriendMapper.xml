@@ -23,7 +23,7 @@
 		<include refid="selectBucketlist" />
 	</select>
 
-	<select id="selectFriendsByConnChain" parameterType="String" resultMap="FriendMap">
+	<select id="selectFriendsByConnChains" parameterType="String" resultMap="FriendMap">
 		<include refid="selectBucketlist" />
 		
 	</select>

@@ -32,7 +32,7 @@
 		
 	</select>
 
-	<select id="selectBucketlistByConnChain" parameterType="String" resultMap="bucketlistMap">
+	<select id="selectBucketlistsByConnChains" parameterType="String" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
 		
 	</select>
