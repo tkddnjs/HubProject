@@ -2,12 +2,17 @@ package store.logic;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import domain.Bucketlist;
 import store.pacade.BucketlistStore;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class BucketlistStoreLogicTest {
 
 	private BucketlistStore store;
@@ -18,55 +23,63 @@ public class BucketlistStoreLogicTest {
 	}
 	
 //	@Test
-//	public void testInsertBucketlist() {
+//	public void test1InsertBucketlist() {
 //		Bucketlist bucketlist = new Bucketlist();
 //		
-//		bucketlist.setGoal("asdf");
+//		bucketlist.setGoal("asw");
 //		bucketlist.setLock(true);
-//		bucketlist.setMemo("asd");
+//		bucketlist.setMemo("qert");
+//		bucketlist.setSos("asgw");
+//		bucketlist.setStar(5);
+//		bucketlist.setTitle("hqeat");
+//		bucketlist.setUserId("¹ÚÀ¯Àú");
+//		
+//		assertEquals(1, store.insertBucketlist(bucketlist));
+//	}
+//
+//	@Test
+//	public void test2UpdateBucketlist() {
+//		Bucketlist bucketlist = new Bucketlist();
+//		
+//		bucketlist.setBucketlistId(8);
+//		bucketlist.setGoal("asdgg");
+//		bucketlist.setLock(true);
+//		bucketlist.setMemo("asde");
 //		bucketlist.setSos("asgwe");
 //		bucketlist.setStar(5);
 //		bucketlist.setTitle("asdafg");
 //		bucketlist.setUserId("±èÀ¯Àú");
 //		
-//		assertEquals(1, store.insertBucketlist(bucketlist));
-//	}
-
-	@Test
-	public void testUpdateBucketlist() {
-		Bucketlist bucketlist = new Bucketlist();
-		
-		bucketlist.setGoal("asdgg");
-		bucketlist.setLock(true);
-		bucketlist.setMemo("asde");
-		bucketlist.setSos("asgwe");
-		bucketlist.setStar(5);
-		bucketlist.setTitle("asdafg");
-		bucketlist.setUserId("±èÀ¯Àú");
-		
-		assertEquals(1, store.updateBucketlist(bucketlist));
-		assertEquals("asde", store.selectBucketlistByBucketlistId(7).getMemo());
-		assertEquals("asdgg", store.selectBucketlistByBucketlistId(7).getGoal());
-		
-	}
-
-//	@Test
-//	public void testDeleteBucketlist() {
-//		fail("Not yet implemented");
+//		assertEquals(1, store.updateBucketlist(bucketlist));
+//		assertEquals("asde", store.selectBucketlistByBucketlistId(8).getMemo());
+//		assertEquals("asdgg", store.selectBucketlistByBucketlistId(8).getGoal());
+//		
 //	}
 //
 //	@Test
-//	public void testSelectAll() {
-//		fail("Not yet implemented");
+//	public void test3DeleteBucketlist() {
+//		assertEquals(1, store.deleteBucketlist(8));
+//	}
+//	
+//	@Test
+//	public void test4SelectAll() {
+//		List<Bucketlist> bList = store.selectAll();
+//		assertEquals(2, bList.size());
+//		assertEquals("±èÀ¯Àú", bList.get(0).getUserId());
+//		
 //	}
 //
 //	@Test
-//	public void testSelectBucketlistByBucketlistId() {
-//		fail("Not yet implemented");
+//	public void test5SelectBucketlistByBucketlistId() {
+//		assertNotNull(store.selectBucketlistByBucketlistId(9));
+//		assertNotNull(store.selectBucketlistByBucketlistId(10));
+//		assertEquals("±èÀ¯Àú", store.selectBucketlistByBucketlistId(9).getUserId());
+//		assertEquals("¹ÚÀ¯Àú", store.selectBucketlistByBucketlistId(10).getUserId());
+//		
 //	}
 //
 //	@Test
-//	public void testSelectBucketlistsByConnChains() {
+//	public void test6SelectBucketlistsByConnChains() {
 //		fail("Not yet implemented");
 //	}
 

@@ -30,7 +30,7 @@
 
 	<update id="updateBucketlist" parameterType="Bucketlist">
 		UPDATE bucketlist_tb
-		SET bucketlist_goal=#{goal}, bucketlist_star=#{star}, bucketlist_memo=#{memo}, bucketlist_sos=#{sos}, bucketlist_lock=#{lock,typeHandler=BooleanToYnHandler} 
+		SET bucketlist_title = #{title}, bucketlist_goal = #{goal}, bucketlist_star = #{star}, bucketlist_memo = #{memo}, bucketlist_sos = #{sos}, bucketlist_lock = #{lock,typeHandler=BooleanToYnHandler}, user_id = #{userId} 
 		WHERE bucketlist_id=#{bucketlistId}
 	</update>
 
@@ -45,12 +45,25 @@
 
 	<select id="selectBucketlistByBucketlistId" parameterType="int" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
-		
+		WHERE bucketlist_id=#{bucketlistId}
 	</select>
 
 	<select id="selectBucketlistsByConnChains" parameterType="String" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
-		
+		WHERE bucketlist_id IN (select bucketlist_id
+								from connBuck_tb
+								where connChain LIKE
+								<foreach item="connChain" separator="," collection="list" open="(" close=")">
+									#{connChain}
+								</foreach>)
+								
+								
+		<include refid="selectAuthor"/>
+		WHERE author_id IN
+		<foreach item="id" separator="," collection="list" open="(" close=")">
+				#{id}
+		</foreach>
+								
 	</select>
 	
 	<select id="selectConnChainsByBucketlistId" parameterType="int" resultType="String">
