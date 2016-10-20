@@ -9,6 +9,6 @@ public interface UserMapper {
 	int insertUser(User user);
 	int updateUser(User user);
 	int deleteUser(String userId);
-	User selectUser(String userId);
+	User selectUserByUserId(String userId);
 	List<User> selectUsersByConnChains(List<String> connChains);
 }

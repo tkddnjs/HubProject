@@ -7,8 +7,8 @@
 	</resultMap>
 
 	<sql id="selectUser">
-		SELECT 
-		FROM 
+		SELECT userId, password as pw
+		FROM customer_tb
 	</sql>
 
 	<insert id="insertUser" parameterType="Bucketlist">
@@ -24,7 +24,8 @@
 	</delete>
 	
 	<select id="selectUserByUserId" parameterType="String" resultType="User">
-		<include refid="selectUser" />
+		<include refid="selectUser" />		
+		where userId = #{userId}
 	</select>
 
 	<select id="selectUsersByConnChains" parameterType="String" resultMap="userMap">

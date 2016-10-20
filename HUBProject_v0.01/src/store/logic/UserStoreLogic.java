@@ -44,7 +44,7 @@ public class UserStoreLogic implements UserStore {
 		try{
 			
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			user=mapper.selectUser(userId);
+			user=mapper.selectUserByUserId(userId);
 				
 		}finally{
 			session.close();
