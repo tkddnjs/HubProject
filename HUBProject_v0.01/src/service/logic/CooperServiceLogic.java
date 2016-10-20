@@ -40,7 +40,7 @@ public class CooperServiceLogic implements CooperService {
 	}
 
 	@Override
-	public Cooper findCooperByCoId(int coId) {
+	public Cooper findCoopersByCoId(int coId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

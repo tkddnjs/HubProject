@@ -10,5 +10,5 @@ public interface CooperService {
 	int modifyCooper(Cooper cooper);
 	int removeCooper(int coId);
 	List<Cooper> findAll();
-	Cooper findCooperByCoId(int coId);
+	Cooper findCoopersByCoId(int coId);
 }
