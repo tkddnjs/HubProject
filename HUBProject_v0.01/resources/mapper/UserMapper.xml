@@ -11,11 +11,12 @@
 		FROM customer_tb
 	</sql>
 
-	<insert id="insertUser" parameterType="Bucketlist">
-
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO BUser_TB(Id, password, email)
+		values  (#{userId } , #{pw }, #{email })
 	</insert>
 
-	<update id="updateUser" parameterType="Bucketlist">
+	<update id="updateUser" parameterType="User">
 
 	</update>
 
