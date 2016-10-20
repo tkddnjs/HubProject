@@ -44,8 +44,9 @@
 				<td>
 					<input id="password" name="password" class="form-control" type="password" value="" placeholder="비밀번호를 입력해주세요.">
 				</td>
-				<th><a class="btn btn-xs btn-info btnPlay" href="login.jsp" method="post">로그인</a></th>
-				<th><a class="btn btn-xs btn-info btnPlay" href="registerUser.jsp" method="post" >회원가입</a></th>
+				<th><a class="btn btn-xs btn-info btnPlay" href="login.do" method="post">로그인</a></th>
+				
+				<th><a class="btn btn-xs btn-info btnPlay" href="User/registerUser.jsp" >회원가입</a></th>
 			</tr>
 		
 		</table>
