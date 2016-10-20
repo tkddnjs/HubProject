@@ -1,12 +1,15 @@
 package controller.user;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import domain.User;
 import service.logic.UserServiceLogic;
 import service.pacade.UserService;
 
@@ -20,6 +23,42 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 		service = new UserServiceLogic();
 		
+		String userId = request.getParameter("userId");
+		User user = new User();
+		user.setUserId(userId);
+		
+		boolean result = service.login(user);
+		
+		if(result){
+			boolean temp = service.checkAdmin(userId);
+			if(temp){
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("userId", userId);
+				
+				response.sendRedirect("cooperList.jsp");
+			}else{
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("userId", user);
+				
+				response.sendRedirect("bucketlist.jsp");
+			}
+		}else{
+			response.sendRedirect("main.jsp");
+		}
+		
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+

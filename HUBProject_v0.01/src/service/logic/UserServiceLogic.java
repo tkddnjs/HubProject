@@ -1,6 +1,10 @@
 package service.logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import domain.User;
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import service.pacade.UserService;
 import store.logic.UserStoreLogic;
 import store.pacade.UserStore;
@@ -39,19 +43,44 @@ public class UserServiceLogic implements UserService {
 
 	@Override
 	public boolean login(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean temp = false;		
+		
+		String userId = new String();
+		userId=user.getUserId();
+		
+		User u = store.selectUser(userId);
+		
+		if(u.getUserId().equals(userId)){
+			temp = true;
+			return temp;
+		}
+		
+		
+		return temp;
 	}
 
 	@Override
 	public boolean checkAdmin(String userId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean temp = false;
+		
+		User user = store.selectUser(userId);
+				
+		if(user.getUserId().equals(userId)){
+			temp = true;
+			return temp;
+		}
+		
+		return temp;
 	}
 
 	@Override
 	public boolean checkId(String userId) {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
+		
+		
 		return false;
 	}
 
