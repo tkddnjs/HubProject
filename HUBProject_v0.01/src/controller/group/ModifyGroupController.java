@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.logic.GroupServiceLogic;
 import service.pacade.GroupService;
 
-@WebServlet("/updateGroup.do")
+@WebServlet("/modifyGroup.do")
 public class ModifyGroupController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.logic.PostServiceLogic;
 import service.pacade.PostService;
 
-@WebServlet("/deletePost.do")
+@WebServlet("/removePost.do")
 public class RemovePostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

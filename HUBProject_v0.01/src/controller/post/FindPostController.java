@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.logic.PostServiceLogic;
 import service.pacade.PostService;
 
-@WebServlet("/searchPost.do")
+@WebServlet("/findPost.do")
 public class FindPostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

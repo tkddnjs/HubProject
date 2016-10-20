@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.logic.CooperServiceLogic;
 import service.pacade.CooperService;
 
-@WebServlet("/deleteCompany.do")
+@WebServlet("/removeCompany.do")
 public class RemoveCooperController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

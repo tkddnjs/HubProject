@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.logic.CooperServiceLogic;
 import service.pacade.CooperService;
 
-@WebServlet("/updateCompany.do")
+@WebServlet("/modifyCompany.do")
 public class ModifyCooperController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

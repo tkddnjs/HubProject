@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.Cooper;
 import service.logic.CooperServiceLogic;
 import service.pacade.CooperService;
 
@@ -19,7 +20,9 @@ public class RegisterCooperController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		service = new CooperServiceLogic();
+		Cooper cooper = new Cooper();
 		
+		service.registerCooper(cooper);
 	}
 
 }

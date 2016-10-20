@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.logic.FriendServiceLogic;
 import service.pacade.FriendService;
 
-@WebServlet("/searchFriend.do")
+@WebServlet("/findFriend.do")
 public class FindFriendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
