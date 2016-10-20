@@ -12,4 +12,7 @@ public interface BucketlistMapper {
 	List<Bucketlist> selectAll();
 	Bucketlist selectBucketlistByBucketlistId(int bucketlistId);
 	List<Bucketlist> selectBucketlistsByConnChains(List<String> connChains);
+	
+	
+	List<String> selectConnChainsByBucketlistId(int bucketlistId);
 }

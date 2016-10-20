@@ -17,32 +17,27 @@ public class CooperServiceLogic implements CooperService {
 	
 	@Override
 	public int registerCooper(Cooper cooper) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.insertCooper(cooper);
 	}
 
 	@Override
 	public int modifyCooper(Cooper cooper) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.updateCooper(cooper);
 	}
 
 	@Override
 	public int removeCooper(int coId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.deleteCooper(coId);
 	}
 
 	@Override
 	public List<Cooper> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return store.selectAll();
 	}
 
 	@Override
 	public Cooper findCoopersByCoId(int coId) {
-		// TODO Auto-generated method stub
-		return null;
+		return store.selectCooperByCoId(coId);
 	}
 
 }

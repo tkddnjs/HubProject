@@ -17,32 +17,27 @@ public class BucketlistServiceLogic implements BucketlistService {
 	
 	@Override
 	public int registerBucketlist(Bucketlist bucketlist) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.insertBucketlist(bucketlist);
 	}
 
 	@Override
 	public int modifyBucketlist(Bucketlist bucketlist) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.updateBucketlist(bucketlist);
 	}
 
 	@Override
 	public int removeBucketlist(int bucketlistId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.deleteBucketlist(bucketlistId);
 	}
 
 	@Override
 	public Bucketlist findBucketlistByBucketlistId(int bucketlistId) {
-		// TODO Auto-generated method stub
-		return null;
+		return store.selectBucketlistByBucketlistId(bucketlistId);
 	}
 
 	@Override
 	public List<Bucketlist> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return store.selectAll();
 	}
 
 }

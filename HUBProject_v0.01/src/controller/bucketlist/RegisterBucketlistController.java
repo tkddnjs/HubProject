@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.Bucketlist;
 import service.logic.BucketlistServiceLogic;
 import service.pacade.BucketlistService;
 
@@ -19,6 +20,13 @@ public class RegisterBucketlistController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		service = new BucketlistServiceLogic();
+		
+		Bucketlist bucketlist = new Bucketlist();
+		
+		service.registerBucketlist(bucketlist);
+		
+		
+		
 	}
 
 }

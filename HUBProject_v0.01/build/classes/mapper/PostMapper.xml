@@ -29,12 +29,12 @@
 		
 	</select>
 
-	<select id="selectSendPost" parameterType="String" resultMap="postMap">
+	<select id="selectSendPosts" parameterType="String" resultMap="postMap">
 		<include refid="selectPost" />
 		
 	</select>
 	
-	<select id="selectReceivePost" parameterType="String" resultMap="postMap">
+	<select id="selectReceivePosts" parameterType="String" resultMap="postMap">
 		<include refid="selectPost" />
 		
 	</select>

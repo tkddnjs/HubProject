@@ -35,27 +35,27 @@
 		<include refid="selectGroup" />
 	</select>
 
-	<select id="selectByGroupId" parameterType="int" resultType="Group">
+	<select id="selectGroupByGroupId" parameterType="int" resultType="Group">
 		<include refid="selectGroup" />
 		
 	</select>
 
-	<select id="selectByUserId" parameterType="String" resultMap="groupMap">
+	<select id="selectGroupsByUserId" parameterType="String" resultMap="groupMap">
 		<include refid="selectGroup" />
 		
 	</select>
 	
-	<select id="selectByConnChain" parameterType="String" resultMap="groupMap">
+	<select id="selectGroupsByConnChains" parameterType="String" resultMap="groupMap">
 		<include refid="selectGroup" />
 		
 	</select>
 	
-	<select id="selectByGroupName" parameterType="String" resultMap="groupMap">
+	<select id="selectGroupsByGroupName" parameterType="String" resultMap="groupMap">
 		<include refid="selectGroup" />
 		
 	</select>
 	
-	<select id="selectByLocal" parameterType="String" resultMap="groupMap">
+	<select id="selectGroupsByLocal" parameterType="String" resultMap="groupMap">
 		<include refid="selectGroup" />
 		
 	</select>

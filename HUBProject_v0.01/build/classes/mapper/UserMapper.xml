@@ -27,7 +27,7 @@
 		<include refid="selectUser" />
 	</select>
 
-	<select id="selectUserByConnChain" parameterType="String" resultMap="userMap">
+	<select id="selectUsersByConnChains" parameterType="String" resultMap="userMap">
 		<include refid="selectUser" />
 		
 	</select>

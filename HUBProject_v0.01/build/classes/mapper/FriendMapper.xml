@@ -7,8 +7,7 @@
 	</resultMap>
 
 	<sql id="selectFriend">
-		SELECT 
-		FROM 
+	
 	</sql>
 
 	<insert id="insertFriend" parameterType="Friend">
@@ -19,17 +18,17 @@
 
 	</delete>
 	
-	<select id="selectAll" resultMap="FriendMap">
-		<include refid="selectBucketlist" />
+	<select id="selectAll" resultMap="friendMap">
+		<include refid="selectFriend" />
 	</select>
 
-	<select id="selectFriendsByConnChain" parameterType="String" resultMap="FriendMap">
-		<include refid="selectBucketlist" />
+	<select id="selectFriendsByConnChains" parameterType="String" resultMap="friendMap">
+		<include refid="selectFriend" />
 		
 	</select>
 
-	<select id="selectFriendsByRelation" parameterType="String" resultMap="FriendMap">
-		<include refid="selectAuthor" />
+	<select id="selectFriendsByRelation" parameterType="String" resultMap="friendMap">
+		<include refid="selectFriend" />
 		
 	</select>
 	

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import domain.Bucketlist;
 import store.factory.SqlSessionFactoryProvider;
+import store.mapper.BucketlistMapper;
 import store.pacade.BucketlistStore;
 
 public class BucketlistStoreLogic implements BucketlistStore {
@@ -20,38 +21,93 @@ public class BucketlistStoreLogic implements BucketlistStore {
 	@Override
 	public int insertBucketlist(Bucketlist bucketlist) {
 		SqlSession session = factory.openSession();
-
-		return 0;
+		int result = 0;
+		
+		try {
+			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+			result = mapper.insertBucketlist(bucketlist);
+			if(result>0){
+				session.commit();
+			} else {
+				session.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 	@Override
 	public int updateBucketlist(Bucketlist bucketlist) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int result = 0;
+		
+		try {
+			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+			result = mapper.updateBucketlist(bucketlist);
+			if(result > 0){
+				session.commit();
+			} else {
+				session.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 	@Override
 	public int deleteBucketlist(int bucketlistId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int result = 0;
+		
+		try {
+			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+			result = mapper.deleteBucketlist(bucketlistId);
+			if(result>0){
+				session.commit();
+			} else {
+				session.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 	@Override
 	public List<Bucketlist> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		
+		try {
+			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+			return mapper.selectAll();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public Bucketlist selectBucketlistByBucketlistId(int bucketlistId) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		try {
+			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+			return mapper.selectBucketlistByBucketlistId(bucketlistId);
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public List<Bucketlist> selectBucketlistsByConnChains(List<String> connChains) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession session = factory.openSession();
+		
+		try {
+			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+			return mapper.selectBucketlistsByConnChains(connChains);
+		} finally {
+			session.close();
+		}
 	}
 
 }
