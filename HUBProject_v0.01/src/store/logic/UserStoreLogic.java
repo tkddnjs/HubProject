@@ -12,6 +12,8 @@ import store.pacade.UserStore;
 
 public class UserStoreLogic implements UserStore {
 	
+	private static final String resource = "store/config.xml";
+
 	private SqlSessionFactory factory;
 	
 	public UserStoreLogic() {
@@ -20,8 +22,21 @@ public class UserStoreLogic implements UserStore {
 	
 	@Override
 	public int insertUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		
+		try{
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			if(mapper.insertUser(user)==1){
+				session.commit();
+				return 1;
+			}else{
+				session.rollback();
+				return 0;
+			}
+		}finally{
+			session.close();
+			
+		}
 	}
 
 	@Override
