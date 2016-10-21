@@ -20,8 +20,9 @@
 
 	<insert id="insertUser" parameterType="User">
 		INSERT INTO User_TB(userId, pw, email, listoption, introduce)
-		values  (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce })	</insert>
-	</insert
+		values  (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce })
+	</insert>
+	
 	<update id="updateUser" parameterType="User">
 
 	</update>
