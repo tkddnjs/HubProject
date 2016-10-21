@@ -11,7 +11,7 @@
 		<result property="sos" column="bucketlist_sos"/>
 		<result property="lock" column="bucketlist_lock" typeHandler="BooleanToYnHandler"/>
 		<result property="userId" column="user_id"/>
-		<collection property="connChains" column="bucketlist_connChains" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
+		<collection property="connChains" column="connbuckID" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
 	</resultMap>
 
 	<sql id="selectBucketlist">
@@ -48,7 +48,7 @@
 		WHERE bucketlist_id=#{bucketlistId}
 	</select>
 
-	<select id="selectBucketlistsByConnChains" parameterType="String" resultMap="bucketlistMap">
+	<select id="selectBucketlistsByConnChains" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
 		WHERE bucketlist_id IN (select bucketlist_id
 								from connBuck_tb

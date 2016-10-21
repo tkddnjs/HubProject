@@ -10,7 +10,7 @@
 		<result property="picture" column="Picture"/>
 		<result property="introduce" column="Introduce"/>
 		<result property="admin" column="Admin" typeHandler="BooleanToYnHandler"/>
-		<collection property="connChains" column="connUserId" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
+		<collection property="connChains" column="connUserId" ofType="String" select="store.mapper.UserMapper.selectConnChainsByUserId" javaType="ArrayList" jdbcType="VARCHAR"/>
 	</resultMap>
 
 	<sql id="selectUser">
@@ -32,13 +32,23 @@
 	</delete>
 	
 	<select id="selectUserByUserId" parameterType="String" resultType="User">
-		<include refid="selectUser" />		
+		<include refid="selectUser" />
 		where userId = #{userId}
 	</select>
 
-	<select id="selectUsersByConnChains" parameterType="String" resultMap="userMap">
+	<select id="selectUsersByConnChains" resultMap="userMap">
 		<include refid="selectUser" />
-		
+		WHERE UserId IN (SELECT UserId
+						FROM userconn_tb
+						WHERE connChain IN 
+						<foreach item="connChain" separator="," collection="list" open="(" close=")">
+							#{connChain}
+						</foreach>)
 	</select>
-
+	
+	<select id="selectConnChainsByUserId" parameterType="String" resultType="String">
+		SELECT connChain
+		FROM userconn_tb
+		WHERE userId=#{userId}
+	</select>
 </mapper>
