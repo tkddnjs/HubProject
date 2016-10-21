@@ -70,25 +70,25 @@ public class BucketlistStoreLogicTest {
 //		
 //	}
 //
-//	@Test
-//	public void test5SelectBucketlistByBucketlistId() {
-//		assertNotNull(store.selectBucketlistByBucketlistId(1));
-//		assertNotNull(store.selectBucketlistByBucketlistId(2));
-//		assertEquals("박유저", store.selectBucketlistByBucketlistId(1).getUserId());
-//		assertEquals("이유저", store.selectBucketlistByBucketlistId(2).getUserId());
-//		
-//	}
-//
 	@Test
-	public void test6SelectBucketlistsByConnChains() {
-		List<String> connChains = new ArrayList<>();
+	public void test5SelectBucketlistByBucketlistId() {
+		assertNotNull(store.selectBucketlistByBucketlistId(1));
+		assertNotNull(store.selectBucketlistByBucketlistId(2));
+		assertEquals("박유저", store.selectBucketlistByBucketlistId(1).getUserId());
+		assertEquals("이유저", store.selectBucketlistByBucketlistId(2).getUserId());
 		
-		connChains.add("travel");
-		List<Bucketlist> bList = store.selectBucketlistsByConnChains(connChains); 
-		assertEquals(2, bList.size());
-		assertEquals(1, bList.get(0).getBucketlistId());
-		assertEquals("박유저", bList.get(0).getUserId());
-		assertEquals(2, bList.get(1).getBucketlistId());
 	}
+//
+//	@Test
+//	public void test6SelectBucketlistsByConnChains() {
+//		List<String> connChains = new ArrayList<>();
+//		
+//		connChains.add("travel");
+//		List<Bucketlist> bList = store.selectBucketlistsByConnChains(connChains); 
+//		assertEquals(2, bList.size());
+//		assertEquals(1, bList.get(0).getBucketlistId());
+//		assertEquals("박유저", bList.get(0).getUserId());
+//		assertEquals(2, bList.get(1).getBucketlistId());
+//	}
 
 }
