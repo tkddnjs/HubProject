@@ -31,21 +31,22 @@ public class LoginController extends HttpServlet {
 		
 		if(result){
 			boolean temp = service.checkAdmin(userId);
-			if(userId.equals("admin")){
+			
+			if(temp == false){
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", userId);
 				
-				response.sendRedirect("cooperList.jsp");
+				response.sendRedirect("bucketlist.jsp");
 			}else{
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", user);
 				
-				response.sendRedirect("bucketlist.jsp");
+				response.sendRedirect("cooperList.jsp");
 			}
 		}else{
-			response.sendRedirect("main.jsp");
+			response.sendRedirect("HUBMain.jsp");
 		}
 		
 	}

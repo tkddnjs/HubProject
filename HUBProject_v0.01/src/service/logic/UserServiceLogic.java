@@ -50,7 +50,7 @@ public class UserServiceLogic implements UserService {
 		
 		User u = store.selectUser(userId);
 		
-		if(u.getUserId().equals(userId)){
+		if(u.getUserId().equals(user.getUserId())){
 			temp = true;
 			return temp;
 		}
@@ -65,7 +65,8 @@ public class UserServiceLogic implements UserService {
 		
 		User user = store.selectUser(userId);
 				
-		if(user.getUserId().equals(userId)){
+		
+		if(user.isAdmin()){
 			temp = true;
 			return temp;
 		}
