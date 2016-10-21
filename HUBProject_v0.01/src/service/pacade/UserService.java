@@ -9,6 +9,6 @@ public interface UserService {
 	int removeUser(String userId);
 	User findUserByUserId(String userId);
 	boolean login(User user);
-	boolean checkAdmin(String userId);
 	boolean checkId(String userId);
+	boolean getIsAdmin();
 }

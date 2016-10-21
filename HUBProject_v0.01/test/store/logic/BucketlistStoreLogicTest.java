@@ -33,7 +33,7 @@ public class BucketlistStoreLogicTest {
 //		bucketlist.setSos("asgw");
 //		bucketlist.setStar(5);
 //		bucketlist.setTitle("hqeat");
-//		bucketlist.setUserId("ÀÌÀ¯Àú");
+//		bucketlist.setUserId("ì´ìœ ì €");
 //		
 //		assertEquals(1, store.insertBucketlist(bucketlist));
 //	}
@@ -49,7 +49,7 @@ public class BucketlistStoreLogicTest {
 //		bucketlist.setSos("asgwe");
 //		bucketlist.setStar(5);
 //		bucketlist.setTitle("asdafg");
-//		bucketlist.setUserId("±èÀ¯Àú");
+//		bucketlist.setUserId("ê¹€ìœ ì €");
 //		
 //		assertEquals(1, store.updateBucketlist(bucketlist));
 //		assertEquals("asde", store.selectBucketlistByBucketlistId(3).getMemo());
@@ -66,29 +66,29 @@ public class BucketlistStoreLogicTest {
 //	public void test4SelectAll() {
 //		List<Bucketlist> bList = store.selectAll();
 //		assertEquals(2, bList.size());
-//		assertEquals("ÀÌÀ¯Àú", bList.get(0).getUserId());
+//		assertEquals("ì´ìœ ì €", bList.get(0).getUserId());
+//		
+//	}
+//
+//	@Test
+//	public void test5SelectBucketlistByBucketlistId() {
+//		assertNotNull(store.selectBucketlistByBucketlistId(1));
+//		assertNotNull(store.selectBucketlistByBucketlistId(2));
+//		assertEquals("ê¹€ìœ ì €", store.selectBucketlistByBucketlistId(1).getUserId());
+//		assertEquals("ì´ìœ ì €", store.selectBucketlistByBucketlistId(2).getUserId());
 //		
 //	}
 //
 	@Test
-	public void test5SelectBucketlistByBucketlistId() {
-		assertNotNull(store.selectBucketlistByBucketlistId(1));
-		assertNotNull(store.selectBucketlistByBucketlistId(2));
-		assertEquals("¹ÚÀ¯Àú", store.selectBucketlistByBucketlistId(1).getUserId());
-		assertEquals("ÀÌÀ¯Àú", store.selectBucketlistByBucketlistId(2).getUserId());
+	public void test6SelectBucketlistsByConnChains() {
+		List<String> connChains = new ArrayList<>();
 		
+		connChains.add("ì—¬í–‰");
+		List<Bucketlist> bList = store.selectBucketlistsByConnChains(connChains); 
+		assertEquals(1, bList.size());
+		assertEquals(1, bList.get(0).getBucketlistId());
+		assertEquals("ì—¬í–‰", bList.get(0).getConnChains().get(0));
+		assertEquals("hub", bList.get(0).getUserId());
 	}
-//
-//	@Test
-//	public void test6SelectBucketlistsByConnChains() {
-//		List<String> connChains = new ArrayList<>();
-//		
-//		connChains.add("travel");
-//		List<Bucketlist> bList = store.selectBucketlistsByConnChains(connChains); 
-//		assertEquals(2, bList.size());
-//		assertEquals(1, bList.get(0).getBucketlistId());
-//		assertEquals("¹ÚÀ¯Àú", bList.get(0).getUserId());
-//		assertEquals(2, bList.get(1).getBucketlistId());
-//	}
 
 }

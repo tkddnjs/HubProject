@@ -33,9 +33,12 @@ public class RegisterUserController extends HttpServlet {
 				sum += Integer.parseInt(listopt);
 		}
 		user.setListOption(sum);
-		List<String> connchains = new ArrayList<>();
-		connchains.add(req.getParameter("connchain"));
-		user.setConnChains(connchains);
+		List<String> connChains = new ArrayList<>();
+		
+		for(String connChain : req.getParameterValues("connchain")){
+			connChains.add(connChain);
+		}
+		user.setConnChains(connChains);
 		user.setIntroduce(req.getParameter("introduce"));
 		service.registerUser(user);
 

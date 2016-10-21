@@ -20,22 +20,35 @@ public class UserStoreLogicTest {
 	public void init(){
 		store = new UserStoreLogic(); 
 	}
-	/*
+	
 	@Test
 	public void testInsertUser() {
-		fail("Not yet implemented");
+		User user = new User();
+		user.setUserId("ê°ìë¨¹ê¸°ëŒ€íšŒ");
+		user.setAdmin(false);
+		user.setPicture("picture.jpg");
+		user.setPw("asasd");
+		user.setEmail("email@coa.com");
+		user.setListOption(3);
+		user.setIntroduce("asdafafqegscvwhqefahegsg");
+		
+		List<String> connChains = new ArrayList<>();
+		connChains.add("ê³µì›ì‚°ì±…í•˜ê¸°");
+		connChains.add("ê°ìë¨¹ê¸°");
+		user.setConnChains(connChains);
+		
+		assertEquals(1, store.insertUser(user));
 	}
-
-	@Test
-	public void testUpdateUser() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDeleteUser() {
-		fail("Not yet implemented");
-	}*/
-
+//
+//	@Test
+//	public void testUpdateUser() {
+//		fail("Not yet implemented");
+//	}
+//
+//	@Test
+//	public void testDeleteUser() {
+//		fail("Not yet implemented");
+//
 //	@Test
 //	public void testSelectUser() {
 //		User user = store.selectUser("bookstore");
@@ -45,17 +58,17 @@ public class UserStoreLogicTest {
 //		assertEquals("bookstore", user.getUserId());
 //		//assertEquals("111", store.selectUser(user.getPw()));
 //	}
-
-	@Test
-	public void testSelectUsersByConnChains() {
-		List<String> connChains = new ArrayList<>();
-		connChains.add("asdf");
-		
-		List<User> users = store.selectUsersByConnChains(connChains);
-		
-		assertEquals(2, users.size());
-		assertEquals("±èÀ¯Àú", users.get(0).getUserId());
-		assertEquals("¹ÚÀ¯Àú", users.get(1).getUserId());
-	}
+//
+//	@Test
+//	public void testSelectUsersByConnChains() {
+//		List<String> connChains = new ArrayList<>();
+//		connChains.add("asdf");
+//		
+//		List<User> users = store.selectUsersByConnChains(connChains);
+//		
+//		assertEquals(2, users.size());
+//		assertEquals("asd", users.get(0).getUserId());
+//		assertEquals("asd", users.get(1).getUserId());
+//	}
 
 }

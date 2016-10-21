@@ -18,7 +18,7 @@
 
 	
 </script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="resources/js/jquery.min.js" type="text/javascript"></script>
 
 <style>
 
@@ -35,7 +35,6 @@
 <a href=HUBMain.jsp><h1 align="center"  >HUB : Have U get a BucketList?</h1></a>
 	<form action="login.do" method="post">
 	<table align="center">
-	
            <tr >
 				<th>ID</th>
 				<td>

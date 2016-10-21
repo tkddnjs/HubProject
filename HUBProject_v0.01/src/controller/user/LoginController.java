@@ -22,35 +22,30 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		service = new UserServiceLogic();
-		
 		String userId = request.getParameter("userId");
+		String pw = request.getParameter("password");
+		
 		User user = new User();
 		user.setUserId(userId);
+		user.setPicture(pw);
 		
 		boolean result = service.login(user);
 		
 		if(result){
-			boolean temp = service.checkAdmin(userId);
-			
-			if(temp == false){
-				
+			boolean isAdmin = service.getIsAdmin();
+			if(isAdmin == false){
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", userId);
-				
 				response.sendRedirect("listBucketlist.do");
 			}else{
-				
 				HttpSession session = request.getSession();
-				session.setAttribute("userId", user);
-				
+				session.setAttribute("userId", userId);
 				response.sendRedirect("cooperList.jsp");
 			}
 		}else{
 			response.sendRedirect("HUBMain.jsp");
 		}
-		
 	}
-
 }
 
 

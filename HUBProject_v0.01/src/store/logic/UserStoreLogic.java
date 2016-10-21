@@ -12,8 +12,6 @@ import store.pacade.UserStore;
 
 public class UserStoreLogic implements UserStore {
 	
-	private static final String resource = "store/config.xml";
-
 	private SqlSessionFactory factory;
 	
 	public UserStoreLogic() {
@@ -28,15 +26,13 @@ public class UserStoreLogic implements UserStore {
 			UserMapper mapper = session.getMapper(UserMapper.class);
 			result = mapper.insertUser(user);
 			
-			if(result==0){
+			if(result == 0){
 				session.rollback();
 				return result;
 			}
-			
 			for(String connChain : user.getConnChains()){
 				result = mapper.insertConnChain(user.getUserId(), connChain);
 			}			
-			
 			if(result > 0){
 				session.commit();
 			}else{
@@ -50,26 +46,47 @@ public class UserStoreLogic implements UserStore {
 
 	@Override
 	public int updateUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int result = 0;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			result = mapper.updateUser(user);
+			if(result > 0){
+				session.commit();
+			} else{
+				session.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 	@Override
 	public int deleteUser(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int result = 0;
+		try {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			result = mapper.deleteUser(userId);
+			if(result > 0){
+				session.commit();
+			} else{
+				session.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 	@Override
 	public User selectUser(String userId) {
 		SqlSession session = factory.openSession();
 		User user = null;
-		
 		try{
-			
 			UserMapper mapper = session.getMapper(UserMapper.class);
 			user=mapper.selectUserByUserId(userId);			
-			
 		}finally{
 			session.close();
 		}

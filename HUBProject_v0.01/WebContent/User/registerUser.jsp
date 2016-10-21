@@ -74,41 +74,47 @@ dl dd p.error {
 					ID<span> (*) </span>
 				</dt>
 				<dd>
-					<input type="text" size="20" name="userid"
+					<input type="text" size="20" id="userId" name="userid"
 						class="validate required">
+					<span id="idCheckResult"></span>
 				</dd>
 				<dt>
 					PW<span> (*) </span>
 				</dt>
 				<dd>
-					<input type="password" size="20" name="pw" class="validate pw">
+					<input type="password" size="20" id="pw" name="pw" class="validate pw">
 				</dd>
 				<dt>
 					PW확인<span> (*) </span>
 				</dt>
 				<dd>
-					<input type="password" size="20" name="pwcheck"
+					<input type="password" size="20" id="pwCheck" name="pwcheck"
 						class="validate pw pw_check">
+					<span id="pwCheckResult"></span>
 				</dd>
 
 
 				<dt>이메일</dt>
 				<dd>
-					<input type="text" size="50" name="email"
+					<input type="text" size="50" id="email" name="email"
 						class="validate mail mail_check">
+					<span id="mailCheckResult"></span>
 				</dd>
 
 				<dt>
 					연결고리(직업, 취미 등 도움을 줄 수 있는 분야)<span> (*) 1개 이상 입력</span>
 				</dt>
-				<dd>
+				<dd id="connForm">
 					<input type="text" size="10" name="connchain" class="validate">
-					<button>+</button>
+					<button type="button">+</button><br>
 				</dd>
+				
 				<dt>도움 리스트 조회 여부</dt>
 				<dd class="checkboxRequired">
-					<label for="toU">내가<input type="checkbox"  name="listoption"  checked=''  value="1"/></label>
-					<label for="toMe">나를<input type="checkbox"  name="listoption" checked=''  value="2"/></label>
+					<label for="toU"> 내가 <input type="checkbox"
+						name="listoption" checked value=1 /></label> <label for="toMe">나를
+						<input type="checkbox" name="listoption" checked value=2 />
+					</label>
 				</dd>
 
 				<dt>
@@ -124,6 +130,55 @@ dl dd p.error {
 		</form>
 	</div>
 	<script>
+	$(document).ready(function a(){
+		$("button").click(function () {
+			$('<input type="text" size="10" name="connchain" class="validate"><br>').appendTo("#connForm");
+		});
+	});
+	
+	$(document).ready(function a(){
+		$("#userId").keyup(function() {
+				
+			var userId= $(this).val();
+			$.ajax({
+				type: 'POST', 
+				url: '../checkId.do',
+				data: 
+					{
+						userId: userId
+						//앞의 id: getParameter할 것 / 뒤 id: 위의 var id= 값
+					},
+				success: function(result){
+					if($.trim(result) == "ok"){
+						$("#idCheckResult").html("사용가능한 ID입니다.");
+					}else{
+						$("#idCheckResult").html("사용중인  ID입니다.");
+					}
+				}
+			});
+		});
+		
+		
+		$("#pwCheck").keyup(function() {
+			var pw = $("#pw").val();
+			var pwCheck = $(this).val();
+			
+			if(pw == pwCheck){
+				$("#pwCheckResult").html("일치");
+			} else {
+				$("#pwCheckResult").html("불일치");
+			}
+		});
+		
+		$("#email").keyup(function(){
+       		if($(this).val()&&!$(this).val().match(/.+@.+\.com+/g)){
+       			$("#mailCheckResult").html("메일 형식이 잘못되었습니다.");
+        	}else{
+        		$("#mailCheckResult").remove();
+        	}
+    	});
+	});
+	
     $("form").submit(function(){
         //에러 초기화 추가로 붙는 내용 삭제
         $("p.error").remove();
@@ -141,8 +196,6 @@ dl dd p.error {
                 }
             });
             
-            
-            
             //연락처 검사
             $(this).filter(".number").each(function(){
                 if(isNaN($(this).val())){
@@ -150,77 +203,43 @@ dl dd p.error {
                 }
             });
             
-            
-            
-            $(document).ready(function() {
-        		
-        		$("#id").keyup(function() {
-      				
-        				var id= $(this).val();
-        				$.ajax({
-        					type: 'POST', 
-        					url: 'checkId.do',
-        					data: 
-        						{
-        							id: id
-        							//앞의 id: getParameter할 것 / 뒤 id: 위의 var id= 값
-        						},
-        					success: function(result){
-        						if($.trim(result) == "ok"){
-        							$("#idCheckResult").html("사용가능한 ID입니다.");
-        						}else{
-        							$("#idCheckResult").html("사용중인  ID입니다.");
-        						}
-        					
-        				});
-        			})
-        		});
-            
-            // 메일 검사
-            $(this).filter(".mail").each(function(){
-                if($(this).val()&&!$(this).val().match(/.+@.+\..+/g)){
-                    $(this).before("<p class='error'>메일 형식이 잘못되었습니다.</p>");
-                }
-            });
-            
-        });
+         	// 메일 검사
+        	$(this).filter(".mail").each(function(){
+           		if($(this).val()&&!$(this).val().match(/.+@.+\..+/g)){
+                	$(this).before("<p class='error'>메일 형식이 잘못되었습니다.</p>");
+            	}
+        	});
+         
+        	//radio button check
+        	$(":radio").filter(".validate").each(function(){
+           		$(this).filter(".required").each(function(){
+                	if($(":radio[name=" + $(this).attr("name")+"]:checked").length == 0){
+                    	$(this).before("<p class='error'>필수 선택 항목입니다.</p>");
+                	}
+            	});
+        	});
         
         
-        //radio button check
-        $(":radio").filter(".validate").each(function(){
-            $(this).filter(".required").each(function(){
-                if($(":radio[name=" + $(this).attr("name")+"]:checked").length == 0){
-                    $(this).before("<p class='error'>필수 선택 항목입니다.</p>");
-                }
-            })
-        });
-        
-        
-        //check box check
-        $(".checkboxRequired").each(function(){
-            if($(":checkbox:checked", this).length == 0){
-                $(this).prepend("<p class='error'>필수 선택 항목입니다.</p>");
-            }
-        });
+        	//check box check
+        	$(".checkboxRequired").each(function(){
+            	if($(":checkbox:checked", this).length == 0){
+                	$(this).prepend("<p class='error'>필수 선택 항목입니다.</p>");
+            	}
+        	});
             
             
         
-        if($("p.error").length> 0){
-            //에러가 발생한 위치로 스크롤 이동
-            $("html, body").animate({scrollTop : 
-            $("p.error.first").offset.top - 40}, "slow");
-            //에러 항목에 대한 음영 처리
-            $("p.error").parent().addClass("error");
-            return false;
-        }
-    });
-    
-    
-    
-    
-    
-    
-    
+        	if($("p.error").length> 0){
+            	//에러가 발생한 위치로 스크롤 이동
+            	$("html, body").animate({scrollTop : 
+            	$("p.error.first").offset.top - 40}, "slow");
+            	//에러 항목에 대한 음영 처리
+            	$("p.error").parent().addClass("error");
+            	return false;
+        	}
+		});
+	});
+	 
     </script>
 </body>
 </html>

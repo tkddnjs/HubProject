@@ -6,7 +6,7 @@
 		<id property="userId" column="UserId"/>
 		<result property="pw" column="PW"/>
 		<result property="email" column="Email"/>
-<!--			<result property="listOption" column="ListOption"/> -->
+		<result property="listOption" column="ListOption"/>
 		<result property="picture" column="Picture"/>
 		<result property="introduce" column="Introduce"/>
 		<result property="admin" column="Admin" typeHandler="BooleanToYnHandler"/>
@@ -14,13 +14,13 @@
 	</resultMap>
 
 	<sql id="selectUser">
-		SELECT UserId, PW, Email, Picture, Introduce, Admin
+		SELECT UserId, PW, Email, Picture, Introduce, ListOption, Admin
 		FROM user_tb
 	</sql>
 
 	<insert id="insertUser" parameterType="User">
-		INSERT INTO User_TB(userId, pw, email, listoption, introduce)
-		values (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce })
+		INSERT INTO User_TB(userId, pw, email, listoption, introduce, admin)
+		values (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce }, 'N')
 	</insert>
 	<insert id="insertConnChain" parameterType="Map">
 		INSERT INTO Userconn_tb(userId, connChain)
@@ -28,14 +28,17 @@
 	</insert>
 	
 	<update id="updateUser" parameterType="User">
-
+		UPDATE User_tb 
+		SET pw = #{pw }, email = #{email }, listoption = #{listOption, typeHandler=BooleanToYnHandler }, introduce = #{introduce }
+		WHERE userId=#{userId}
 	</update>
 
-	<delete id="deleteUser" parameterType="int">
-
+	<delete id="deleteUser" parameterType="String">
+		DELETE User_tb
+		WHERE userId=#{userId}
 	</delete>
 	
-	<select id="selectUserByUserId" parameterType="String" resultType="User">
+	<select id="selectUserByUserId" parameterType="String" resultMap="userMap">
 		<include refid="selectUser" />
 		where userId = #{userId}
 	</select>
@@ -43,11 +46,10 @@
 	<select id="selectUsersByConnChains" resultMap="userMap">
 		<include refid="selectUser" />
 		WHERE UserId IN (SELECT UserId
-		FROM userconn_tb
-		WHERE connChain IN 
-		<foreach item="connChain" separator="," collection="list" open="(" close=")">
-			#{connChain}
-		</foreach>)
+						FROM userconn_tb
+						WHERE connChain IN <foreach item="connChain" separator="," collection="list" open="(" close=")">
+												#{connChain}
+											</foreach>)
 	</select>
 	
 	<select id="selectConnChainsByUserId" parameterType="String" resultType="String">
