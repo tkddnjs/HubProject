@@ -2,6 +2,7 @@ package store.logic;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
@@ -26,13 +27,13 @@ public class BucketlistStoreLogicTest {
 //	public void test1InsertBucketlist() {
 //		Bucketlist bucketlist = new Bucketlist();
 //		
-//		bucketlist.setGoal("asw");
+//		bucketlist.setGoal("123");
 //		bucketlist.setLock(true);
-//		bucketlist.setMemo("qert");
+//		bucketlist.setMemo("14");
 //		bucketlist.setSos("asgw");
 //		bucketlist.setStar(5);
 //		bucketlist.setTitle("hqeat");
-//		bucketlist.setUserId("박유저");
+//		bucketlist.setUserId("이유저");
 //		
 //		assertEquals(1, store.insertBucketlist(bucketlist));
 //	}
@@ -41,7 +42,7 @@ public class BucketlistStoreLogicTest {
 //	public void test2UpdateBucketlist() {
 //		Bucketlist bucketlist = new Bucketlist();
 //		
-//		bucketlist.setBucketlistId(8);
+//		bucketlist.setBucketlistId(3);
 //		bucketlist.setGoal("asdgg");
 //		bucketlist.setLock(true);
 //		bucketlist.setMemo("asde");
@@ -51,36 +52,43 @@ public class BucketlistStoreLogicTest {
 //		bucketlist.setUserId("김유저");
 //		
 //		assertEquals(1, store.updateBucketlist(bucketlist));
-//		assertEquals("asde", store.selectBucketlistByBucketlistId(8).getMemo());
-//		assertEquals("asdgg", store.selectBucketlistByBucketlistId(8).getGoal());
+//		assertEquals("asde", store.selectBucketlistByBucketlistId(3).getMemo());
+//		assertEquals("asdgg", store.selectBucketlistByBucketlistId(3).getGoal());
 //		
 //	}
 //
 //	@Test
 //	public void test3DeleteBucketlist() {
-//		assertEquals(1, store.deleteBucketlist(8));
+//		assertEquals(1, store.deleteBucketlist(3));
 //	}
 //	
 //	@Test
 //	public void test4SelectAll() {
 //		List<Bucketlist> bList = store.selectAll();
 //		assertEquals(2, bList.size());
-//		assertEquals("김유저", bList.get(0).getUserId());
+//		assertEquals("이유저", bList.get(0).getUserId());
 //		
 //	}
 //
 //	@Test
 //	public void test5SelectBucketlistByBucketlistId() {
-//		assertNotNull(store.selectBucketlistByBucketlistId(9));
-//		assertNotNull(store.selectBucketlistByBucketlistId(10));
-//		assertEquals("김유저", store.selectBucketlistByBucketlistId(9).getUserId());
-//		assertEquals("박유저", store.selectBucketlistByBucketlistId(10).getUserId());
+//		assertNotNull(store.selectBucketlistByBucketlistId(1));
+//		assertNotNull(store.selectBucketlistByBucketlistId(2));
+//		assertEquals("박유저", store.selectBucketlistByBucketlistId(1).getUserId());
+//		assertEquals("이유저", store.selectBucketlistByBucketlistId(2).getUserId());
 //		
 //	}
 //
 //	@Test
 //	public void test6SelectBucketlistsByConnChains() {
-//		fail("Not yet implemented");
+//		List<String> connChains = new ArrayList<>();
+//		
+//		connChains.add("travel");
+//		List<Bucketlist> bList = store.selectBucketlistsByConnChains(connChains); 
+//		assertEquals(2, bList.size());
+//		assertEquals(1, bList.get(0).getBucketlistId());
+//		assertEquals("박유저", bList.get(0).getUserId());
+//		assertEquals(2, bList.get(1).getBucketlistId());
 //	}
 
 }
