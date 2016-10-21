@@ -3,40 +3,40 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store.mapper.BucketlistMapper">
 	<resultMap type="Bucketlist" id="bucketlistMap">
-		<id property="bucketlistId" column="bucketlist_id"/>
-		<result property="title" column="bucketlist_title"/>
-		<result property="goal" column="bucketlist_goal"/>
-		<result property="star" column="bucketlist_star"/>
-		<result property="memo" column="bucketlist_memo"/>
-		<result property="sos" column="bucketlist_sos"/>
-		<result property="lock" column="bucketlist_lock" typeHandler="BooleanToYnHandler"/>
-		<result property="userId" column="user_id"/>
-		<collection property="connChains" column="connbuckID" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
+		<id property="bucketlistId" column="bucketId"/>
+		<result property="title" column="bucketName"/>
+		<result property="goal" column="goalDay"/>
+		<result property="star" column="starGrade"/>
+		<result property="memo" column="memo"/>
+		<result property="sos" column="sos"/>
+		<result property="lock" column="locker" typeHandler="BooleanToYnHandler"/>
+		<result property="userId" column="userId"/>
+		<collection property="connChains" column="bucketId" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
 	</resultMap>
 
 	<sql id="selectBucketlist">
-		<!-- SELECT bucketlist_id, bucketlist_title, bucketlist_connChains, bucketlist_goal, bucketlist_star, bucketlist_memo, bucketlist_sos, bucketlist_lock, user_id
+		<!-- SELECT bucketId, bucketName, bucketId, goalDay, starGrade, memo, sos, locker, userId
 		FROM bucketlist_tb -->
-		SELECT bucketlist_id, bucketlist_title, bucketlist_connChains, bucketlist_goal, bucketlist_star, bucketlist_memo, bucketlist_sos, bucketlist_lock, user_id
+		SELECT bucketId, bucketName, bucketId, goalDay, starGrade, memo, sos, locker, userId
 		FROM bucketlist_tb
 	</sql>
 
 	<insert id="insertBucketlist" parameterType="Bucketlist">
 		INSERT
 		<!-- INTO bucketlist_tb(bucketlist_id, bucketlist_title, bucketlist_connChains, bucketlist_goal, bucketlist_star, bucketlist_memo, bucketlist_sos, bucketlist_lock, user_id) -->
-		INTO bucketlist_tb(bucketlist_id, bucketlist_title, bucketlist_goal, bucketlist_star, bucketlist_memo, bucketlist_sos, bucketlist_lock, user_id)
+		INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
 		VALUES (bucketlist_seq.nextVal, #{title}, #{goal}, #{star}, #{memo}, #{sos}, #{lock,typeHandler=BooleanToYnHandler}, #{userId})
 	</insert>
 
 	<update id="updateBucketlist" parameterType="Bucketlist">
 		UPDATE bucketlist_tb
-		SET bucketlist_title = #{title}, bucketlist_goal = #{goal}, bucketlist_star = #{star}, bucketlist_memo = #{memo}, bucketlist_sos = #{sos}, bucketlist_lock = #{lock,typeHandler=BooleanToYnHandler}, user_id = #{userId} 
-		WHERE bucketlist_id=#{bucketlistId}
+		SET bucketName = #{title}, goalDay = #{goal}, starGrade = #{star}, memo = #{memo}, sos = #{sos}, locker = #{lock,typeHandler=BooleanToYnHandler}, userId = #{userId} 
+		WHERE bucketId=#{bucketlistId}
 	</update>
 
 	<delete id="deleteBucketlist" parameterType="int">
 		DELETE bucketlist_tb 
-		WHERE bucketlist_id=#{bucketlistId}
+		WHERE bucketId=#{bucketlistId}
 	</delete>
 	
 	<select id="selectAll" resultMap="bucketlistMap">
@@ -45,21 +45,21 @@
 
 	<select id="selectBucketlistByBucketlistId" parameterType="int" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
-		WHERE bucketlist_id=#{bucketlistId}
+		WHERE bucketId=#{bucketlistId}
 	</select>
 
 	<select id="selectBucketlistsByConnChains" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
-		WHERE bucketlist_id IN (select bucketlist_id
-								from connBuck_tb
-								where conn_name IN
+		WHERE bucketId IN (SELECT bucketId
+							FROM bucketConn_tb
+							WHERE connChain IN
 								<foreach item="connChain" separator="," collection="list" open="(" close=")">
 									#{connChain}
 								</foreach>)	</select>
 	
 	<select id="selectConnChainsByBucketlistId" parameterType="int" resultType="String">
-		SELECT connChain_name
-		FROM buckConn_tb
-		WHERE bucketlist_id=#{bucketlistId}
+		SELECT connChain
+		FROM bucketConn_tb
+		WHERE bucketId=#{bucketlistId}
 	</select>
 </mapper>
