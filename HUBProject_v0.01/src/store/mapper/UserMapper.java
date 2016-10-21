@@ -11,4 +11,6 @@ public interface UserMapper {
 	int deleteUser(String userId);
 	User selectUserByUserId(String userId);
 	List<User> selectUsersByConnChains(List<String> connChains);
+
+	List<String> selectConnChainsByUserId(String userId);
 }
