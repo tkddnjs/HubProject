@@ -72,7 +72,7 @@ public class Bucketlist {
 		this.sos = sos;
 	}
 
-	public boolean isLock() {
+	public boolean getLock() {
 		return lock;
 	}
 

@@ -6,35 +6,51 @@
 <head>
 <meta charset="UTF-8">
 <title>HUB</title>
-
-<link href="../resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="../resources/css/style.css" rel="stylesheet">
+<link href="resources/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/bootstrap-ko.css" rel="stylsheet">
+<link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
+<link href="resources/css/bootstrap-responsive.css" rel="stylsheet">
+<link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
+<link href="resources/css/bootstrap.css" rel="stylsheet">
 
 <style type="text/css">
 body {
-	padding: 50px;
+	padding: 5px;
 }
+
 h1 {
-	font-weight:bold;
-	color : #A0B0DB;
+	font-weight: bold;
+	color: #A0B0DB;
+	size: 50px;
 }
+
+.header {
+	font-size: 15px;
+}
+
+
 .ranking {
 	text-align: center;
-	font-size: 28pt;
+	font-size: 10pt;
 }
 
 .spanTitle {
-	font-size: 18pt;
+	width:2%;
+	text-align: center;
+	font-size: 18px;
 	font-weight: bold;
-	margin-right: 10px;
+	
+	color: #A0B0DB;
 }
 
-.pAlbum {
+.goal {
+	font-size: 12pt;
 	color: gray;
 	margin-left: 5px;
 }
 
-.imgAlbum {
+.imgbucket {
 	width: 80px;
 	height: 80px;
 	margin-right: 10px;
@@ -47,56 +63,58 @@ h1 {
 </style>
 </head>
 <body>
-	<%@ include file = "../header/header.jspf" %>
-	
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<h1>Music Chart</h1>
-				
-				<div align="right">
-					<form action="search.do" method="post">
-						<input type="text" placeholder="연결고리를 입력하세요." name="name">
-						<input class="btn btn-xs btn-default" type="submit" value="검색">
-					</form>
-				</div>
-				
-				
-				<table class="table table-hover table-condensed">
-					<colgroup>
-						<col width="80" align="center">
-						<col width="*">
-						<col width="70">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>순위</th>
-							<th>곡정보/곡명</th>
-							<th>담기</th>
-						</tr>
-					</thead>
-					
-					<tbody>
-						<c:forEach items="${musics }" var="music" varStatus="status">
-							<tr>
-	                            <td class="ranking">${music.id  }</td>
-	                            <td>
-	                            <table>
-	                            <tr><td rowspan="2"><img class="imgAlbum" src="resources/img/${music.image  }" ></td>
-	                            <td>
-	                            	<span class="spanTitle">${music.name  }</span>
-	                            	<a class="btn btn-xs btn-default" href="detail.do?id=${music.id}"><b>i</b></a>
-	                            </td>
-	                            </tr>
-	                            <tr><td><p class="pAlbum">${music.artist  } - ${music.album  }</p></td></tr>
-	                            </table>
-	                            <td><a class="btn btn-xs btn-info btnPlay" href="myList.do?id=${music.id  }&userId=${userId }">담기</a></td>
-	                        </tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-		</div>
+	<div class="header" align="right">
+		<%@ include file = "../header/header.jspf" %>
 	</div>
+	
+	<h1 align="center">HUB : Have U get a BucketList?</h1>
+	
+	
+		<a class="btn btn-xs btn-default" href="registerBucketlist.jsp"><b>버킷추가</b></a>
+				
+		<table class="table table-hover table-condensed">
+		<thead>
+			<tr>
+				<th width="10" align="center">잠금</th>
+				<th width="10" align="center">No</th>
+				<th width="400"  align="center">버킷</th>
+				<th width="100">목표일</th>
+				<th width="100">중요도</th>
+				<th width="100">연결고리</th>
+				
+			</tr>
+		</thead>
+		
+		<tbody>
+			<c:forEach items="${bucketlists }"  var="bucketlist"  varStatus="status">
+				<tr>
+					<c:choose>
+						<c:when test="${bucketlist.lock }">
+							<td  align="center"><input type="checkbox"  name="lock"  checked/></td>
+						</c:when>
+						<c:otherwise>
+							<td  align="center"><input type="checkbox"  name="lock" /></td>
+						</c:otherwise>
+					</c:choose>
+					
+                          <td class="ranking"  align="center">${status.count  }</td>
+                          <td>
+                          <table>
+                          <tr>
+                          <td  align="center">
+                          	<span class="spanTitle">
+                          		<a href="findBucketlist.do?id=${bucketlist.bucketlistId}"><b>${bucketlist.title  }</b></a>
+                          	</span>
+                          </td>
+                          </tr>
+                          </table>
+                          <td><p class="goal">${bucketlist.goal  }</p></td>
+                          <td>${bucketlist.star  }</td>
+                          
+                      </tr>
+			</c:forEach>
+		</tbody>
+	</table>
+			
 </body>
 </html>

@@ -17,16 +17,20 @@ public class RegisterBucketlistController extends HttpServlet {
 
 	private BucketlistService service;
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		service = new BucketlistServiceLogic();
-		
-		Bucketlist bucketlist = new Bucketlist();
-		
-		service.registerBucketlist(bucketlist);
+		Bucketlist b = new Bucketlist();
 		
 		
 		
+		
+		
+		
+		//service.registerBucketlist(b);
+		
+		
+		res.sendRedirect("registerBucketlist.jsp");
 	}
 
 }

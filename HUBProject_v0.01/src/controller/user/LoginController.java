@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", userId);
 				
-				response.sendRedirect("bucketlist.jsp");
+				response.sendRedirect("listBucketlist.do");
 			}else{
 				
 				HttpSession session = request.getSession();
