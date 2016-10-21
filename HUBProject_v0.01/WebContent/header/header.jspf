@@ -3,15 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:choose>
-  <c:when test="<%-- ${userId eq null } --%>">
+  <c:when test=" ${userId eq null } ">
     <a href="login.jsp"></a> 
   </c:when>
   
   <c:otherwise>
     
-     <b>IUIU </b>님 반갑습니다.<br>
+     <b>${userId } </b>님 반갑습니다.<br>
      
-    [<a href="logout.do">로그아웃</a> <a href="updateUser.do">myProfile</a> <a href="listFriend.do">친구목록</a>]
+    [<a href="logout.do">로그아웃</a>|<a href="updateUser.do">정보수정</a>|<a href="listFriend.do">친구목록</a>]
   
   </c:otherwise>
 

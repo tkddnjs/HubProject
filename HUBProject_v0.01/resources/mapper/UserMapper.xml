@@ -22,8 +22,12 @@
 		INSERT INTO User_TB(userId, pw, email, listoption, introduce)
 		values (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce })
 	</insert>
-	
+	<insert id="insertConnChain" parameterType="Map">
+		INSERT INTO Userconn_tb(userId, connChain)
+		VALUES (#{userId }, #{connChain})
 	</insert>
+	
+	
 		<update id="updateUser" parameterType="User">
 
 	</update>
