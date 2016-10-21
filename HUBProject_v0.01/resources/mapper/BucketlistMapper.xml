@@ -11,7 +11,7 @@
 		<result property="sos" column="bucketlist_sos"/>
 		<result property="lock" column="bucketlist_lock" typeHandler="BooleanToYnHandler"/>
 		<result property="userId" column="user_id"/>
-		<collection property="connChains" column="connBuckId" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
+		<collection property="connChains" column="bucketlist_connChains" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
 	</resultMap>
 
 	<sql id="selectBucketlist">

@@ -79,16 +79,16 @@ public class BucketlistStoreLogicTest {
 //		
 //	}
 //
-//	@Test
-//	public void test6SelectBucketlistsByConnChains() {
-//		List<String> connChains = new ArrayList<>();
-//		
-//		connChains.add("travel");
-//		List<Bucketlist> bList = store.selectBucketlistsByConnChains(connChains); 
-//		assertEquals(2, bList.size());
-//		assertEquals(1, bList.get(0).getBucketlistId());
-//		assertEquals("박유저", bList.get(0).getUserId());
-//		assertEquals(2, bList.get(1).getBucketlistId());
-//	}
+	@Test
+	public void test6SelectBucketlistsByConnChains() {
+		List<String> connChains = new ArrayList<>();
+		
+		connChains.add("travel");
+		List<Bucketlist> bList = store.selectBucketlistsByConnChains(connChains); 
+		assertEquals(2, bList.size());
+		assertEquals(1, bList.get(0).getBucketlistId());
+		assertEquals("박유저", bList.get(0).getUserId());
+		assertEquals(2, bList.get(1).getBucketlistId());
+	}
 
 }

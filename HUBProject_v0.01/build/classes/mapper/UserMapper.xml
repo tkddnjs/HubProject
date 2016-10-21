@@ -3,17 +3,24 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store.mapper.UserMapper">
 	<resultMap type="User" id="userMap">
-		
+		<id property="userId" column="UserId"/>
+		<result property="pw" column="PW"/>
+		<result property="email" column="Email"/>
+<!--			<result property="listOption" column="ListOption"/> -->
+		<result property="picture" column="Picture"/>
+		<result property="introduce" column="Introduce"/>
+		<result property="admin" column="Admin" typeHandler="BooleanToYnHandler"/>
+		<collection property="connChains" column="connUserId" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
 	</resultMap>
 
 	<sql id="selectUser">
-		SELECT userId, password as pw
-		FROM customer_tb
+		SELECT UserId, PW, Email, Picture, Introduce, Admin
+		FROM user_tb
 	</sql>
 
 	<insert id="insertUser" parameterType="User">
-		INSERT INTO BUser_TB(Id, password, email)
-		values  (#{userId } , #{pw }, #{email })
+		INSERT INTO user_tb(UserId, PW, Email, Picture, Introduce, Admin)
+		values (#{userId } , #{pw }, #{email }, #{picture}, #{introduce}, #{admin})
 	</insert>
 
 	<update id="updateUser" parameterType="User">
