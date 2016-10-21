@@ -33,17 +33,11 @@ public class RegisterUserController extends HttpServlet {
 				sum += Integer.parseInt(listopt);
 		}
 		user.setListOption(sum);
-		System.out.println(req.getParameter("connchain"));
 		List<String> connchains = new ArrayList<>();
 		connchains.add(req.getParameter("connchain"));
 		user.setConnChains(connchains);
-		System.out.println(connchains);
-
 		user.setIntroduce(req.getParameter("introduce"));
-		System.out.println(user);
-
 		service.registerUser(user);
-		
 
 		res.sendRedirect("HUBMain.jsp");
 		
