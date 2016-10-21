@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet {
 		
 		if(result){
 			boolean temp = service.checkAdmin(userId);
-			if(temp){
+			if(userId.equals("admin")){
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", userId);
