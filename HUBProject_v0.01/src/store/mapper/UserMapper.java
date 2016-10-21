@@ -2,6 +2,8 @@ package store.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import domain.User;
 
 public interface UserMapper {
@@ -13,4 +15,5 @@ public interface UserMapper {
 	List<User> selectUsersByConnChains(List<String> connChains);
 
 	List<String> selectConnChainsByUserId(String userId);
+	int insertConnChain(@Param("userId")String userId, @Param("connChain")String connChain);
 }

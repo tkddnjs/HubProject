@@ -10,5 +10,6 @@ public interface UserStore {
 	int updateUser(User user);
 	int deleteUser(String userId);
 	User selectUser(String userId);
+	
 	List<User> selectUsersByConnChains(List<String> connChains);
 }

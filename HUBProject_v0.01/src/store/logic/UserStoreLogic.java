@@ -23,20 +23,29 @@ public class UserStoreLogic implements UserStore {
 	@Override
 	public int insertUser(User user) {
 		SqlSession session = factory.openSession();
-		
+		int result = 0;
 		try{
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			if(mapper.insertUser(user)==1){
+			result = mapper.insertUser(user);
+			
+			if(result==0){
+				session.rollback();
+				return result;
+			}
+			
+			for(String connChain : user.getConnChains()){
+				result = mapper.insertConnChain(user.getUserId(), connChain);
+			}			
+			
+			if(result > 0){
 				session.commit();
-				return 1;
 			}else{
 				session.rollback();
-				return 0;
 			}
 		}finally{
 			session.close();
-			
 		}
+		return result;
 	}
 
 	@Override
