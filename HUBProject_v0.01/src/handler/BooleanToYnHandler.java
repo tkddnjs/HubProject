@@ -10,8 +10,8 @@ import org.apache.ibatis.type.TypeHandler;
 
 public class BooleanToYnHandler implements TypeHandler<Object>{
 
-	public static final String YES = "YES";
-	public static final String NO = "NO";
+	public static final String YES = "Y";
+	public static final String NO = "N";
 	
 	@Override
 	public void setParameter(PreparedStatement arg0, int arg1, Object arg2, JdbcType arg3) throws SQLException {
