@@ -51,8 +51,8 @@ public class User {
 		return connChains;
 	}
 
-	public void setConnChains(List<String> connChains) {
-		this.connChains = connChains;
+	public void setConnChains(List<String> connChain) {
+		this.connChains = connChain;
 	}
 
 	public String getPicture() {

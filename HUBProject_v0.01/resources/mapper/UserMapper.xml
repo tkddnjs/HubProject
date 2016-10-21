@@ -21,7 +21,13 @@
 	<insert id="insertUser" parameterType="User">
 		INSERT INTO User_TB(userId, pw, email, listoption, introduce)
 		values  (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce })
+		
+		INSERT INTO USERCONN_TB(userId, connchain)
+		values (#{userId }, #{connChain})
+		
+		
 	</insert>
+	
 	
 	<update id="updateUser" parameterType="User">
 
@@ -39,11 +45,11 @@
 	<select id="selectUsersByConnChains" resultMap="userMap">
 		<include refid="selectUser" />
 		WHERE UserId IN (SELECT UserId
-						FROM userconn_tb
-						WHERE connChain IN 
-						<foreach item="connChain" separator="," collection="list" open="(" close=")">
-							#{connChain}
-						</foreach>)
+		FROM userconn_tb
+		WHERE connChain IN 
+		<foreach item="connChain" separator="," collection="list" open="(" close=")">
+			#{connChain}
+		</foreach>)
 	</select>
 	
 	<select id="selectConnChainsByUserId" parameterType="String" resultType="String">
