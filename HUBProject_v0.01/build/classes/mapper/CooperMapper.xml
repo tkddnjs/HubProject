@@ -37,7 +37,7 @@
 		WHERE cooper_id = #{coId}
 	</delete>
 	
-	<select id="selectAll" resultMap="CooperMap">
+	<select id="selectAll" resultMap="cooperMap">
 		<include refid="selectCooper" />
 	</select>
 

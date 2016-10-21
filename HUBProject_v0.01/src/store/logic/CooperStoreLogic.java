@@ -94,4 +94,15 @@ public class CooperStoreLogic implements CooperStore {
 		}
 	}
 
+	@Override
+	public List<Cooper> selectCoopersByConnChains(List<String> connChains) {
+		SqlSession session = factory.openSession();
+		try {
+			CooperMapper mapper = session.getMapper(CooperMapper.class);
+			return mapper.selectCoopersByConnChains(connChains);
+		} finally {
+			session.close();
+		}
+	}
+
 }

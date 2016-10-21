@@ -11,4 +11,5 @@ public interface CooperMapper {
 	int deleteCooper(int coId);
 	List<Cooper> selectAll();
 	Cooper selectCooperByCoId(int coId);
+	List<Cooper> selectCoopersByConnChains(List<String> connChains);
 }

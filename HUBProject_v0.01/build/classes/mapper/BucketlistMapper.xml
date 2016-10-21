@@ -52,18 +52,10 @@
 		<include refid="selectBucketlist" />
 		WHERE bucketlist_id IN (select bucketlist_id
 								from connBuck_tb
-								where connChain LIKE
+								where conn_name IN
 								<foreach item="connChain" separator="," collection="list" open="(" close=")">
 									#{connChain}
-								</foreach>)
-								
-								
-		<include refid="selectAuthor"/>
-		WHERE author_id IN
-		<foreach item="id" separator="," collection="list" open="(" close=")">
-				#{id}
-		</foreach>
-								
+								</foreach>)		
 	</select>
 	
 	<select id="selectConnChainsByBucketlistId" parameterType="int" resultType="String">
