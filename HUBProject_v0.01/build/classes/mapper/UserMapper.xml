@@ -10,6 +10,7 @@
 		<result property="picture" column="Picture"/>
 		<result property="introduce" column="Introduce"/>
 		<result property="admin" column="Admin" typeHandler="BooleanToYnHandler"/>
+		<collection property="connChains" column="connUserId" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
 		<collection property="connChains" column="UserId" ofType="String" select="store.mapper.UserMapper.selectConnChainsByUserId" javaType="ArrayList" jdbcType="VARCHAR"/>
 	</resultMap>
 
@@ -20,6 +21,7 @@
 
 	<insert id="insertUser" parameterType="User">
 		INSERT INTO User_TB(userId, pw, email, listoption, introduce)
+		values  (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce })
 		values (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce })
 	</insert>
 	<insert id="insertConnChain" parameterType="Map">
@@ -27,6 +29,7 @@
 		VALUES (#{userId }, #{connChain})
 	</insert>
 	
+	<update id="updateUser" parameterType="User">
 	
 		<update id="updateUser" parameterType="User">
 
@@ -37,12 +40,15 @@
 	</delete>
 	
 	<select id="selectUserByUserId" parameterType="String" resultType="User">
+		<include refid="selectUser" />		
 		<include refid="selectUser" />
 		where userId = #{userId}
 	</select>
 
+	<select id="selectUsersByConnChains" parameterType="String" resultMap="userMap">
 	<select id="selectUsersByConnChains" resultMap="userMap">
 		<include refid="selectUser" />
+		
 		WHERE UserId IN (SELECT UserId
 		FROM userconn_tb
 		WHERE connChain IN 
@@ -50,6 +56,7 @@
 			#{connChain}
 		</foreach>)
 	</select>
+
 	
 	<select id="selectConnChainsByUserId" parameterType="String" resultType="String">
 		SELECT connChain
