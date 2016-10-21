@@ -55,8 +55,7 @@
 								where conn_name IN
 								<foreach item="connChain" separator="," collection="list" open="(" close=")">
 									#{connChain}
-								</foreach>)		
-	</select>
+								</foreach>)	</select>
 	
 	<select id="selectConnChainsByBucketlistId" parameterType="int" resultType="String">
 		SELECT connChain_name

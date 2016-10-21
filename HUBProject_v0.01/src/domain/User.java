@@ -6,7 +6,7 @@ public class User {
 	private String userId;
 	private String pw;
 	private String email;
-	private List<Boolean> listOption;
+	private int listOption;
 	private List<String> connChains;
 	private String picture;
 	private String introduce;
@@ -39,11 +39,11 @@ public class User {
 		this.email = email;
 	}
 
-	public List<Boolean> getListOption() {
+	public int getListOption() {
 		return listOption;
 	}
 
-	public void setListOption(List<Boolean> listOption) {
+	public void setListOption(int listOption) {
 		this.listOption = listOption;
 	}
 

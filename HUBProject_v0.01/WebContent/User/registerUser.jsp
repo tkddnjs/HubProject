@@ -81,8 +81,7 @@ dl dd p.error {
 					PW<span> (*) </span>
 				</dt>
 				<dd>
-					<input type="password" size="20" name="pw"
-						class="validate pw">
+					<input type="password" size="20" name="pw" class="validate pw">
 				</dd>
 				<dt>
 					PW확인<span> (*) </span>
@@ -108,8 +107,8 @@ dl dd p.error {
 				</dd>
 				<dt>도움 리스트 조회 여부</dt>
 				<dd class="checkboxRequired">
-					<input type="checkbox" id="to" checked='' /> <label for="jquery">내가</label>
-					<input type="checkbox" id="from" checked='' /> <label for="html">나를</label>
+					<label for="toU">내가<input type="checkbox"  name="listoption"  checked=''  value="1"/></label>
+					<label for="toMe">나를<input type="checkbox"  name="listoption" checked=''  value="2"/></label>
 				</dd>
 
 				<dt>
@@ -174,6 +173,8 @@ dl dd p.error {
         						}
         					
         				});
+        			})
+        		});
             
             // 메일 검사
             $(this).filter(".mail").each(function(){

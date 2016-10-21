@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.User;
 import service.logic.UserServiceLogic;
 import service.pacade.UserService;
 
@@ -16,9 +17,23 @@ public class RegisterUserController extends HttpServlet {
 
 	private UserService service;
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		service = new UserServiceLogic();
+		User user = new User();
+		user.setUserId(req.getParameter("userid"));
+		user.setPw(req.getParameter("pw"));
+		user.setEmail(req.getParameter("email"));
+		int sum = 0;
+		for(String listopt : req.getParameterValues("listoption")){
+				sum += Integer.parseInt(listopt);
+		}
+		user.setListOption(sum);
+		user.setIntroduce(req.getParameter("introduce"));
+		service.registerUser(user);
+
+		res.sendRedirect("HUBMain.jsp");
 		
 	}
 

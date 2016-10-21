@@ -19,8 +19,8 @@ public class UserServiceLogic implements UserService {
 	
 	@Override
 	public int registerUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		store.insertUser(user);
+		return 1;
 	}
 
 	@Override

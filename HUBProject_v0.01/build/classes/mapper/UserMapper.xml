@@ -19,9 +19,8 @@
 	</sql>
 
 	<insert id="insertUser" parameterType="User">
-		INSERT INTO user_tb(UserId, PW, Email, Picture, Introduce, Admin)
-		values (#{userId } , #{pw }, #{email }, #{picture}, #{introduce}, #{admin})
-	</insert>
+INSERT INTO User_TB(userId, pw, email, listoption, introduce)
+		values  (#{userId } , #{pw }, #{email }, #{listOption }, #{introduce })	</insert>
 
 	<update id="updateUser" parameterType="User">
 
