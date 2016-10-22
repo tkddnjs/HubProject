@@ -15,14 +15,13 @@
 	</resultMap>
 
 	<sql id="selectBucketlist">
-		<!-- SELECT bucketId, bucketName, bucketId, goalDay, starGrade, memo, sos, locker, userId
-		FROM bucketlist_tb -->
 		SELECT bucketId, bucketName, bucketId, goalDay, starGrade, memo, sos, locker, userId
 		FROM bucketlist_tb
 	</sql>
 
 
-	<insert id="insertBucketlist" parameterType="Bucketlist">		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
+	<insert id="insertBucketlist" parameterType="Bucketlist">
+		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
 		VALUES (#{bucketlistId}, #{title}, #{goal}, #{star}, #{memo}, #{sos}, 'N', #{userId})
 	</insert>
 	
