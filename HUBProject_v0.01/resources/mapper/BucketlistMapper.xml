@@ -25,7 +25,8 @@
 		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
 		VALUES (bucketlist_seq.nextVal, #{title}, #{goal}, #{star}, #{memo}, #{sos}, 'N', #{userId})
 	</insert>
-	<insert id="insertBucketlist" parameterType="Map">
+	
+	<insert id="insertBucketlistConn" parameterType="Map">
 		INSERT INTO Bucketconn_tb(bucektId, connChain)
 		VALUES (#{bucektId }, #{connChain})
 	</insert> -->
@@ -40,6 +41,11 @@
 		DELETE bucketlist_tb 
 		WHERE bucketId=#{bucketlistId}
 	</delete>
+
+	<select id="nextBucketlistId" resultType="int">
+		SELECT bucketlist_seq.nextval as bucketlistId
+		FROM dual
+	</select>
 	
 	<select id="selectAll" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
