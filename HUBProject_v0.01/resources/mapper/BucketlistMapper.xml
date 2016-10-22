@@ -21,7 +21,7 @@
 		FROM bucketlist_tb
 	</sql>
 
-	<!-- <insert id="insertBucketlist" parameterType="Bucketlist">
+	 <insert id="insertBucketlist" parameterType="Bucketlist">
 		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
 		VALUES (bucketlist_seq.nextVal, #{title}, #{goal}, #{star}, #{memo}, #{sos}, 'N', #{userId})
 	</insert>
@@ -29,7 +29,7 @@
 	<insert id="insertBucketlistConn" parameterType="Map">
 		INSERT INTO Bucketconn_tb(bucektId, connChain)
 		VALUES (#{bucektId }, #{connChain})
-	</insert> -->
+	</insert>
 
 	<update id="updateBucketlist" parameterType="Bucketlist">
 		UPDATE bucketlist_tb
