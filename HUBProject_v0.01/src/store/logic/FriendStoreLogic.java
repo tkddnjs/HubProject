@@ -37,12 +37,12 @@ public class FriendStoreLogic implements FriendStore {
 	}
 
 	@Override
-	public int deleteFriend(String friendId) {
+	public int deleteFriend(Friend friend) {
 		SqlSession session = factory.openSession();
 		int result = 0;
 		try {
 			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			result = mapper.deleteFriend(friendId);
+			result = mapper.deleteFriend(friend);
 			if (result > 0) {
 				session.commit();
 			} else {
@@ -55,36 +55,36 @@ public class FriendStoreLogic implements FriendStore {
 	}
 
 	@Override
-	public List<Friend> selectAll() {
+	public List<Friend> selectAll(Friend friend) {
 		SqlSession session = factory.openSession();
 
 		try {
 			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			return mapper.selectAll();
+			return mapper.selectAll(friend);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public List<Friend> selectFriendsByConnChains(List<String> connChains) {
+	public List<Friend> selectFriendsByConnChains(Friend friend, List<String> connChains) {
 		SqlSession session = factory.openSession();
 
 		try {
 			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			return mapper.selectFriendsByConnChains(connChains);
+			return mapper.selectFriendsByConnChains(friend, connChains);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public List<Friend> selectFriendsByRelation(String relation) {
+	public List<Friend> selectFriendsByRelation(Friend friend) {
 		SqlSession session = factory.openSession();
 
 		try {
 			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			return mapper.selectFriendsByRelation(relation);
+			return mapper.selectFriendsByRelation(friend);
 		} finally {
 			session.close();
 		}

@@ -20,6 +20,10 @@ public class FindFriendController extends HttpServlet {
 			throws ServletException, IOException {
 		service = new FriendServiceLogic();
 		
+		
+//		service.findFriendsByConnChains(friend, connChains)
+//		
+//		service.findFriendsByRelation(friend)
 	}
 
 }

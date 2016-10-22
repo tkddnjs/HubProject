@@ -21,14 +21,14 @@
 		FROM bucketlist_tb
 	</sql>
 
-	 <insert id="insertBucketlist" parameterType="Bucketlist">
-		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
-		VALUES (bucketlist_seq.nextVal, #{title}, #{goal}, #{star}, #{memo}, #{sos}, 'N', #{userId})
+
+	<insert id="insertBucketlist" parameterType="Bucketlist">		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
+		VALUES (#{bucketlistId}, #{title}, #{goal}, #{star}, #{memo}, #{sos}, 'N', #{userId})
 	</insert>
 	
 	<insert id="insertBucketlistConn" parameterType="Map">
-		INSERT INTO Bucketconn_tb(bucektId, connChain)
-		VALUES (#{bucektId }, #{connChain})
+		INSERT INTO Bucketconn_tb(bucketId, connChain)
+		VALUES (#{bucketId }, #{connChain})
 	</insert>
 
 	<update id="updateBucketlist" parameterType="Bucketlist">

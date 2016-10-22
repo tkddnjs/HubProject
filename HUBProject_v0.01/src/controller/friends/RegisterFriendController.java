@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import domain.Friend;
 import service.logic.FriendServiceLogic;
 import service.pacade.FriendService;
 
@@ -19,7 +21,18 @@ public class RegisterFriendController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		service = new FriendServiceLogic();
+
+		HttpSession session = request.getSession();
 		
+		String userId = (String) session.getAttribute("userId");
+		
+		Friend friend = new Friend();
+		
+		friend.setUserId(userId);
+		friend.setFriendId(request.getParameter("friendId"));
+		friend.setRelation(request.getParameter("relation"));
+
+		service.registerFriend(friend);
 	}
 
 }

@@ -21,23 +21,23 @@ public class FriendServiceLogic implements FriendService {
 	}
 
 	@Override
-	public int removeFriend(String friendId) {
-		return store.deleteFriend(friendId);
+	public int removeFriend(Friend friend) {
+		return store.deleteFriend(friend);
 	}
 
 	@Override
-	public List<Friend> findAll() {
-		return store.selectAll();
+	public List<Friend> findAll(Friend friend) {
+		return store.selectAll(friend);
 	}
 
 	@Override
-	public List<Friend> findFriendsByConnChains(List<String> connChains) {
-		return store.selectFriendsByConnChains(connChains);
+	public List<Friend> findFriendsByConnChains(Friend friend, List<String> connChains) {
+		return store.selectFriendsByConnChains(friend, connChains);
 	}
 
 	@Override
-	public List<Friend> findFriendsByRelation(String relation) {
-		return store.selectFriendsByRelation(relation);
+	public List<Friend> findFriendsByRelation(Friend friend) {
+		return store.selectFriendsByRelation(friend);
 	}
 
 }

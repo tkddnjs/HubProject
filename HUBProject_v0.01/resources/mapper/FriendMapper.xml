@@ -7,27 +7,27 @@
 	</resultMap>
 
 	<sql id="selectFriend">
-	
+		
 	</sql>
 
 	<insert id="insertFriend" parameterType="Friend">
 
 	</insert>
 
-	<delete id="deleteFriend" parameterType="String">
+	<delete id="deleteFriend" parameterType="Friend">
 
 	</delete>
 	
-	<select id="selectAll" resultMap="friendMap">
+	<select id="selectAll" parameterType="Friend" resultMap="friendMap">
 		<include refid="selectFriend" />
 	</select>
 
-	<select id="selectFriendsByConnChains" parameterType="String" resultMap="friendMap">
+	<select id="selectFriendsByConnChains" parameterType="Friend" resultMap="friendMap">
 		<include refid="selectFriend" />
 		
 	</select>
 
-	<select id="selectFriendsByRelation" parameterType="String" resultMap="friendMap">
+	<select id="selectFriendsByRelation" parameterType="Friend" resultMap="friendMap">
 		<include refid="selectFriend" />
 		
 	</select>

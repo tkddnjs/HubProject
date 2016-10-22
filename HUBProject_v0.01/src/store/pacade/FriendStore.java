@@ -8,8 +8,8 @@ public interface FriendStore {
 	
 //	int nextFriendId();
 	int insertFriend(Friend friend);
-	int deleteFriend(String friendId);
-	List<Friend> selectAll();
-	List<Friend> selectFriendsByConnChains(List<String> connChains);
-	List<Friend> selectFriendsByRelation(String relation);
+	int deleteFriend(Friend friend);
+	List<Friend> selectAll(Friend friend);
+	List<Friend> selectFriendsByConnChains(Friend friend, List<String> connChains);
+	List<Friend> selectFriendsByRelation(Friend friend);
 }

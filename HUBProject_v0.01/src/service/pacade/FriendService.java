@@ -7,8 +7,8 @@ import domain.Friend;
 public interface FriendService {
 
 	int registerFriend(Friend friend);
-	int removeFriend(String friendId);
-	List<Friend> findAll();
-	List<Friend> findFriendsByConnChains(List<String> connChains);
-	List<Friend> findFriendsByRelation(String relation);
+	int removeFriend(Friend friend);
+	List<Friend> findAll(Friend friend);
+	List<Friend> findFriendsByConnChains(Friend friend, List<String> connChains);
+	List<Friend> findFriendsByRelation(Friend friend);
 }
