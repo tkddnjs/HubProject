@@ -117,17 +117,10 @@ PRIMARY KEY(USERID, POSTID),
 	POSTID NUMBER
 );
 
-insert into USER_TB values('admin', 'admin', null, null, null, null, 1);
-insert into USER_TB values('hub', 'hub', 'hub@hub.com', 3, null, '안녕하세요 HUB입니다.', null);
-insert into USER_TB values('111', '111', '111@hub.com', 3, null, '안녕하세요 111입니다.', null);
-insert into Userconn values('hub', '운동');
-insert into Userconn values('111', '여행');
-insert into Bucketlist_tb values(1, '세계일주 하기', '죽기전에', 2, '꼭 가야지', '돈이 없음', 0, 'hub');
-insert into Bucketlist_tb values(2, '호날두 따라잡기', '내일까지', 5, '가능할까?', '축구화가 없음', 0, '111');
-insert into bucketconn_tb values(1, '여행');
-insert into bucketconn_tb values(2, '운동');
-insert into connchain_tb values('여행');
-insert into connchain_tb values('운동');
+create sequence bucketlist_seq start with 1 increment by 1;
+create sequence cooper_seq start with 1 increment by 1;
+create sequence group_seq start with 1 increment by 1;
+create sequence post_seq start with 1 increment by 1;
 
 
 

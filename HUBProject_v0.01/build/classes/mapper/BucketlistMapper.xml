@@ -3,7 +3,6 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store.mapper.BucketlistMapper">
 	<resultMap type="Bucketlist" id="bucketlistMap">
-
 		<id property="bucketlistId" column="bucketId"/>
 		<result property="title" column="bucketName"/>
 		<result property="goal" column="goalDay"/>
@@ -12,7 +11,8 @@
 		<result property="sos" column="sos"/>
 		<result property="lock" column="locker" typeHandler="BooleanToYnHandler"/>
 		<result property="userId" column="userId"/>
-		<collection property="connChains" column="bucketId" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>	</resultMap>
+		<collection property="connChains" column="bucketId" ofType="String" select="store.mapper.BucketlistMapper.selectConnChainsByBucketlistId" javaType="ArrayList" jdbcType="NUMERIC"/>
+	</resultMap>
 
 	<sql id="selectBucketlist">
 		<!-- SELECT bucketId, bucketName, bucketId, goalDay, starGrade, memo, sos, locker, userId
@@ -21,12 +21,14 @@
 		FROM bucketlist_tb
 	</sql>
 
-	<insert id="insertBucketlist" parameterType="Bucketlist">
-		INSERT
-		<!-- INTO bucketlist_tb(bucketlist_id, bucketlist_title, bucketlist_connChains, bucketlist_goal, bucketlist_star, bucketlist_memo, bucketlist_sos, bucketlist_lock, user_id) -->
-		INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
-		VALUES (bucketlist_seq.nextVal, #{title}, #{goal}, #{star}, #{memo}, #{sos}, #{lock,typeHandler=BooleanToYnHandler}, #{userId})
+	<!-- <insert id="insertBucketlist" parameterType="Bucketlist">
+		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
+		VALUES (bucketlist_seq.nextVal, #{title}, #{goal}, #{star}, #{memo}, #{sos}, 'N', #{userId})
 	</insert>
+	<insert id="insertBucketlist" parameterType="Map">
+		INSERT INTO Bucketconn_tb(bucektId, connChain)
+		VALUES (#{bucektId }, #{connChain})
+	</insert> -->
 
 	<update id="updateBucketlist" parameterType="Bucketlist">
 		UPDATE bucketlist_tb
@@ -41,6 +43,7 @@
 	
 	<select id="selectAll" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
+		WHERE userId=#{userId}
 	</select>
 
 	<select id="selectBucketlistByBucketlistId" parameterType="int" resultMap="bucketlistMap">
