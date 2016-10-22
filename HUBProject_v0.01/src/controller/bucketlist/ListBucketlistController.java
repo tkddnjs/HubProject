@@ -28,8 +28,7 @@ public class ListBucketlistController extends HttpServlet {
 		String userId = (String) session.getAttribute("userId");
 		List<Bucketlist> blist = service.findAll(userId);
 		req.setAttribute("bucketlists", blist);
-		req.getRequestDispatcher("Bucketlist/bucketList.jsp").forward(req, res);
-		
+req.getRequestDispatcher("/Bucketlist/bucketList.jsp").forward(req, res);		
 		
 	}
 

@@ -5,24 +5,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 도움리스트 목록 </title>
-<link href="resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<title>도움리스트 목록</title>
+
+<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
+<!-- 
 <link href="resources/css/bootstrap-ko.css" rel="stylsheet">
 <link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap-responsive.css" rel="stylsheet">
 <link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap.css" rel="stylsheet">
-
+ -->
+<script src="/HUBProject_v0.01/resources/js/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
+	$(document).ready(function() {
 		var autocomplete_text = [ "자동완성기능", "Autocomplete", "개발로짜", "국이" ];
 		$("#searchs").autocomplete({
 			source : autocomplete_text
 		});
-	})
+	});
 </script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
+
+<script src="/HUBProject_v0.01/resources/js/bootstrap.min.js" type="text/javascript"></script>
 
 <style type="text/css">
 body {
@@ -42,113 +46,76 @@ h1 {
 </head>
 <body>
 	<div class="header" align="right">
-		<%@ include file="../header/header.jspf"%>
+		<%@ include file="/header/header.jspf"%>
 	</div>
 
 	<h1 align="center">HUB : Have U get a BucketList?</h1>
 
 	<div class="input-append pull-right">
-		<form action="searchGroup.do" method="post" class="form-inline">
-			<select class="ring" name="ring">
-				<option>선택하세요.</option>
+		<form action="/HUBProject_v0.01/list.do" method="post" class="form-inline">
+			<select class="ring" name="listOpt">
 				<option value="1">내가</option>
-				<option value="2">너를</option>
+				<option value="2">나를</option>
 				<option value="3">서로</option>
 				<option value="4">업체</option>
-			</select> <input class="span2" type="text" name="connChain"
-				id="searchs" data-source="typeahead" placeholder="연결고리를 입력하세요">
-			<button class="btn" type="button">검색</button>
-
+			</select> <input class="span2" type="text" name="connChain" id="searchs"
+				data-source="typeahead" placeholder="연결고리를 입력하세요">
+			<button class="btn" type="submit">검색</button>
 		</form>
 	</div>
 
 	<table class="table table-hover table-condensed">
-		<!-- <colgroup>
-			<col width="80" align="center">
-			<col width="*">
-			<col width="70">
-		</colgroup> -->
-
 		<thead style="background: #60d7a9;">
 			<tr style="align: center;">
-				<th>NO</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>마감일</th>
-				<th>지역</th>
-				<th>연결고리</th>
+				<th width="20" align="center">NO</th>
+				<c:choose>
+					<c:when test="${listOpt eq 1 or listOpt eq 3}">
+						<th width="400" align="center">사용자ID</th>
+						<th width="600" align="center">버킷리스트이름</th>
+					</c:when>
+					<c:when test="${listOpt eq 2}">
+						<th width="400" align="center">사용자ID</th>
+						<th width="600" align="center">연결고리목록</th>
+					</c:when>
+					<c:otherwise>
+						<th width="400" align="center">업체이름</th>
+						<th width="600" align="center">사이트</th>
+					</c:otherwise>
+				</c:choose>
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr>
-				<td class="ranking">1</td>
-				<td><a class="btn btn-xs btn-default btn-block"
-					href="searchGroup.do?groupId=${groupId }">미니공연 밴드원 함께하실분!!</a></td>
-				<td><a class="btn btn-xs btn-default btn-block"
-					href="searchFriend.do?userId=${userId }">IU</a></td>
-				<td>2016.10.10</td>
-				<td>서울</td>
-				<td>#공연</td>
-			</tr>
+				<c:choose>
+					<c:when test="${listOpt eq 1 or listOpt eq 3}">
+						<c:forEach items="${bucketlists }" var="bucketlist" varStatus="status">
+							<td>${status.count }</td>
+							<td><a class="btn btn-xs btn-default btn-block"
+								href="userDetail.do">${bucketlist.userId }</a></td>
+							<td><a class="btn btn-xs btn-default btn-block"
+								href="bucketlistDetail.do">${bucketlist.title }</a></td>
 
-			<tr>
-				<td class="ranking">2</td>
-				<td><a class="btn btn-xs btn-default btn-block"
-					href="searchGroup.do?groupId=${groupId }">리듬체조강습</a></td>
-				<td><a class="btn btn-xs btn-default btn-block" href="#">SON</a></td>
-				<td>2016.10.10</td>
-				<td>경기</td>
-				<td>#리듬체조</td>
+						</c:forEach>
+					</c:when>
+					<c:when test="${listOpt eq 2}">
+						<c:forEach items="${users }" var="user" varStatus="status">
+							<td>${status.count }</td>
+							<td><a class="btn btn-xs btn-default btn-block"
+								href="userDetail.do">${user.userId }</a></td>
+							<td>${user.connChains }</td>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${coopers }" var="cooper" varStatus="status">
+							<td>${status.count }</td>
+							<td>${cooper.coName }</td>
+							<td><a href="resources/img/${cooper.Banner }"></a></td>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</tr>
-
-			<tr>
-				<td class="ranking">3</td>
-				<td><a class="btn btn-xs btn-default btn-block" href="#">속초
-						투어</a></td>
-				<td><a class="btn btn-xs btn-default btn-block" href="#">HELL</a></td>
-				<td>마감</td>
-				<td>인천</td>
-				<td>#투어</td>
-			</tr>
-
-			<tr>
-				<td class="ranking">4</td>
-				<td><a class="btn btn-xs btn-default btn-block" href="#">JAVA강의
-						개설</a></td>
-				<td><a class="btn btn-xs btn-default btn-block"
-					href="searchFriend.do?userId=${userId }">KOSTA</a></td>
-				<td>2016.10.10</td>
-				<td>서울</td>
-				<td>#JAVA</td>
-			</tr>
-		</tbody>		
+		</tbody>
 	</table>
-
-	<div>
-		<div class="pagination" align="center">
-			<ul>
-				<li><a href="#">Prev</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#">7</a></li>
-				<li><a href="#">8</a></li>
-				<li><a href="#">9</a></li>
-				<li><a href="#">10</a></li>
-				<li><a href="#">Next</a></li>
-			</ul>
-		</div>
-
-		<div class="pull-right">
-			<a class="btn btn-toolbar" href="registerGroupForm.jsp">
-
-				<button>글쓰기</button>
-			</a>
-		</div>
-	</div>
 </body>
 </html>

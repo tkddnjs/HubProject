@@ -1,12 +1,18 @@
 package controller.list;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.Bucketlist;
+import domain.Cooper;
+import domain.User;
 import service.logic.ListServiceLogic;
 import service.pacade.ListService;
 
@@ -16,35 +22,37 @@ public class ListController extends HttpServlet {
 
 	private ListService service;
 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.sendRedirect("List/list.jsp");
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		service = new ListServiceLogic();
 		
-		// 	connChains °ª ÀúÀå
-		//	listOption °ª¿¡ µû¶ó ´Ù¸¥ ¸Þ¼Òµå È£Ãâ
-		//	'³»°¡' ÀÎ °æ¿ì
-
-		/*
-		 * if('³»°¡')
-		 *		users = service.findUsers~~~~~~~~~
-		 *   	setAttribute(users)
-		 *		list»ó´Ü¿¡ '³»°¡' Ç¥½Ã
-		 * 
-		 * else if('¾÷Ã¼')
-		 * 		coopers = service.findCoopers~~~~~~~~~~~~~~
-		 * 		setAttribute(coopers)
-		 * 		list»ó´Ü¿¡ '¾÷Ã¼' Ç¥½Ã
-		 * 
-		 * else {
-		 * 		bucketlists = service.findBucketlists~~~~~~~~~~~~~~
-		 * 		setAttribute(bucketlist)
-		 *		if('³ª¸¦')
-		 *			list»ó´Ü¿¡ '³ª¸¦' Ç¥½Ã
-		 * 		else('¼­·Î')
-		 * 			list»ó´Ü¿¡ '¼­·Î' Ç¥½Ã
-		 * 
-		 * }
-		 * */
+		int listOpt = Integer.parseInt(request.getParameter("listOpt"));
+		String connChain = request.getParameter("connChain");
+		List<String> connChains  = new ArrayList<>();
+		connChains.add(connChain);
+		
+		switch (listOpt){
+			case 2 :	// ë‚˜ë¥¼ 
+				List<User> users = service.findUsersByConnChains(connChains);
+				request.setAttribute("users", users);
+				break;
+			case 1 : 	// ë‚´ê°€
+			case 3 :	// ì„œë¡œ
+				List<Bucketlist> bucketlists= service.findBucketlistsByConnChains(connChains);
+				request.setAttribute("bucketlists", bucketlists);
+				break;
+			case 4 :	// ì—…ì²´
+				List<Cooper> coopers = service.findCoopersByConnChains(connChains);
+				request.setAttribute("coopers", coopers);
+				break;
+		}
+		request.setAttribute("listOpt", listOpt);
+		request.getRequestDispatcher("List/list.jsp").forward(request, response);
 	}
 
 }

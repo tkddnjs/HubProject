@@ -28,11 +28,8 @@ public class LoginController extends HttpServlet {
 		User user = new User();
 		user.setUserId(userId);
 		user.setPw(pw);
-		
-		boolean result = service.login(user);
-		
-		if(result){
-			boolean isAdmin = service.getIsAdmin();
+
+		if(service.login(user)){			boolean isAdmin = service.getIsAdmin();
 			if(isAdmin == false){
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", userId);
