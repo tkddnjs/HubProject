@@ -9,7 +9,7 @@ public interface BucketlistMapper {
 	int insertBucketlist(Bucketlist bucketlist);
 	int updateBucketlist(Bucketlist bucketlist);
 	int deleteBucketlist(int bucketlistId);
-	List<Bucketlist> selectAll();
+	List<Bucketlist> selectAll(String userId);
 	Bucketlist selectBucketlistByBucketlistId(int bucketlistId);
 	List<Bucketlist> selectBucketlistsByConnChains(List<String> connChains);
 	

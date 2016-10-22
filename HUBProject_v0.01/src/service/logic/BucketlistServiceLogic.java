@@ -36,8 +36,8 @@ public class BucketlistServiceLogic implements BucketlistService {
 	}
 
 	@Override
-	public List<Bucketlist> findAll() {
-		return store.selectAll();
+	public List<Bucketlist> findAll(String userId) {
+		return store.selectAll(userId);
 	}
 
 }

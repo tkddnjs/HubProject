@@ -37,14 +37,14 @@ public class UserServiceLogic implements UserService {
 	@Override
 	public boolean login(User user) {
 		User checkUser = store.selectUser(user.getUserId()); 
-		if(checkUser.getUserId() == user.getUserId() && checkUser.getPw() == user.getPw()){
+		if(checkUser.getUserId().equals(user.getUserId()) && checkUser.getPw().equals(user.getPw())){
 			isAdmin = checkUser.isAdmin();
 			return true;
 		} else{
 			return false;
 		}
-		
 	}
+
 
 	@Override
 	public boolean checkId(String userId) {

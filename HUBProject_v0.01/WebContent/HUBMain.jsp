@@ -37,14 +37,18 @@
 	<table align="center">
            <tr >
 				<th>ID</th>
+				<td></td>
 				<td>
 					<input id="userId"  name="userId" class="form-control" type="text" value="" placeholder="ID를 입력해주세요.">
 				</td>
+				<td></td>
 				<th>Password</th>
+				<td></td>
 				<td>
 					<input id="password" name="password" class="form-control" type="password" value="" placeholder="비밀번호를 입력해주세요.">
 				</td>
-				<th><button class="btn">로그인</button></th>
+				<td></td>
+				<th><button class="btn btn-xs btn-info btnPlay">로그인</button></th>
 				
 				<th><a class="btn btn-xs btn-info btnPlay" href="User/registerUser.jsp" >회원가입</a></th>
 			</tr>

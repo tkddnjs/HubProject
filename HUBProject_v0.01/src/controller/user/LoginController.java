@@ -27,7 +27,7 @@ public class LoginController extends HttpServlet {
 		
 		User user = new User();
 		user.setUserId(userId);
-		user.setPicture(pw);
+		user.setPw(pw);
 		
 		boolean result = service.login(user);
 		

@@ -76,12 +76,12 @@ public class BucketlistStoreLogic implements BucketlistStore {
 	}
 
 	@Override
-	public List<Bucketlist> selectAll() {
+	public List<Bucketlist> selectAll(String userId) {
 		SqlSession session = factory.openSession();
 		
 		try {
 			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
-			return mapper.selectAll();
+			return mapper.selectAll(userId);
 		} finally {
 			session.close();
 		}

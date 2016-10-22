@@ -87,4 +87,4 @@ public class Bucketlist {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-}}
+}

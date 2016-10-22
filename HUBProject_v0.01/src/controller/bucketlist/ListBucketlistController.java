@@ -25,10 +25,10 @@ public class ListBucketlistController extends HttpServlet {
 		service = new BucketlistServiceLogic();
 		HttpSession session = req.getSession();
 		session.removeAttribute("bucketlist");
-		
-		List<Bucketlist> blist = service.findAll();
+		String userId = (String) session.getAttribute("userId");
+		List<Bucketlist> blist = service.findAll(userId);
 		req.setAttribute("bucketlists", blist);
-		req.getRequestDispatcher("/Bucketlist/bucketlist.jsp").forward(req, res);
+		req.getRequestDispatcher("Bucketlist/bucketList.jsp").forward(req, res);
 		
 		
 	}

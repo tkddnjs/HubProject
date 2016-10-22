@@ -22,10 +22,12 @@
 	</sql>
 
 	<insert id="insertBucketlist" parameterType="Bucketlist">
-		INSERT
-		<!-- INTO bucketlist_tb(bucketlist_id, bucketlist_title, bucketlist_connChains, bucketlist_goal, bucketlist_star, bucketlist_memo, bucketlist_sos, bucketlist_lock, user_id) -->
-		INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
-		VALUES (bucketlist_seq.nextVal, #{title}, #{goal}, #{star}, #{memo}, #{sos}, #{lock,typeHandler=BooleanToYnHandler}, #{userId})
+		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
+		VALUES (bucketlist_seq.nextVal, #{title}, #{goal}, #{star}, #{memo}, #{sos}, 'N', #{userId})
+	</insert>
+	<insert id="insertBucketlist" parameterType="Map">
+		INSERT INTO Bucketconn_tb(bucektId, connChain)
+		VALUES (#{bucektId }, #{connChain})
 	</insert>
 
 	<update id="updateBucketlist" parameterType="Bucketlist">
@@ -41,6 +43,7 @@
 	
 	<select id="selectAll" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
+		WHERE userId=#{userId}
 	</select>
 
 	<select id="selectBucketlistByBucketlistId" parameterType="int" resultMap="bucketlistMap">

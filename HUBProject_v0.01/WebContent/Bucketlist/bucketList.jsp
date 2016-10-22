@@ -67,7 +67,7 @@ h1 {
 	<h1 align="center">HUB : Have U get a BucketList?</h1>
 
 	<div class="input-append pull-right">
-		<a class="btn btn-xs btn-default" href="registerBucketlist.jsp"><b>버킷추가</b></a>
+		<a class="btn btn-xs btn-default" href="Bucketlist/registerBucketlist.jsp"><b>버킷추가</b></a>
 	</div>
 
 	<table class="table table-hover table-condensed">
@@ -113,6 +113,5 @@ h1 {
 			</c:forEach>
 		</tbody>
 	</table>
-
-</body>
+			</body>
 </html>
