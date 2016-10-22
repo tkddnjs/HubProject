@@ -5,7 +5,8 @@ import java.util.List;
 import domain.Friend;
 
 public interface FriendStore {
-
+	
+//	int nextFriendId();
 	int insertFriend(Friend friend);
 	int deleteFriend(String friendId);
 	List<Friend> selectAll();

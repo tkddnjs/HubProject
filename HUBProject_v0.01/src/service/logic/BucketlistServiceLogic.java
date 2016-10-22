@@ -17,7 +17,14 @@ public class BucketlistServiceLogic implements BucketlistService {
 	
 	@Override
 	public int registerBucketlist(Bucketlist bucketlist) {
-		return store.insertBucketlist(bucketlist);
+		int result = 1;
+		
+		bucketlist.setBucketlistId(store.nextBucketlistId());
+		
+		result *= store.insertBucketlist(bucketlist);
+		result *= store.insertBucketlistConn(bucketlist);
+		
+		return result;
 	}
 
 	@Override

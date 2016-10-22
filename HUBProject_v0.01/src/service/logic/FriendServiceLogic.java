@@ -17,32 +17,27 @@ public class FriendServiceLogic implements FriendService {
 	
 	@Override
 	public int registerFriend(Friend friend) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.insertFriend(friend);
 	}
 
 	@Override
 	public int removeFriend(String friendId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.deleteFriend(friendId);
 	}
 
 	@Override
 	public List<Friend> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return store.selectAll();
 	}
 
 	@Override
 	public List<Friend> findFriendsByConnChains(List<String> connChains) {
-		// TODO Auto-generated method stub
-		return null;
+		return store.selectFriendsByConnChains(connChains);
 	}
 
 	@Override
 	public List<Friend> findFriendsByRelation(String relation) {
-		// TODO Auto-generated method stub
-		return null;
+		return store.selectFriendsByRelation(relation);
 	}
 
 }

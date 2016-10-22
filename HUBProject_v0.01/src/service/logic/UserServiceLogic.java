@@ -50,7 +50,6 @@ public class UserServiceLogic implements UserService {
 		}
 	}
 
-
 	@Override
 	public boolean checkId(String userId) {
 		if(store.selectUser(userId) == null){

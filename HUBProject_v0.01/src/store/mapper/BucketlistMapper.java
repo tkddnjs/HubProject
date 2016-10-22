@@ -6,6 +6,9 @@ import domain.Bucketlist;
 
 public interface BucketlistMapper {
 	
+	int nextBucketlistId();
+	int insertBucketlistConn(Bucketlist bucketlist, String connChain);
+	
 	int insertBucketlist(Bucketlist bucketlist);
 	int updateBucketlist(Bucketlist bucketlist);
 	int deleteBucketlist(int bucketlistId);

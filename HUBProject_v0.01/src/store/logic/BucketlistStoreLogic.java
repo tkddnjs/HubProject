@@ -19,6 +19,45 @@ public class BucketlistStoreLogic implements BucketlistStore {
 	}
 	
 	@Override
+	public int nextBucketlistId() {
+		SqlSession session = factory.openSession();
+		int nextBucketlistId = 0;
+		try {
+			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+			nextBucketlistId = mapper.nextBucketlistId();
+			
+		} finally {
+			session.close();
+		}
+		return nextBucketlistId;
+	}
+	
+	@Override
+	public int insertBucketlistConn(Bucketlist bucketlist) {
+		SqlSession session = factory.openSession();
+		int result = 0;
+		try {
+			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+			
+			for(String connChain : bucketlist.getConnChains()){
+				result = mapper.insertBucketlistConn(bucketlist, connChain);
+			}	
+			
+			if(result>0){
+				session.commit();
+			} else {
+				session.rollback();
+			}
+			
+			
+		} finally {
+			session.close();
+		}
+		
+		return result;
+	}
+	
+	@Override
 	public int insertBucketlist(Bucketlist bucketlist) {
 		SqlSession session = factory.openSession();
 		int result = 0;
