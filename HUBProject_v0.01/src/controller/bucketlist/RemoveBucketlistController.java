@@ -20,6 +20,9 @@ public class RemoveBucketlistController extends HttpServlet {
 			throws ServletException, IOException {
 		service = new BucketlistServiceLogic();
 		
+		int bucketlistId = Integer.parseInt(request.getParameter("bucketlistId"));
+		service.removeBucketlist(bucketlistId);
+		
 	}
 
 }
