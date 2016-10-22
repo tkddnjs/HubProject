@@ -37,11 +37,8 @@ public class RegisterBucketlistController extends HttpServlet {
 		}
 		b.setConnChains(connChains);
 		b.setUserId((String)session.getAttribute("userId"));
-		System.out.println("1");
-		System.out.println(b);
 		service.registerBucketlist(b);
-		req.getRequestDispatcher("Bucketlist/bucketList.jsp").forward(req, res);
-
+		res.sendRedirect("listBucketlist.do");
 	}
 
 }

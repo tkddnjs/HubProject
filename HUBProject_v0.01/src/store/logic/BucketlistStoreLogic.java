@@ -25,7 +25,6 @@ public class BucketlistStoreLogic implements BucketlistStore {
 		try {
 			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
 			nextBucketlistId = mapper.nextBucketlistId();
-			
 		} finally {
 			session.close();
 		}
@@ -42,18 +41,14 @@ public class BucketlistStoreLogic implements BucketlistStore {
 			for(String connChain : bucketlist.getConnChains()){
 				result = mapper.insertBucketlistConn(bucketlist.getBucketlistId(), connChain);
 			}	
-			
 			if(result>0){
 				session.commit();
 			} else {
 				session.rollback();
 			}
-			
-			
 		} finally {
 			session.close();
 		}
-		
 		return result;
 	}
 	

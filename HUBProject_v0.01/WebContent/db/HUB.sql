@@ -121,7 +121,3 @@ create sequence bucketlist_seq start with 1 increment by 1;
 create sequence cooper_seq start with 1 increment by 1;
 create sequence group_seq start with 1 increment by 1;
 create sequence post_seq start with 1 increment by 1;
-
-
-
-COMMIT;

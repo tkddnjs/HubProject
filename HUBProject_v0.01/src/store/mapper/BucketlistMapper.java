@@ -2,13 +2,14 @@ package store.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import domain.Bucketlist;
 
 public interface BucketlistMapper {
 	
 	int nextBucketlistId();
-	int insertBucketlistConn(int bucketlistId, String connChain);
-	
+	int insertBucketlistConn(@Param("bucketId")int bucketlistId,@Param("connChain")String connChain);	
 	int insertBucketlist(Bucketlist bucketlist);
 	int updateBucketlist(Bucketlist bucketlist);
 	int deleteBucketlist(int bucketlistId);
