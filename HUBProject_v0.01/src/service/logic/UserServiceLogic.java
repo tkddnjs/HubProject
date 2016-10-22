@@ -36,7 +36,6 @@ public class UserServiceLogic implements UserService {
 
 	@Override
 	public boolean login(User user) {
-<<<<<<< .mine
 		User checkUser = store.selectUser(user.getUserId());
 		
 		if(checkUser != null){
@@ -48,21 +47,6 @@ public class UserServiceLogic implements UserService {
 			}
 		}else{
 			throw new RuntimeException("아이디를 잘못입력했습니다.");
-||||||| .r57
-		User checkUser = store.selectUser(user.getUserId()); 
-		if(checkUser.getUserId() == user.getUserId() && checkUser.getPw() == user.getPw()){
-			isAdmin = checkUser.isAdmin();
-			return true;
-		} else{
-			return false;
-=======
-		User checkUser = store.selectUser(user.getUserId()); 
-		if(checkUser.getUserId().equals(user.getUserId()) && checkUser.getPw().equals(user.getPw())){
-			isAdmin = checkUser.isAdmin();
-			return true;
-		} else{
-			return false;
->>>>>>> .r61
 		}
 	}
 
