@@ -101,6 +101,7 @@ h1 {
 									<button class="btn btn-xs btn-default btn-block" type="submit"
 										name="userId" value="${bucketlist.userId }">${bucketlist.userId }</button>
 									<input type="hidden" name="listOpt" value="${listOpt }">
+									<input type="hidden" name="connChain" value="${connChain }">
 								</form>
 							</td>
 							<td>
@@ -109,6 +110,7 @@ h1 {
 									<button class="btn btn-xs btn-default btn-block" type="submit"
 										name="bucketlistId" value="${bucketlist.bucketlistId }">${bucketlist.title }</button>
 									<input type="hidden" name="listOpt" value="${listOpt }">
+									<input type="hidden" name="connChain" value="${connChain }">
 								</form>
 							</td>
 						</tr>
@@ -123,6 +125,7 @@ h1 {
 									<button class="btn btn-xs btn-default btn-block" type="submit"
 										name="userId" value="${user.userId }">${user.userId }</button>
 									<input type="hidden" name="listOpt" value="${listOpt }">
+									<input type="hidden" name="connChain" value="${connChain }">
 								</form>
 							</td>
 							<td>${user.connChains }</td>

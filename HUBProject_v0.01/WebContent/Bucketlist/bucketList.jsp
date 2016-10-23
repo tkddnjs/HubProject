@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>HUB</title>
-<link href="resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/bootstrap-ko.css" rel="stylsheet">
 <link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap-responsive.css" rel="stylsheet">

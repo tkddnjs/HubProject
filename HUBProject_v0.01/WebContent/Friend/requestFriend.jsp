@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>버킷리스트 상세</title>
+<title> 친구 요청 </title>
 <link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css"
 	rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/bootstrap.min.css"
@@ -62,33 +62,16 @@ h1 {
 		<%@ include file="/header/header.jspf"%>
 	</div>
 
-	<h1 align="center">HUB : Have U get a BucketList?</h1>
+	<h3 align="center"> 요청 완료 되었습니다. </h3>
 
-	<table class="table table-hover table-condensed">
-		<tr>
-			<th width="50" align="center">제목</th>
-			<td width="100" align="center">${bucketlist.title }</td>
-		</tr>
-		<tr>
-			<th width="50" align="center">연결고리</th>
-			<td width="100" align="center">${bucketlist.connChains }</td>
-		</tr>
-		<tr>
-			<th width="50" align="center">SOS</th>
-			<td width="100" align="center">${bucketlist.sos }</td>
-		</tr>
-		<tr>
-			<th width="50" align="center">사용자ID</th>
-			<td width="100" align="center">${bucketlist.userId }</td>
-		</tr>
-	</table>
-
-	<form action="/HUBProject_v0.01/list.do" method="post">
+	<form action="/HUBProject_v0.01/userDetail.do" method="post">
 		<div class="input-append pull-right">
-			<button class="btn btn-xs btn-default btn-block" type="submit">돌아가기</button>
+			<button class="btn btn-xs btn-default btn-block" type="submit">확인</button>
 		</div>
+		<input type="hidden" name="userId" value="${userId }">
 		<input type="hidden" name="listOpt" value="${listOpt }">
 		<input type="hidden" name="connChain" value="${connChain }">
 	</form>
+	
 </body>
 </html>
