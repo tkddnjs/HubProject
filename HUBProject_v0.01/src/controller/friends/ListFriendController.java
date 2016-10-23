@@ -22,6 +22,7 @@ public class ListFriendController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		service = new FriendServiceLogic();
 		
 		HttpSession session = request.getSession();
 		

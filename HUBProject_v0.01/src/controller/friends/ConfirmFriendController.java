@@ -12,29 +12,25 @@ import domain.Friend;
 import service.logic.FriendServiceLogic;
 import service.pacade.FriendService;
 
-@WebServlet("/registerFriend.do")
-public class RegisterFriendController extends HttpServlet {
+@WebServlet("/confirmFriend.do")
+public class ConfirmFriendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private FriendService service;
 	
+	private FriendService service;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		service = new FriendServiceLogic();
-
+		
 		HttpSession session = request.getSession();
 		
 		String userId = (String) session.getAttribute("userId");
 		String friendId = request.getParameter("friendId");
-		int relation = Integer.parseInt(request.getParameter("relation"));
-		
 		Friend friend = new Friend();
-		
 		friend.setUserId(userId);
 		friend.setFriendId(friendId);
-		friend.setRelation(relation);
-
-		service.registerFriend(friend);
+		
+		service.confirmFriend(friend);
 	}
 
 }

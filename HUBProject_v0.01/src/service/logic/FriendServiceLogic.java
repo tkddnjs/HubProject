@@ -26,18 +26,24 @@ public class FriendServiceLogic implements FriendService {
 	}
 
 	@Override
-	public List<Friend> findAll(Friend friend) {
-		return store.selectAll(friend);
+	public int confirmFriend(Friend friend) {
+		return store.updateFriendConfirm(friend);
+	}
+	
+	@Override
+	public List<Friend> findAll(String userId) {
+		return store.selectAll(userId);
 	}
 
 	@Override
-	public List<Friend> findFriendsByConnChains(Friend friend, List<String> connChains) {
-		return store.selectFriendsByConnChains(friend, connChains);
+	public List<Friend> findFriendsByConnChain(String userId, String connChain) {
+		return store.selectFriendsByConnChain(userId, connChain);
 	}
 
 	@Override
 	public List<Friend> findFriendsByRelation(Friend friend) {
 		return store.selectFriendsByRelation(friend);
 	}
+
 
 }

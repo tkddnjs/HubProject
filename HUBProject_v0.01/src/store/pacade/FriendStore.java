@@ -6,10 +6,14 @@ import domain.Friend;
 
 public interface FriendStore {
 	
-//	int nextFriendId();
 	int insertFriend(Friend friend);
 	int deleteFriend(Friend friend);
-	List<Friend> selectAll(Friend friend);
-	List<Friend> selectFriendsByConnChains(Friend friend, List<String> connChains);
+	
+	//추가
+	int updateFriendConfirm(Friend friend);
+	//
+	
+	List<Friend> selectAll(String userId);
+	List<Friend> selectFriendsByConnChain(String userId, String connChain);
 	List<Friend> selectFriendsByRelation(Friend friend);
 }

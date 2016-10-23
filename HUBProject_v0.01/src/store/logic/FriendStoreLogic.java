@@ -22,9 +22,20 @@ public class FriendStoreLogic implements FriendStore {
 	public int insertFriend(Friend friend) {
 		SqlSession session = factory.openSession();
 		int result = 0;
+		
+		Friend temp = new Friend();
+		temp.setFriendId(friend.getUserId());
+		temp.setUserId(friend.getFriendId());
+		if(friend.getRelation() != 3){
+			temp.setRelation(3-friend.getRelation());
+		} else {
+			temp.setRelation(friend.getRelation());
+		}
+		
 		try {
 			FriendMapper mapper = session.getMapper(FriendMapper.class);
 			result = mapper.insertFriend(friend);
+			result *= mapper.insertFriend(temp);
 			if (result > 0) {
 				session.commit();
 			} else {
@@ -33,6 +44,7 @@ public class FriendStoreLogic implements FriendStore {
 		} finally {
 			session.close();
 		}
+		
 		return result;
 	}
 
@@ -53,26 +65,44 @@ public class FriendStoreLogic implements FriendStore {
 		}
 		return result;
 	}
+	
+	@Override
+	public int updateFriendConfirm(Friend friend) {
+		SqlSession session = factory.openSession();
+		int result = 0;
+		try {
+			FriendMapper mapper = session.getMapper(FriendMapper.class);
+			result = mapper.updateFriendConfirm(friend);
+			if (result > 0) {
+				session.commit();
+			} else {
+				session.rollback();
+			}
+		} finally {
+			session.close();
+		}
+		return result;
+	}
 
 	@Override
-	public List<Friend> selectAll(Friend friend) {
+	public List<Friend> selectAll(String userId) {
 		SqlSession session = factory.openSession();
 
 		try {
 			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			return mapper.selectAll(friend);
+			return mapper.selectAll(userId);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public List<Friend> selectFriendsByConnChains(Friend friend, List<String> connChains) {
+	public List<Friend> selectFriendsByConnChain(String userId, String connChain) {
 		SqlSession session = factory.openSession();
 
 		try {
 			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			return mapper.selectFriendsByConnChains(friend, connChains);
+			return mapper.selectFriendsByConnChain(userId, connChain);
 		} finally {
 			session.close();
 		}
@@ -89,5 +119,6 @@ public class FriendStoreLogic implements FriendStore {
 			session.close();
 		}
 	}
+
 
 }

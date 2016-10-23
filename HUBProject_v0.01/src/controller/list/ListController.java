@@ -52,6 +52,7 @@ public class ListController extends HttpServlet {
 				break;
 		}
 		request.setAttribute("listOpt", listOpt);
+		request.setAttribute("connChain", connChain);
 		request.getRequestDispatcher("List/list.jsp").forward(request, response);
 	}
 

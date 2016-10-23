@@ -30,9 +30,11 @@ public class UserStoreLogic implements UserStore {
 				session.rollback();
 				return result;
 			}
+			
 			for(String connChain : user.getConnChains()){
-				result = mapper.insertConnChain(user.getUserId(), connChain);
-			}			
+				result *= mapper.insertConnChain(user.getUserId(), connChain);
+			}
+			
 			if(result > 0){
 				session.commit();
 			}else{
