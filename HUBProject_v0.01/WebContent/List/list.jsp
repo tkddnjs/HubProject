@@ -7,8 +7,10 @@
 <meta charset="UTF-8">
 <title>도움리스트 목록</title>
 
-<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css"
+	rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- 
 <link href="resources/css/bootstrap-ko.css" rel="stylsheet">
 <link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
@@ -26,7 +28,8 @@
 	});
 </script>
 
-<script src="/HUBProject_v0.01/resources/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/HUBProject_v0.01/resources/js/bootstrap.min.js"
+	type="text/javascript"></script>
 
 <style type="text/css">
 body {
@@ -52,11 +55,12 @@ h1 {
 	<h1 align="center">HUB : Have U get a BucketList?</h1>
 
 	<div class="input-append pull-right">
-		<form action="/HUBProject_v0.01/list.do" method="post" class="form-inline">
+		<form action="/HUBProject_v0.01/list.do" method="post"
+			class="form-inline">
 			<select class="ring" name="listOpt">
-				<option value="1">내가</option>
-				<option value="2">나를</option>
-				<option value="3">서로</option>
+				<option value="1">내가 도움을 줄 수 있는 사용자</option>
+				<option value="2">나를 도울 수 있는 사용자</option>
+				<option value="3">서로 도움을 주고 받을 수 있는 사용자</option>
 				<option value="4">업체</option>
 			</select> <input class="span2" type="text" name="connChain" id="searchs"
 				data-source="typeahead" placeholder="연결고리를 입력하세요">
@@ -86,35 +90,56 @@ h1 {
 		</thead>
 
 		<tbody>
-			<tr>
-				<c:choose>
-					<c:when test="${listOpt eq 1 or listOpt eq 3}">
-						<c:forEach items="${bucketlists }" var="bucketlist" varStatus="status">
+			<c:choose>
+				<c:when test="${listOpt eq 1 or listOpt eq 3}">
+					<c:forEach items="${bucketlists }" var="bucketlist"
+						varStatus="status">
+						<tr>
 							<td>${status.count }</td>
-							<td><a class="btn btn-xs btn-default btn-block"
-								href="userDetail.do">${bucketlist.userId }</a></td>
-							<td><a class="btn btn-xs btn-default btn-block"
-								href="bucketlistDetail.do">${bucketlist.title }</a></td>
-
-						</c:forEach>
-					</c:when>
-					<c:when test="${listOpt eq 2}">
-						<c:forEach items="${users }" var="user" varStatus="status">
+							<td>
+								<form action="/HUBProject_v0.01/userDetail.do" method="post">
+									<button class="btn btn-xs btn-default btn-block" type="submit"
+										name="userId" value="${bucketlist.userId }">${bucketlist.userId }</button>
+									<input type="hidden" name="listOpt" value="${listOpt }">
+								</form>
+							</td>
+							<td>
+								<form action="/HUBProject_v0.01/bucketlistDetail.do"
+									method="post">
+									<button class="btn btn-xs btn-default btn-block" type="submit"
+										name="bucketlistId" value="${bucketlist.bucketlistId }">${bucketlist.title }</button>
+									<input type="hidden" name="listOpt" value="${listOpt }">
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:when test="${listOpt eq 2}">
+					<c:forEach items="${users }" var="user" varStatus="status">
+						<tr>
 							<td>${status.count }</td>
-							<td><a class="btn btn-xs btn-default btn-block"
-								href="userDetail.do">${user.userId }</a></td>
+							<td>
+								<form action="/HUBProject_v0.01/userDetail.do" method="post">
+									<button class="btn btn-xs btn-default btn-block" type="submit"
+										name="userId" value="${user.userId }">${user.userId }</button>
+									<input type="hidden" name="listOpt" value="${listOpt }">
+								</form>
+							</td>
 							<td>${user.connChains }</td>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
 						<c:forEach items="${coopers }" var="cooper" varStatus="status">
 							<td>${status.count }</td>
 							<td>${cooper.coName }</td>
 							<td><a href="resources/img/${cooper.Banner }"></a></td>
 						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-			</tr>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+
 		</tbody>
 	</table>
 </body>
