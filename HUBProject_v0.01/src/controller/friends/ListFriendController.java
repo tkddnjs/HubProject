@@ -1,6 +1,8 @@
 package controller.friends;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,24 +20,43 @@ public class ListFriendController extends HttpServlet {
 
 	private FriendService service;
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		service = new FriendServiceLogic();
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
 		
 		String userId = (String) session.getAttribute("userId");
-		String friendId = request.getParameter("friendId");
-		String relation = request.getParameter("relation");
 		
-		Friend friend = new Friend();
-		
-		friend.setUserId(userId);
-		friend.setFriendId(friendId);
-		friend.setRelation(relation);
-		
-		service.findAll(friend);
-		
+		request.setAttribute("friends", service.findAll(userId));
+		request.getRequestDispatcher("Friend/listFriend.jsp").forward(request, response);
 	}
-
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		service = new FriendServiceLogic();
+		
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+		
+		List<Friend> friends = null;
+		int searchOpt = Integer.parseInt(request.getParameter("searchOpt"));
+		
+		switch(searchOpt){
+			case 1:
+				String connChain = request.getParameter("searchWord");
+				friends = service.findFriendsByConnChain(userId, connChain);
+				break;
+			case 2: 
+				int relation = Integer.parseInt(request.getParameter("searchWord"));
+				Friend friend = new Friend();
+				friend.setUserId(userId);
+				friend.setRelation(relation);
+				friends = service.findFriendsByRelation(friend);
+				break;
+			
+		}
+		
+		request.setAttribute("friends", friends);
+		request.getRequestDispatcher("Friend/listFriend.jsp").forward(request, response);
+	}
 }

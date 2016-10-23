@@ -25,12 +25,14 @@ public class RegisterFriendController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String userId = (String) session.getAttribute("userId");
+		String friendId = request.getParameter("friendId");
+		int relation = Integer.parseInt(request.getParameter("relation"));
 		
 		Friend friend = new Friend();
 		
 		friend.setUserId(userId);
-		friend.setFriendId(request.getParameter("friendId"));
-		friend.setRelation(request.getParameter("relation"));
+		friend.setFriendId(friendId);
+		friend.setRelation(relation);
 
 		service.registerFriend(friend);
 	}
