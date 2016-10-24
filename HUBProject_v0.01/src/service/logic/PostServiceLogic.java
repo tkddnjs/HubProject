@@ -17,20 +17,17 @@ public class PostServiceLogic implements PostService {
 	
 	@Override
 	public int sendPost(Post post) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.insertPost(post);
 	}
 
 	@Override
 	public int removePost(int postId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return store.deletePost(postId);
 	}
 
 	@Override
 	public List<Post> findAll(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return store.selectAll(userId);
 	}
 
 	@Override

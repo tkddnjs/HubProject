@@ -2,10 +2,12 @@ package store.logic;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import domain.Post;
 import store.factory.SqlSessionFactoryProvider;
+import store.mapper.PostMapper;
 import store.pacade.PostStore;
 
 public class PostStoreLogic implements PostStore {
@@ -18,20 +20,53 @@ public class PostStoreLogic implements PostStore {
 	
 	@Override
 	public int insertPost(Post post) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int result=0;
+		try{
+			PostMapper mapper = session.getMapper(PostMapper.class);
+			result = mapper.insertPost(post);
+			if(result>0){
+				session.commit();
+			}else{
+				session.rollback();
+			}
+		}finally{
+			session.close();
+		}
+		return result;
 	}
+			
 
 	@Override
 	public int deletePost(int postId) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession session = factory.openSession();
+		int result=0;
+		try{
+			PostMapper mapper = session.getMapper(PostMapper.class);
+			result = mapper.deletePost(postId);
+			if(result>0){
+				session.commit();
+			}else{
+				session.rollback();
+			}
+		}finally{
+			session.close();
+		}
+		return result;
 	}
 
 	@Override
-	public List<Post> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Post> selectAll(String userId) {
+		SqlSession session = factory.openSession();
+		
+		List<Post> list = null;
+		try{
+			PostMapper mapper = session.getMapper(PostMapper.class);
+			list = mapper.selectAll(userId);
+		}finally{
+			session.close();
+		}
+		return list;
 	}
 
 	@Override

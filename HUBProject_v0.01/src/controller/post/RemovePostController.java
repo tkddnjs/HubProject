@@ -1,6 +1,7 @@
 package controller.post;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +21,11 @@ public class RemovePostController extends HttpServlet {
 			throws ServletException, IOException {
 		service = new PostServiceLogic();
 		
+		for(String check :  request.getParameterValues("checks")){
+			service.removePost(Integer.parseInt(check));
+		}
+
+		response.sendRedirect("listPost.do");
 	}
 
 }

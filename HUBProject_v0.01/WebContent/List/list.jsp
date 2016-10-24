@@ -9,14 +9,13 @@
 <title>도움리스트 목록</title>
 
 <link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet"><link href="/HUBProject_v0.01/resources/css/bootstrap-ko.min.css" rel="stylsheet"><link href="/HUBProject_v0.01/resources/css/bootstrap-responsive.min.css" rel="stylsheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-ko.min.css" rel="stylsheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-responsive.min.css" rel="stylsheet">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script type="text/javascript"
-	src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var availableTags;
@@ -62,47 +61,12 @@
 	function list(array) {
 		for (var i = 0; i < array.length; i++) {
 			$("#tags").append(
-					"<option value='" + array[i] + "'>" + array[i] + "</option>");0
+					"<option value='" + array[i] + "'>" + array[i] + "</option>");
 		}
 	};
 </script>
-<script src="/HUBProject_v0.01/resources/js/bootstrap.min.js"
-	type="text/javascript"></script>
 
-
-
-					$.ajax({
-						type : 'POST',
-						url : '/HUBProject_v0.01/listAutoComplete.do',
-						data : {
-							listOpt : listOpt
-						},
-						success : function(result) {
-							result = result.replace('[', '');
-							result = result.replace(']', '');
-							availableTags = result.split(',');
-							$("#tags").html("");
-							list(availableTags);
-						}
-					});
-				});
-
-				function list(array) {
-					for (var i = 0; i < array.length; i++) {
-						$("#tags").append(
-								"<option value='" + array[i] + "'>" + array[i]
-										+ "</option>");
-					}
-				}
-				;
-
-				//		$("#tags").autocomplete({
-				//			source: availableTags
-				//		});
-			});</script>
-
-<script src="/HUBProject_v0.01/resources/js/bootstrap.min.js"
-	type="text/javascript"></script>
+<script src="/HUBProject_v0.01/resources/js/bootstrap.min.js" type="text/javascript"></script>
 
 <style type="text/css">
 body {
@@ -129,7 +93,8 @@ h1 {
 		<%@ include file="/menu.jsp"%>
 	</div>
 
-	<br>	<div class="input-append pull-right">
+	<br>
+		<div class="input-append pull-right">
 		<form action="/HUBProject_v0.01/list.do" method="post"
 			class="form-inline" id="form">
 			<table>
@@ -178,7 +143,8 @@ h1 {
 				<c:when test="${listOpt eq 1 or listOpt eq 3}">
 					<c:forEach items="${bucketlists }" var="bucketlist"
 						varStatus="status">
-						<tr>							<td>${status.count }</td>
+						<tr>
+							<td>${status.count }</td>
 							<td>
 								<form action="/HUBProject_v0.01/userDetail.do" method="post">
 									<button class="btn btn-xs btn-default btn-block" type="submit"
@@ -227,7 +193,6 @@ h1 {
 
 				</c:otherwise>
 			</c:choose>
-			</tr>
 		</tbody>
 	</table>
 </body>
