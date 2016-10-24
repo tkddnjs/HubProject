@@ -12,20 +12,64 @@
 	rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
-<link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
-<link href="resources/css/bootstrap.css" rel="stylsheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-ko.min.css"
+	rel="stylsheet">
+<link
+	href="/HUBProject_v0.01/resources/css/bootstrap-responsive.min.css"
+	rel="stylsheet">
 
 
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- <script type="text/javascript" src="/HUBProject_v0.01/resources/js/jquery.min.js"></script> -->
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script type="text/javascript"
-	src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var availableTags;
+		if ($("#listOpt").val() != null) {
+			var listOpt = $("#listOpt").val();
+			$.ajax({
+				type : 'POST',
+				url : '/HUBProject_v0.01/listAutoComplete.do',
+				data : {
+					listOpt : listOpt
+				},
+				success : function(result) {
+					result = result.replace('[', '');
+					result = result.replace(']', '');
+					result = result.replace(' ','');
+					availableTags = result.split(',');
+					$("#tags").html("");
+					list(availableTags);
+				}
+			});
+		};
+		
+		$("#listOpt").change(function() {
+			var listOpt = $(this).val();
+			$.ajax({
+				type : 'POST',
+				url : '/HUBProject_v0.01/listAutoComplete.do',
+				data : {
+					listOpt : listOpt
+				},
+				success : function(result) {
+					result = result.replace('[', '');
+					result = result.replace(']', '');
+					result = result.replace(' ','');
+					availableTags = result.split(',');
+					$("#tags").html("");
+					list(availableTags);
+				}
+			});
+		});
+	});
+	
+	function list(array) {
+		for (var i = 0; i < array.length; i++) {
+			$("#tags").append(
+					"<option value='" + array[i] + "'>" + array[i] + "</option>");0
+		}
+	};
 </script>
 
 <script src="/HUBProject_v0.01/resources/js/bootstrap.min.js"
@@ -60,19 +104,27 @@ h1 {
 	<div class="input-append pull-right">
 		<form action="/HUBProject_v0.01/list.do" method="post"
 			class="form-inline" id="form">
-			<select class="ring" name="listOpt" id="listOpt">
-				<option value="1">내가</option>
-				<option value="2">나를</option>
-				<option value="3">서로</option>
-				<option value="4">업체</option>
-			</select>
-			<!-- 
-			<input style="font-size:12pt;" class="span2" type="text" name="connChain" id="tags"
-			data-source="typeahead" placeholder="연결고리를 입력하세요">
-			-->
+			<table>
+				<tr>
+					<td><select class="ring" name="listOpt" id="listOpt">
+							<option value="1" selected="selected">내가 도움을 줄 수 있는 사용자</option>
+							<option value="2">나를 도와줄 수 있는 사용자</option>
+							<option value="3">서로 도움을 줄 수 있는 사용자</option>
+							<option value="4">업체</option>
+					</select></td>
+					<td width='50'><select class="ring" id="tags" name="connChain">
+
+					</select></td>
+					<td></td>
+					<td>
+						<button class='btn btn-xs btn-default btn-block' type='submit'>검색</button>
+					</td>
+				</tr>
+			</table>
 		</form>
 	</div>
 
+	<br>
 	<table class="table table-hover table-condensed">
 		<thead style="background: #60d7a9; color: white;">
 			<tr style="align: center; font-size: 14pt;">
@@ -86,19 +138,17 @@ h1 {
 						<th width="400" align="center">사용자ID</th>
 						<th width="600" align="center">연결고리목록</th>
 					</c:when>
-					<c:otherwise>
+					<c:when test="${listOpt eq 4}">
 						<th width="400" align="center">업체이름</th>
 						<th width="600" align="center">사이트</th>
-					</c:otherwise>
+					</c:when>
 				</c:choose>
 			</tr>
 		</thead>
 
 		<tbody>
-
 			<c:choose>
 				<c:when test="${listOpt eq 1 or listOpt eq 3}">
-
 					<c:forEach items="${bucketlists }" var="bucketlist"
 						varStatus="status">
 						<tr>

@@ -7,9 +7,11 @@ import domain.Cooper;
 import domain.User;
 import service.pacade.ListService;
 import store.logic.BucketlistStoreLogic;
+import store.logic.ConnChainStoreLogic;
 import store.logic.CooperStoreLogic;
 import store.logic.UserStoreLogic;
 import store.pacade.BucketlistStore;
+import store.pacade.ConnChainStore;
 import store.pacade.CooperStore;
 import store.pacade.UserStore;
 
@@ -18,11 +20,13 @@ public class ListServiceLogic implements ListService {
 	private UserStore uStore;
 	private BucketlistStore bStore;
 	private CooperStore cStore;
+	private ConnChainStore ccStore;
 	
 	public ListServiceLogic() {
 		uStore = new UserStoreLogic();
 		bStore = new BucketlistStoreLogic();
 		cStore = new CooperStoreLogic();
+		ccStore = new ConnChainStoreLogic();
 	}
 	
 	@Override
@@ -45,7 +49,7 @@ public class ListServiceLogic implements ListService {
 	}
 	
 	public List<String> findConnChains(){
-		return bStore.selectConnChains();
+		return ccStore.selectConnChains();
 	}
 	
 }

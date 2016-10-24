@@ -38,11 +38,11 @@ public class ListController extends HttpServlet {
 		connChains.add(connChain);
 		
 		switch (listOpt){
-			case 2 :	// 내가 
+			case 2 :	// 나를 
 				List<User> users = service.findUsersByConnChains(connChains);
 				request.setAttribute("users", users);
 				break;
-			case 1 : 	// 나를
+			case 1 : 	// 내가
 			case 3 :	// 서로
 				List<Bucketlist> bucketlists= service.findBucketlistsByConnChains(connChains);
 				request.setAttribute("bucketlists", bucketlists);

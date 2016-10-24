@@ -40,6 +40,7 @@ public class RegisterUserController extends HttpServlet {
 		}
 		user.setConnChains(connChains);
 		user.setIntroduce(req.getParameter("introduce"));
+		
 		service.registerUser(user);
 
 		res.sendRedirect("HUBMain.jsp");

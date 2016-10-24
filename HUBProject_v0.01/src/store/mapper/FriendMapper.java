@@ -10,6 +10,7 @@ public interface FriendMapper {
 	
 	int insertFriend(Friend friend);
 	int deleteFriend(Friend friend);
+	
 	// 추가
 	int updateFriendConfirm(Friend friend);
 	List<Friend> selectRequestedFriends(String userId);

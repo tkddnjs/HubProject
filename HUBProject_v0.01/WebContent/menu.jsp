@@ -6,12 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="/HUBProject_v0.01/resources/css/bootstrap-ko.css" rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/bootstrap-ko.min.css" rel="stylesheet">
-<link href="/HUBProject_v0.01/resources/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/bootstrap-responsive.min.css" rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="/HUBProject_v0.01/resources/css/bootstrap.css" rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/menu.css" rel="stylesheet">
 <script type="text/javascript" src="resources/js/menu.js"></script>

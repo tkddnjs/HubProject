@@ -2,21 +2,30 @@ package service.logic;
 
 import domain.User;
 import service.pacade.UserService;
+import store.logic.ConnChainStoreLogic;
 import store.logic.UserStoreLogic;
+import store.pacade.ConnChainStore;
 import store.pacade.UserStore;
 
 public class UserServiceLogic implements UserService {
 
 	private UserStore store;
+	private ConnChainStore ccStore;
 	private boolean isAdmin;
 	
 	public UserServiceLogic() {
 		store = new UserStoreLogic();
+		ccStore = new ConnChainStoreLogic();
 	}
 	
 	@Override
 	public int registerUser(User user) {
-		return store.insertUser(user);
+		int result = 1;
+		for(String connChain : user.getConnChains()){
+			result *= ccStore.insertConnChain(connChain);
+		}
+		result *= store.insertUser(user);
+		return result;
 	}
 
 	@Override

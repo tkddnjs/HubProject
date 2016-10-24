@@ -19,7 +19,6 @@
 		FROM bucketlist_tb
 	</sql>
 
-
 	<insert id="insertBucketlist" parameterType="Bucketlist">
 		INSERT INTO bucketlist_tb(bucketId, bucketName, goalDay, starGrade, memo, sos, locker, userId)
 		VALUES (#{bucketlistId}, #{title}, #{goal}, #{star}, #{memo}, #{sos}, 'N', #{userId})
@@ -50,7 +49,7 @@
 		<include refid="selectBucketlist" />
 		WHERE userId=#{userId}
 	</select>
-
+	
 	<select id="selectBucketlistByBucketlistId" parameterType="int" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />
 		WHERE bucketId=#{bucketlistId}

@@ -30,15 +30,15 @@ public class ListAutoCompleteController extends HttpServlet {
 		ArrayList<String> availableTags = new ArrayList<>();
 
 		switch (listOpt) {
-		case 2: // 내가
-			for (String str : service.findConnChainsByUserId(userId)) {
-				availableTags.add("" + str + "");
+		case 2: // 나를\
+			for (String str : service.findConnChains()) {
+				availableTags.add(str);
 			}
 			break;
-		case 1: // 나를
+		case 1: // 내가
 		case 3: // 서로
-			for (String str : service.findConnChains()) {
-				availableTags.add("" + str + "");
+			for (String str : service.findConnChainsByUserId(userId)) {
+				availableTags.add(str);
 			}
 			break;
 		case 4: // 업체
@@ -46,7 +46,6 @@ public class ListAutoCompleteController extends HttpServlet {
 		}
 		out.println(availableTags);
 		
-//		request.setAttribute("availableTags", availableTags);
 	}
 
 }
