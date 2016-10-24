@@ -10,12 +10,12 @@
 	</resultMap>
 
 	<sql id="selectFriend">
-		SELECT userId, friendId, relation
+		SELECT userId, friendId, relation, confirm
 		FROM friend_tb
 	</sql>
 
 	<insert id="insertFriend" parameterType="Friend">
-		INSERT INTO friend_tb(userId, friendId, relation, confirm) VALUES (#{userId}, #{friendId}, #{relation}, 'N')
+		INSERT INTO friend_tb(userId, friendId, relation, confirm) VALUES (#{userId}, #{friendId}, #{relation}, #{confirm,typeHandler=BooleanToYnHandler})
 	</insert>
 
 	<delete id="deleteFriend" parameterType="Friend">
@@ -26,7 +26,7 @@
 		friendId=#{userId})
 	</delete>
 
-	<update id="modifyFriend" parameterType="Friend">
+	<update id="updateFriendConfirm" parameterType="Friend">
 		UPDATE friend_tb
 		SET confirm='Y'
 		WHERE (userId=#{userId} and friendId=#{friendId})
@@ -35,14 +35,20 @@
 
 
 	<select id="selectAll" parameterType="Friend" resultMap="friendMap">
+		SELECT friendId as userId, userId as friendId, MOD(3-relation, 3) as relation, confirm
+		FROM friend_tb
+		WHERE friendId=#{userId} AND confirm='Y'
+	</select>
+	
+	<select id="selectRequestedFriends" resultMap="friendMap">
 		<include refid="selectFriend" />
-		WHERE userId=#{userId}
+		WHERE userId=#{userId} AND confirm='N'
 	</select>
 
 	<select id="selectFriendsByConnChain" parameterType="Map"
 		resultMap="friendMap">
 		<include refid="selectFriend" />
-		WHERE userId=#{userId}
+		WHERE userId=#{userId} AND confirm='Y'
 		AND friendId IN (
 			SELECT userId
 			FROM userConn_tb
@@ -53,7 +59,7 @@
 	<select id="selectFriendsByRelation" parameterType="Friend"
 		resultMap="friendMap">
 		<include refid="selectFriend" />
-		WHERE userId=#{userId}
+		WHERE userId=#{userId} AND confirm='Y'
 		AND relation=#{relation}
 	</select>
 

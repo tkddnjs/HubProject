@@ -36,6 +36,11 @@ public class FriendServiceLogic implements FriendService {
 	}
 
 	@Override
+	public List<Friend> findRequestedFriends(String userId) {
+		return store.selectRequestedFriends(userId);
+	}
+	
+	@Override
 	public List<Friend> findFriendsByConnChain(String userId, String connChain) {
 		return store.selectFriendsByConnChain(userId, connChain);
 	}
@@ -45,5 +50,20 @@ public class FriendServiceLogic implements FriendService {
 		return store.selectFriendsByRelation(friend);
 	}
 
+	@Override
+	public boolean checkRequest(String userId, String friendId){
+		for(Friend friend : store.selectRequestedFriends(userId)){
+			if(friend.getFriendId().equals(friendId)){
+				return false;
+			}
+		}
+		for(Friend friend : store.selectAll(userId)){
+			if(friend.getFriendId().equals(friendId)){
+				return false;
+			}
+		}
+		
+		return true;
+	}
 
 }

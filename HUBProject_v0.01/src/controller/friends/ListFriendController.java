@@ -54,10 +54,14 @@ public class ListFriendController extends HttpServlet {
 				friend.setRelation(relation);
 				friends = service.findFriendsByRelation(friend);
 				break;
+			case 3:
+				friends = service.findRequestedFriends(userId);
+				request.setAttribute("isRequest", true);
+				break;
 			
 		}
-		
 		request.setAttribute("friends", friends);
+		request.setAttribute("searchOpt", searchOpt);
 		request.getRequestDispatcher("Friend/listFriend.jsp").forward(request, response);
 	}
 }

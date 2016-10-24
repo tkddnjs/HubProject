@@ -18,7 +18,7 @@ public class RemoveFriendController extends HttpServlet {
 
 	private FriendService service;
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		service = new FriendServiceLogic();
 		
@@ -26,6 +26,7 @@ public class RemoveFriendController extends HttpServlet {
 		
 		String userId = (String) session.getAttribute("userId");
 		String friendId = request.getParameter("friendId");
+		int searchOpt = Integer.parseInt(request.getParameter("searchOpt"));
 		
 		Friend friend = new Friend();
 		
@@ -33,6 +34,11 @@ public class RemoveFriendController extends HttpServlet {
 		friend.setFriendId(friendId);
 		
 		service.removeFriend(friend);
+		
+		request.setAttribute("userId", friendId);
+		request.setAttribute("searchOpt", searchOpt);
+		request.setAttribute("connChain", request.getParameter("connChain"));
+		request.getRequestDispatcher("Friend/removeFriend.jsp").forward(request, response);
 	}
 
 }

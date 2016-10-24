@@ -26,11 +26,18 @@ public class ConfirmFriendController extends HttpServlet {
 		
 		String userId = (String) session.getAttribute("userId");
 		String friendId = request.getParameter("friendId");
+		int searchOpt = Integer.parseInt(request.getParameter("searchOpt"));
+		
 		Friend friend = new Friend();
 		friend.setUserId(userId);
 		friend.setFriendId(friendId);
 		
 		service.confirmFriend(friend);
+		
+		request.setAttribute("userId", friendId);
+		request.setAttribute("searchOpt", searchOpt);
+		request.setAttribute("connChain", request.getParameter("connChain"));
+		request.getRequestDispatcher("Friend/comfirmFriend.jsp").forward(request, response);
 	}
 
 }

@@ -32,6 +32,7 @@ public class RequestFriendController extends HttpServlet {
 		friend.setUserId(userId);
 		friend.setFriendId(friendId);
 		friend.setRelation(relation);
+		friend.setConfirm(true);
 
 		service.registerFriend(friend);
 		

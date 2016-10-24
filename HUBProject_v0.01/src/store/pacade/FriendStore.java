@@ -11,6 +11,7 @@ public interface FriendStore {
 	
 	//추가
 	int updateFriendConfirm(Friend friend);
+	List<Friend> selectRequestedFriends(String userId);
 	//
 	
 	List<Friend> selectAll(String userId);

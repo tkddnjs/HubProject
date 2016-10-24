@@ -26,12 +26,8 @@ public class FriendStoreLogic implements FriendStore {
 		Friend temp = new Friend();
 		temp.setFriendId(friend.getUserId());
 		temp.setUserId(friend.getFriendId());
-		if(friend.getRelation() != 3){
-			temp.setRelation(3-friend.getRelation());
-		} else {
-			temp.setRelation(friend.getRelation());
-		}
-		
+		temp.setRelation((3-friend.getRelation())%3);
+		temp.setConfirm(false);
 		try {
 			FriendMapper mapper = session.getMapper(FriendMapper.class);
 			result = mapper.insertFriend(friend);
@@ -97,6 +93,18 @@ public class FriendStoreLogic implements FriendStore {
 	}
 
 	@Override
+	public List<Friend> selectRequestedFriends(String userId) {
+		SqlSession session = factory.openSession();
+		
+		try {
+			FriendMapper mapper = session.getMapper(FriendMapper.class);
+			return mapper.selectRequestedFriends(userId);
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
 	public List<Friend> selectFriendsByConnChain(String userId, String connChain) {
 		SqlSession session = factory.openSession();
 
@@ -119,6 +127,7 @@ public class FriendStoreLogic implements FriendStore {
 			session.close();
 		}
 	}
+
 
 
 }

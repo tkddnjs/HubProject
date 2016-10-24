@@ -11,6 +11,8 @@ public interface FriendService {
 	
 	// 추가
 	int confirmFriend(Friend friend);
+	List<Friend> findRequestedFriends(String userId);
+	public boolean checkRequest(String userId, String friendId);
 	// 
 	
 	List<Friend> findAll(String userId);

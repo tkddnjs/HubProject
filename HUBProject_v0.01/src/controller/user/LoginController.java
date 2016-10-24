@@ -24,18 +24,21 @@ public class LoginController extends HttpServlet {
 		service = new UserServiceLogic();
 		String userId = request.getParameter("userId");
 		String pw = request.getParameter("password");
+		HttpSession session = request.getSession();
+		session.invalidate();
 		
 		User user = new User();
 		user.setUserId(userId);
 		user.setPw(pw);
-
-		if(service.login(user)){			boolean isAdmin = service.getIsAdmin();
+		
+		if(service.login(user)){
+			boolean isAdmin = service.getIsAdmin();
 			if(isAdmin == false){
-				HttpSession session = request.getSession();
+				session = request.getSession();
 				session.setAttribute("userId", userId);
 				response.sendRedirect("listBucketlist.do");
 			}else{
-				HttpSession session = request.getSession();
+				session = request.getSession();
 				session.setAttribute("userId", userId);
 				response.sendRedirect("cooperList.jsp");
 			}
