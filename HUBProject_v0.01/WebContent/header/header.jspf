@@ -12,7 +12,7 @@
     
      <b>${userId } </b>님 반갑습니다.<br>
      
-    [<a href="logout.do">로그아웃</a>|<a href="updateUser.do">정보수정</a>|<a href="/HUBProject_v0.01/listFriend.do">친구목록</a>]
+    [<a href="logout.do">로그아웃</a>|<a href="updateUser.do">정보수정</a>|<a href="listFriend.do">친구목록</a>]
   
   </c:otherwise>
 

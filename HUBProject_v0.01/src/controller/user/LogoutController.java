@@ -17,15 +17,13 @@ public class LogoutController extends HttpServlet {
 
 	private UserService service;
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletReqest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		service = new UserServiceLogic();
+		service= new UserServiceLogic();
+		HttpSession session = req.getSession();
+		session.invalidate();		
 		
-		HttpSession session = request.getSession();
-		session.invalidate();
-		
-		response.sendRedirect("HUBMain.jsp");
-		
-	}
+		res.sendRedirect("HUBMain.jsp");	}
 
 }

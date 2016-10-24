@@ -7,7 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>버킷추가</title>
+
 <script type="text/javascript" src="../resources/js/jquery.min.js"></script>
+
+
 <style>
 #container {
 	width: 600px;
@@ -70,21 +73,24 @@ dl dd p.error {
 		<h1>버킷추가</h1>
 		<form action="../registerBucketlist.do" method="post">
 			<dl>
-				<dt>제목<span> (*) </span>	</dt>
+				<dt>
+					제목<span> (*) </span>
+				</dt>
 				<dd>
 					<input type="text" size="40" id="title" name="title"
 						class="validate required">
 				</dd>
-				
+
 				<dt>목표기간</dt>
 				<dd>
-					<input type="text" size="40" id="goal" name="goal" class="validate pw">
+					<input type="text" size="40" id="goal" name="goal">
 				</dd>
-				
-				<dt>중요도<span> 10점 만점 </span></dt>
+
+				<dt>
+					중요도<span> 10점 만점 </span>
+				</dt>
 				<dd>
-					<input type="number" size="40" id="star" name="star"	>
-					
+					<input type="number" size="40" id="star" name="star">
 				</dd>
 
 				<dt>
@@ -92,14 +98,17 @@ dl dd p.error {
 				</dt>
 				<dd id="connForm">
 					<input type="text" size="10" name="connchain" class="validate">
-					<button type="button">+</button><br>
+					<button type="button">+</button>
+					<br>
 				</dd>
-				
-				<dt>SOS (다른사람에게 도움받고 싶은 부분을 써주세요)<span>200byte</span></dt>
+
+				<dt>
+					SOS (다른사람에게 도움받고 싶은 부분을 써주세요)<span>200byte</span>
+				</dt>
 				<dd>
 					<input type="text" size="50" id="sos" name="sos">
 				</dd>
-				
+
 				<dt>
 					메모<span>500byte</span>
 				</dt>
@@ -112,51 +121,54 @@ dl dd p.error {
 			</p>
 		</form>
 	</div>
+
 	<script>
-	$(document).ready(function a(){
-		$("button").click(function () {
-			$('<input type="text" size="10" name="connchain" class="validate"><br>').appendTo("#connForm");
+		$(document)
+				.ready(
+						function a() {
+							$("button")
+									.click(
+											function() {
+												$(
+														'<input type="text" size="10" name="connchain" class="validate"><br>')
+														.appendTo("#connForm");
+											});
+						});
+
+		$("form").submit(function() {
+			//에러 초기화 추가로 붙는 내용 삭제
+			$("p.error").remove();
+			$("dl dd").removeClass("error");
+
+			//filter메소드를 이용해서 text, textareea 요소들 중에 validate
+			//클래스를 같고 있는 것만 찾는다.
+			$(":text, textarea").filter(".validate").each(function() {
+
+				//필수 항목 검사
+				//this -> filter로 걸러진 text, textarea 중에 하나를 뜻한다.
+				$(this).filter(".required").each(function() {
+					if ($(this).val() == "") {
+						$(this).before("<p class='error'>필수 항목 입니다.</p>");
+					}
+				});
+
+				$(this).filter(".number").each(function() {
+					if (isNaN($(this).val())) {
+						$(this).before("<p class='error'>숫자만 입력 가능합니다.</p>");
+					}
+				});
+
+				if ($("p.error").length > 0) {
+					//에러가 발생한 위치로 스크롤 이동
+					$("html, body").animate({
+						scrollTop : $("p.error.first").offset.top - 40
+					}, "slow");
+					//에러 항목에 대한 음영 처리
+					$("p.error").parent().addClass("error");
+					return false;
+				}
+			});
 		});
-	});
-	
-			
-    $("form").submit(function(){
-        //에러 초기화 추가로 붙는 내용 삭제
-        $("p.error").remove();
-        $("dl dd").removeClass("error");
-        
-        //filter메소드를 이용해서 text, textareea 요소들 중에 validate
-        //클래스를 같고 있는 것만 찾는다.
-        $(":text, textarea").filter(".validate").each(function(){
-            
-            //필수 항목 검사
-            //this -> filter로 걸러진 text, textarea 중에 하나를 뜻한다.
-            $(this).filter(".required").each(function(){
-                if($(this).val() == ""){
-                    $(this).before("<p class='error'>필수 항목 입니다.</p>");
-                }
-            });
-            
-            
-            $(this).filter(".number").each(function(){
-                if(isNaN($(this).val())){
-                    $(this).before("<p class='error'>숫자만 입력 가능합니다.</p>");
-                }
-            });
-            
-         
-        
-        	if($("p.error").length> 0){
-            	//에러가 발생한 위치로 스크롤 이동
-            	$("html, body").animate({scrollTop : 
-            	$("p.error.first").offset.top - 40}, "slow");
-            	//에러 항목에 대한 음영 처리
-            	$("p.error").parent().addClass("error");
-            	return false;
-        	}
-		});
-	});
-	 
-    </script>
+	</script>
 </body>
 </html>

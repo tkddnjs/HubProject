@@ -75,7 +75,7 @@ h1 {
 	<table class="table table-hover table-condensed">
 		<thead style="background: #60d7a9; color:white;">	
 			<tr style="align: center; font-size:14pt;">
-				<th width="80" align="center">잠금</th>
+				<th width="60" align="center">잠금</th>
 				<th width="50" align="center">No</th>
 				<th width="400" align="center">버킷리스트</th>
 				<th width="150" align="center">목표일</th>
@@ -101,11 +101,12 @@ h1 {
 					<td class="ranking" align="center" style="font-size:14pt;">${status.count  }</td>
 				
 					<td width="400" align="center">
-						<a href="findBucketlist.do?id=${bucketlist.bucketlistId}">
+						<a href="modifyBucketlist.do?id=${bucketlist.bucketlistId}">
 						<b>${bucketlist.title  }</b></a>
 					</td>
 						
 					<td><p class="goal">${bucketlist.goal  }</p></td>
+					<td>${bucketlist.star  }</td>
 					<td>${bucketlist.star  }</td>
 					
 				</tr>

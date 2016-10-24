@@ -78,8 +78,11 @@ public class BucketlistStoreLogic implements BucketlistStore {
 		
 		try {
 			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
+
 			result = mapper.updateBucketlist(bucketlist);
+
 			if(result > 0){
+
 				session.commit();
 			} else {
 				session.rollback();

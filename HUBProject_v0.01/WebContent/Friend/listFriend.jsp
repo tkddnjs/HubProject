@@ -14,18 +14,6 @@
 <link href="resources/css/bootstrap.css" rel="stylsheet">
 
 <script src="/HUBProject_v0.01/resources/js/jquery.min.js"></script>
-
-<!--
-<script type="text/javascript">
-	$(document).ready(function() {
-		var autocomplete_text = [ "자동완성기능", "Autocomplete", "개발로짜", "국이" ];
-		$("#searchs").autocomplete({
-			source : autocomplete_text
-		});
-	});
-</script>
- -->
-
 <script src="/HUBProject_v0.01/resources/js/bootstrap.min.js"
 	type="text/javascript"></script>
 
