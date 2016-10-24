@@ -24,11 +24,24 @@ public class BucketlistServiceLogic implements BucketlistService {
 		int result = 1;
 		
 		bucketlist.setBucketlistId(store.nextBucketlistId());
-		for(String connChain : bucketlist.getConnChains()){
-			result *= ccStore.insertConnChain(connChain);
-		}
+		
 		result *= store.insertBucketlist(bucketlist);
 		result *= store.insertBucketlistConn(bucketlist);
+		
+		List<String> sList = bucketlist.getConnChains();
+		for(String connChain : sList){
+			for(String str : ccStore.selectConnChains()){
+				if(connChain.equals(str)){
+					sList.remove(connChain);
+					break;
+				}
+			}
+		}
+		
+		for(String connChain : sList){
+			result *= ccStore.insertConnChain(connChain);
+		}
+		
 		
 		return result;
 	}

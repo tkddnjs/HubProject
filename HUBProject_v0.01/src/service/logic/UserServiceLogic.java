@@ -1,5 +1,8 @@
 package service.logic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import domain.User;
 import service.pacade.UserService;
 import store.logic.ConnChainStoreLogic;
@@ -21,10 +24,20 @@ public class UserServiceLogic implements UserService {
 	@Override
 	public int registerUser(User user) {
 		int result = 1;
+		
+		result *= store.insertUser(user);
+		
+		List<String> sList = new ArrayList<>();
 		for(String connChain : user.getConnChains()){
+			if(!ccStore.selectConnChains().contains(connChain)){
+				sList.add(connChain);
+			}
+		}
+		System.out.println(sList);
+		for(String connChain : sList){
 			result *= ccStore.insertConnChain(connChain);
 		}
-		result *= store.insertUser(user);
+		
 		return result;
 	}
 

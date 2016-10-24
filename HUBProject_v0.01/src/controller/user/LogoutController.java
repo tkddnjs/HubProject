@@ -17,7 +17,6 @@ public class LogoutController extends HttpServlet {
 
 	private UserService service;
 	
-	protected void doGet(HttpServletReqest request, HttpServletResponse response)
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		service= new UserServiceLogic();
