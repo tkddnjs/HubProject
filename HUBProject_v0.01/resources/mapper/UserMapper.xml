@@ -14,7 +14,7 @@
 	</resultMap>
 
 	<sql id="selectUser">
-		SELECT UserId, PW, Email, Picture, Introduce, ListOption, Admin
+		SELECT UserId, PW, Email, ListOption, Picture, Introduce, Admin
 		FROM user_tb
 	</sql>
 

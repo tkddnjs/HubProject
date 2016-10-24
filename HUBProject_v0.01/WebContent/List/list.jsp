@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,13 +14,47 @@
 <link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap.css" rel="stylsheet">
 
-<script src="/HUBProject_v0.01/resources/js/jquery.min.js"></script>
+ 
+<script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="/HUBProject_v0.01/resources/js/jquery.min.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		var autocomplete_text = [ "자동완성기능", "Autocomplete", "개발로짜", "국이" ];
-		$("#searchs").autocomplete({
-			source : autocomplete_text
+		
+		$("#listOpt").select(function name() {
+			var availableTags = ${availableTags};	
 		});
+		
+		
+		$.ajax({
+			type: 'POST',
+			url: 'checkId.do',
+			data:
+				{
+					id: id
+				},
+			success: function(result){
+				if($.trim(result)=="ok"){
+					$("#idCheckResult").html("사용가능한 ID입니다.");
+				} else {
+					$("#idCheckResult").html("사용중인 ID입니다.");
+				}
+			}
+		});
+		
+		
+		$("#form").append("<select class='ring' name='connChain' id='tags'>");
+		for(var i=0; i<availableTags.length; i++){
+			$("#tags").append("<option value='" + availableTags[i] + "'>" + availableTags[i] + "</option>");
+		}
+		$("#form").append("</select>");
+		$("#form").append("<button class='btn' type='submit'>검색</button>");
+		
+		
+//		$("#tags").autocomplete({
+//			source: availableTags
+//		});
 	});
 </script>
 
@@ -52,16 +87,20 @@ h1 {
 	
 	<br>
 	<div class="input-append pull-right">
-		<form action="/HUBProject_v0.01/list.do" method="post" class="form-inline">
-			<select class="ring" name="listOpt">
+		<form action="/HUBProject_v0.01/list.do" method="post" class="form-inline" id="form">
+			<select class="ring" name="listOpt" id="listOpt">
 				<option value="1">내가</option>
 				<option value="2">나를</option>
 				<option value="3">서로</option>
 				<option value="4">업체</option>
-			</select> 
-			<input style="font-size:12pt;" class="span2" type="text" name="connChain" id="searchs"
+			</select>
+
+<!-- 			<input style="font-size:12pt;" class="span2" type="text" name="connChain" id="tags"
 				data-source="typeahead" placeholder="연결고리를 입력하세요">
-			<button class="btn" type="submit">검색</button>
+				<button class='btn' type='submit'>검색</button>
+				
+				 -->
+
 		</form>
 	</div>
 
