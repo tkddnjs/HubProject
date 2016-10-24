@@ -9,13 +9,10 @@
 
 <link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
-<!-- 
-<link href="resources/css/bootstrap-ko.css" rel="stylsheet">
 <link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
-<link href="resources/css/bootstrap-responsive.css" rel="stylsheet">
 <link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap.css" rel="stylsheet">
- -->
+
 <script src="/HUBProject_v0.01/resources/js/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -49,9 +46,6 @@ h1 {
 	<div class="header" align="right">
 		<%@ include file="/header/header.jspf"%>
 	</div>
-
-	<h1 align="center">HUB : Have U get a BucketList?</h1>
-
 	<div>
 		<%@ include file="/menu.jsp"%>
 	</div>

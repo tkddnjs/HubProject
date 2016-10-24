@@ -7,17 +7,12 @@
 <meta charset="UTF-8">
 <title>친구 목록</title>
 
-<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css"
-	rel="stylesheet">
-<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- 
-<link href="resources/css/bootstrap-ko.css" rel="stylsheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
-<link href="resources/css/bootstrap-responsive.css" rel="stylsheet">
 <link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap.css" rel="stylsheet">
- -->
+
 <script src="/HUBProject_v0.01/resources/js/jquery.min.js"></script>
 
 <!--
@@ -55,8 +50,10 @@ h1 {
 	<div class="header" align="right">
 		<%@ include file="/header/header.jspf"%>
 	</div>
+	<div>
+		<%@ include file="/menu.jsp"%>
+	</div>
 
-	<h1 align="center">HUB : Have U get a BucketList?</h1>
 
 	<div class="input-append pull-right">
 		<form action="/HUBProject_v0.01/listFriend.do" method="post"
@@ -72,8 +69,8 @@ h1 {
 	</div>
 
 	<table class="table table-hover table-condensed">
-		<thead style="background: #60d7a9;">
-			<tr style="align: center;">
+		<thead style="background: #60d7a9; color:white;">
+			<tr style="align: center; font-size:14pt;">
 				<th width="20" align="center">NO</th>
 				<th width="300" align="center">친구ID</th>
 				<th width="300" align="center">관계</th>

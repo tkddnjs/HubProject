@@ -7,11 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>쪽지 목록</title>
-<link href="resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/bootstrap-ko.css" rel="stylsheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
-<link href="resources/css/bootstrap-responsive.css" rel="stylsheet">
 <link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap.css" rel="stylsheet">
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
@@ -59,8 +57,9 @@ h1 {
 	<div class="header" align="right">
 		<%@ include file="../header/header.jspf"%>
 	</div>
-
-	<h1 align="center">HUB : Have U get a BucketList?</h1>
+	<div class="input-append pull-right">
+		<a class="btn btn-xs btn-info btnPlay" href="Bucketlist/registerBucketlist.jsp"  ><h5>버킷추가</h5></a>
+	</div>
 
 	<div class="input-append pull-right">
 		<form action="removePost.do" method="get" class="form-inline">
