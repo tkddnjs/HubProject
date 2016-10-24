@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -57,6 +58,7 @@ h1 {
 .btnPlay {
 	margin-top: 40%
 }
+
 </style>
 </head>
 <body>
@@ -65,21 +67,24 @@ h1 {
 	</div>
 
 	<h1 align="center">HUB : Have U get a BucketList?</h1>
+	
+	<div>
+		<%@ include file="/menu.jsp"%>
+	</div>
 
 	<div class="input-append pull-right">
-		<a class="btn btn-xs btn-default" href="Bucketlist/registerBucketlist.jsp"><b>버킷추가</b></a>
+		<a class="btn btn-xs btn-info btnPlay" href="Bucketlist/registerBucketlist.jsp"  ><h5>버킷추가</h5></a>
 	</div>
 
 	<table class="table table-hover table-condensed">
-		<thead>
-			<tr>
+		<thead style="background: #60d7a9; color:white;">	
+			<tr style="align: center; font-size:14pt;">
 				<th width="10" align="center">잠금</th>
 				<th width="10" align="center">No</th>
 				<th width="400" align="center">버킷</th>
-				<th width="100">목표일</th>
-				<th width="100">중요도</th>
-				<th width="100">연결고리</th>
-
+				<th width="100" align="center">목표일</th>
+				<th width="100" align="center">중요도</th>
+				<th width="100" align="center">연결고리</th>
 			</tr>
 		</thead>
 
@@ -101,14 +106,15 @@ h1 {
 					<td>
 						<table>
 							<tr>
-								<td align="center"><span class="spanTitle"> <a
-										href="findBucketlist.do?id=${bucketlist.bucketlistId}"><b>${bucketlist.title  }</b></a>
-								</span></td>
+								<td width="400" align="center"><span class="spanTitle"> 
+									<a href="findBucketlist.do?id=${bucketlist.bucketlistId}">
+									<b>${bucketlist.title  }</b></a></span>
+								</td>
 							</tr>
 						</table>
 					<td><p class="goal">${bucketlist.goal  }</p></td>
 					<td>${bucketlist.star  }</td>
-
+					
 				</tr>
 			</c:forEach>
 		</tbody>

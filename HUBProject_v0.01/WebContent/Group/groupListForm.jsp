@@ -47,6 +47,10 @@ h1 {
 
 	<h1 align="center">HUB : Have U get a BucketList?</h1>
 
+	<div>
+		<%@ include file="/menu.jsp"%>
+	</div>
+
 	<div class="input-append pull-right">
 		<form action="searchGroup.do" method="post" class="form-inline">
 			<select class="ring" name="ring">
