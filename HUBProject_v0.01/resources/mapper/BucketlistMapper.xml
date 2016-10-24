@@ -50,6 +50,11 @@
 		<include refid="selectBucketlist" />
 		WHERE userId=#{userId}
 	</select>
+	
+	<select id="selectConnChains" resultType="String">
+		SELECT connChain
+		FROM connChain_tb
+	</select>
 
 	<select id="selectBucketlistByBucketlistId" parameterType="int" resultMap="bucketlistMap">
 		<include refid="selectBucketlist" />

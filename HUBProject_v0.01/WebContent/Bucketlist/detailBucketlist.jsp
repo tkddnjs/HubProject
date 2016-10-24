@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>버킷리스트 상세</title>
-<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css"	rel="stylesheet">
-<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css"	rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css"
+	rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <style type="text/css">
 body {

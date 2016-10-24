@@ -44,4 +44,8 @@ public class ListServiceLogic implements ListService {
 		return uStore.selectUser(userId).getConnChains();
 	}
 	
+	public List<String> findConnChains(){
+		return bStore.selectConnChains();
+	}
+	
 }

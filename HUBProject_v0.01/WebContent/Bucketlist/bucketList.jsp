@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +8,9 @@
 <title>HUB</title>
 <link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/bootstrap-ko.css" rel="stylsheet">
 <link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
+<link href="resources/css/bootstrap-responsive.css" rel="stylsheet">
 <link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap.css" rel="stylsheet">
 
@@ -56,7 +57,6 @@ h1 {
 .btnPlay {
 	margin-top: 40%
 }
-
 </style>
 </head>
 <body>
@@ -64,27 +64,26 @@ h1 {
 		<%@ include file="../header/header.jspf"%>
 	</div>
 
-	<div>
-		<%@ include file="/menu.jsp"%>
-	</div>
+	<h1 align="center">HUB : Have U get a BucketList?</h1>
 
 	<div class="input-append pull-right">
-		<a class="btn btn-xs btn-info btnPlay" href="Bucketlist/registerBucketlist.jsp"  ><h5>버킷추가</h5></a>
+		<a class="btn btn-xs btn-default" href="Bucketlist/registerBucketlist.jsp"><b>버킷추가</b></a>
 	</div>
 
 	<table class="table table-hover table-condensed">
-		<thead style="background: #60d7a9; color:white;">	
-			<tr style="align: center; font-size:14pt;">
-				<th width="80" align="center">잠금</th>
-				<th width="50" align="center">No</th>
-				<th width="400" align="center">버킷리스트</th>
-				<th width="150" align="center">목표일</th>
-				<th width="150" align="center">중요도</th>
-				<th width="150" align="center">연결고리</th>
+		<thead>
+			<tr>
+				<th width="10" align="center">잠금</th>
+				<th width="10" align="center">No</th>
+				<th width="400" align="center">버킷</th>
+				<th width="100">목표일</th>
+				<th width="100">중요도</th>
+				<th width="100">연결고리</th>
+
 			</tr>
 		</thead>
 
-		<tbody style="font-size:14pt;">
+		<tbody>
 			<c:forEach items="${bucketlists }" var="bucketlist"
 				varStatus="status">
 				<tr>
@@ -98,16 +97,18 @@ h1 {
 						</c:otherwise>
 					</c:choose>
 
-					<td class="ranking" align="center" style="font-size:14pt;">${status.count  }</td>
-				
-					<td width="400" align="center">
-						<a href="findBucketlist.do?id=${bucketlist.bucketlistId}">
-						<b>${bucketlist.title  }</b></a>
-					</td>
-						
+					<td class="ranking" align="center">${status.count  }</td>
+					<td>
+						<table>
+							<tr>
+								<td align="center"><span class="spanTitle"> <a
+										href="findBucketlist.do?id=${bucketlist.bucketlistId}"><b>${bucketlist.title  }</b></a>
+								</span></td>
+							</tr>
+						</table>
 					<td><p class="goal">${bucketlist.goal  }</p></td>
 					<td>${bucketlist.star  }</td>
-					
+
 				</tr>
 			</c:forEach>
 		</tbody>

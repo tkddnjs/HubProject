@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import domain.Bucketlist;
 import domain.Cooper;
@@ -25,14 +24,6 @@ public class ListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		service = new ListServiceLogic();
-		
-		String userId = (String) req.getSession().getAttribute("userId");
-		ArrayList<String> availableTags = new ArrayList<>();
-		for(String str : service.findConnChainsByUserId(userId)){
-			availableTags.add("\"" + str + "\"");
-		}
-		req.setAttribute("availableTags", availableTags);
 		req.getRequestDispatcher("List/list.jsp").forward(req, resp);
 	}
 	
@@ -40,13 +31,9 @@ public class ListController extends HttpServlet {
 			throws ServletException, IOException {
 		service = new ListServiceLogic();
 		
-		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("userId");
-		
 		int listOpt = Integer.parseInt(request.getParameter("listOpt"));
 		String connChain = request.getParameter("connChain");
 		List<String> connChains  = new ArrayList<>();
-		List<String> availableTags = new ArrayList<>();
 		
 		connChains.add(connChain);
 		
@@ -54,19 +41,11 @@ public class ListController extends HttpServlet {
 			case 2 :	// 내가 
 				List<User> users = service.findUsersByConnChains(connChains);
 				request.setAttribute("users", users);
-				for(String str : service.findConnChainsByUserId(userId)){
-					availableTags.add("\"" + str + "\"");
-				}
-				request.setAttribute("avaliableTags", availableTags);
 				break;
 			case 1 : 	// 나를
 			case 3 :	// 서로
 				List<Bucketlist> bucketlists= service.findBucketlistsByConnChains(connChains);
 				request.setAttribute("bucketlists", bucketlists);
-				for(String str : service.findConnChainsByUserId(userId)){
-					availableTags.add("\"" + str + "\"");
-				}
-				request.setAttribute("avaliableTags", availableTags);
 				break;
 			case 4 :	// 업체
 				List<Cooper> coopers = service.findCoopersByConnChains(connChains);

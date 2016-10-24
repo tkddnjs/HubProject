@@ -12,4 +12,5 @@ public interface ListService {
 	List<Bucketlist> findBucketlistsByConnChains(List<String> connChains);
 	List<Cooper> findCoopersByConnChains(List<String> connChains);
 	List<String> findConnChainsByUserId(String userId);
+	List<String> findConnChains();
 }
