@@ -16,5 +16,4 @@ public interface BucketlistStore {
 	Bucketlist selectBucketlistByBucketlistId(int bucketlistId);
 	
 	List<Bucketlist> selectBucketlistsByConnChains(List<String> connChains);
-	List<String> selectConnChains();
 }

@@ -144,15 +144,4 @@ public class BucketlistStoreLogic implements BucketlistStore {
 		}
 	}
 
-	@Override
-	public List<String> selectConnChains() {
-		SqlSession session = factory.openSession();
-		
-		try {
-			BucketlistMapper mapper = session.getMapper(BucketlistMapper.class);
-			return mapper.selectConnChains();
-		} finally {
-			session.close();
-		}
-	}
 }

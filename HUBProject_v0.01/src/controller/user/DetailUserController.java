@@ -29,9 +29,10 @@ public class DetailUserController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		int listOpt = Integer.parseInt(request.getParameter("listOpt"));
 		String connChain = request.getParameter("connChain");
-		User user = service.findUserByUserId(userId);
-		boolean chkFriend = fService.checkRequest((String) request.getSession().getAttribute("userId"), userId);
 		
+		User user = service.findUserByUserId(userId);
+		
+		boolean chkFriend = fService.checkRequest((String) request.getSession().getAttribute("userId"), userId);
 		request.setAttribute("user", user);
 		request.setAttribute("listOpt", listOpt);
 		request.setAttribute("connChain", connChain);

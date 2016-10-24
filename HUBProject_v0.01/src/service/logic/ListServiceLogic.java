@@ -29,6 +29,7 @@ public class ListServiceLogic implements ListService {
 	public List<User> findUsersByConnChains(List<String> connChains) {
 		return uStore.selectUsersByConnChains(connChains);
 	}
+
 	@Override
 	public List<Bucketlist> findBucketlistsByConnChains(List<String> connChains) {
 		return bStore.selectBucketlistsByConnChains(connChains);
@@ -43,9 +44,4 @@ public class ListServiceLogic implements ListService {
 	public List<String> findConnChainsByUserId(String userId){
 		return uStore.selectUser(userId).getConnChains();
 	}
-	
-	public List<String> findConnChains(){
-		return bStore.selectConnChains();
 	}
-	
-}

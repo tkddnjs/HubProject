@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -7,56 +8,22 @@
 <meta charset="UTF-8">
 <title>도움리스트 목록</title>
 
-<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css"
-	rel="stylesheet">
-<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<!-- 
-<link href="resources/css/bootstrap-ko.css" rel="stylsheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="/HUBProject_v0.01/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="resources/css/bootstrap-ko.min.css" rel="stylsheet">
-<link href="resources/css/bootstrap-responsive.css" rel="stylsheet">
 <link href="resources/css/bootstrap-responsive.min.css" rel="stylsheet">
 <link href="resources/css/bootstrap.css" rel="stylsheet">
- -->
-<script src="/HUBProject_v0.01/resources/js/jquery.min.js"></script>
+
+ 
+<script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="/HUBProject_v0.01/resources/js/jquery.min.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-//		listAutoComplete.do
-		var availableTags;
-		$("#listOpt").change(function () {
-			var listOpt = $(this).val();
-			
-			$.ajax({
-				type: 'POST',
-				url: '/HUBProject_v0.01/listAutoComplete.do',
-				data:
-					{
-						listOpt: listOpt
-					},
-				success: function(result){
-					result = result.replace('[','');
-					result = result.replace(']','');
-					availableTags = result.split(',');
-					$("#tags").html("");
-					list(availableTags);
-				}
-			});		
-        });
-		
-		function list(array){
-			for(var i=0; i<array.length; i++){
-				$("#tags").append("<option value='" + array[i] + "'>" + array[i] + "</option>");
-			}
-		};
-		
-//		$("#tags").autocomplete({
-//			source: availableTags
-//		});
-    });
 </script>
 
-<script src="/HUBProject_v0.01/resources/js/bootstrap.min.js"
-	type="text/javascript"></script>
+<script src="/HUBProject_v0.01/resources/js/bootstrap.min.js" type="text/javascript"></script>
 
 <style type="text/css">
 body {
@@ -73,30 +40,31 @@ h1 {
 	font-size: 15px;
 }
 </style>
+
 </head>
 <body>
 	<div class="header" align="right">
 		<%@ include file="/header/header.jspf"%>
 	</div>
-
-	<h1 align="center">HUB : Have U get a BucketList?</h1>
-
+	<div>
+		<%@ include file="/menu.jsp"%>
+	</div>
+	
+	<br>
 	<div class="input-append pull-right">
-		<form action="/HUBProject_v0.01/list.do" method="post"
-			class="form-inline">
-			<select class="ring" name="listOpt">
-				<option value="1">내가 도움을 줄 수 있는 사용자</option>
-				<option value="2">나를 도울 수 있는 사용자</option>
-				<option value="3">서로 도움을 주고 받을 수 있는 사용자</option>
+		<form action="/HUBProject_v0.01/list.do" method="post" class="form-inline" id="form">
+			<select class="ring" name="listOpt" id="listOpt">
+				<option value="1">내가</option>
+				<option value="2">나를</option>
+				<option value="3">서로</option>
 				<option value="4">업체</option>
-				data-source="typeahead" placeholder="연결고리를 입력하세요">
-
-		</form>
+			</select><!-- 			<input style="font-size:12pt;" class="span2" type="text" name="connChain" id="tags"				data-source="typeahead" placeholder="연결고리를 입력하세요">
+				 -->		</form>
 	</div>
 
 	<table class="table table-hover table-condensed">
-		<thead style="background: #60d7a9;">
-			<tr style="align: center;">
+		<thead style="background: #60d7a9; color:white;">
+			<tr style="align: center; font-size:14pt;">
 				<th width="20" align="center">NO</th>
 				<c:choose>
 					<c:when test="${listOpt eq 1 or listOpt eq 3}">
@@ -116,11 +84,10 @@ h1 {
 		</thead>
 
 		<tbody>
-			<c:choose>
-				<c:when test="${listOpt eq 1 or listOpt eq 3}">
-					<c:forEach items="${bucketlists }" var="bucketlist"
-						varStatus="status">
-						<tr>
+			<tr>
+				<c:choose>
+					<c:when test="${listOpt eq 1 or listOpt eq 3}">
+						<c:forEach items="${bucketlists }" var="bucketlist" varStatus="status">
 							<td>${status.count }</td>
 							<td>
 								<form action="/HUBProject_v0.01/userDetail.do" method="post">
@@ -144,7 +111,8 @@ h1 {
 				</c:when>
 				<c:when test="${listOpt eq 2}">
 					<c:forEach items="${users }" var="user" varStatus="status">
-						<tr>							<td>${status.count }</td>
+						<tr>
+							<td>${status.count }</td>
 							<td>
 								<form action="/HUBProject_v0.01/userDetail.do" method="post">
 									<button class="btn btn-xs btn-default btn-block" type="submit"
@@ -152,22 +120,18 @@ h1 {
 									<input type="hidden" name="listOpt" value="${listOpt }">
 									<input type="hidden" name="connChain" value="${connChain }">
 								</form>
-							</td>
-							<td>${user.connChains }</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
+							</td>							<td>${user.connChains }</td>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
 						<c:forEach items="${coopers }" var="cooper" varStatus="status">
 							<td>${status.count }</td>
 							<td>${cooper.coName }</td>
 							<td><a href="resources/img/${cooper.Banner }"></a></td>
 						</c:forEach>
-					</tr>
-				</c:otherwise>
-			</c:choose>
-
+					</c:otherwise>
+				</c:choose>
+			</tr>
 		</tbody>
 	</table>
 </body>

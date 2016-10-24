@@ -61,10 +61,8 @@ h1 {
 	<div class="header" align="right">
 		<%@ include file="/header/header.jspf"%>
 	</div>
-	
-	<div>
-		<%@ include file="/menu.jsp"%>
-	</div>
+
+	<h1 align="center">HUB : Have U get a BucketList?</h1>
 
 	<table class="table table-hover table-condensed">
 		<tr>
@@ -89,14 +87,15 @@ h1 {
 		<input type="hidden" name="connChain" value="${connChain }">
 	</form>
 	
-	<form action="/HUBProject_v0.01/requestFriend.do" method="post">
-		<div class="input-append pull-right">
-			<button class="btn btn-xs btn-default btn-block" type="submit"
-				name="friendId" value="${user.userId }">친구요청</button>
-			<input type="hidden" name="relation" value="${listOpt }">
-			<input type="hidden" name="connChain" value="${connChain }">
-		</div>
-	</form>
-	
+	<c:if test="${chkFriend }">
+		<form action="/HUBProject_v0.01/requestFriend.do" method="post">
+			<div class="input-append pull-right">
+				<button class="btn btn-xs btn-default btn-block" type="submit"
+					name="friendId" value="${user.userId }">친구요청</button>
+				<input type="hidden" name="relation" value="${listOpt }">
+				<input type="hidden" name="connChain" value="${connChain }">
+			</div>
+		</form>
+	</c:if>
 </body>
 </html>

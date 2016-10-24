@@ -18,6 +18,7 @@ public class DetailBucketlistController extends HttpServlet {
 	private BucketlistService service;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		service = new BucketlistServiceLogic();
 		
 		int bucketlistId = Integer.parseInt(request.getParameter("bucketlistId"));

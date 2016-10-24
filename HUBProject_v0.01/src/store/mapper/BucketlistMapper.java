@@ -19,5 +19,4 @@ public interface BucketlistMapper {
 	
 	
 	List<String> selectConnChainsByBucketlistId(int bucketlistId);
-	List<String> selectConnChains();
 }
