@@ -61,8 +61,10 @@ h1 {
 	<div class="header" align="right">
 		<%@ include file="/header/header.jspf"%>
 	</div>
-
-	<h1 align="center">HUB : Have U get a BucketList?</h1>
+	
+	<div>
+		<%@ include file="/menu.jsp"%>
+	</div>
 
 	<table class="table table-hover table-condensed">
 		<tr>

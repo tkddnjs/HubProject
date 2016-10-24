@@ -28,5 +28,6 @@ public class ListBucketlistController extends HttpServlet {
 		List<Bucketlist> blist = service.findAll(userId);
 		req.setAttribute("bucketlists", blist);
 		req.getRequestDispatcher("/Bucketlist/bucketList.jsp").forward(req, res);
+		
 	}
 }
