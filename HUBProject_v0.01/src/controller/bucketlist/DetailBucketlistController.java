@@ -11,7 +11,7 @@ import domain.Bucketlist;
 import service.logic.BucketlistServiceLogic;
 import service.pacade.BucketlistService;
 
-@WebServlet("/bucketlistDetail.do")
+//@WebServlet("/bucketlistDetail.do")
 public class DetailBucketlistController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import service.logic.BucketlistServiceLogic;
 import service.pacade.BucketlistService;
 
-@WebServlet("/removeBucketlist.do")
+//@WebServlet("/removeBucketlist.do")
 public class RemoveBucketlistController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
