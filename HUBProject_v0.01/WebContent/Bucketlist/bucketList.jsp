@@ -101,7 +101,7 @@ h1 {
 					<td class="ranking" align="center" style="font-size:14pt;">${status.count  }</td>
 				
 					<td width="400" align="center">
-						<a href="modifyBucketlist.do?id=${bucketlist.bucketlistId}">
+						<a href="bucketlist/modify.do?id=${bucketlist.bucketlistId}">
 						<b>${bucketlist.title  }</b></a>
 					</td>
 						

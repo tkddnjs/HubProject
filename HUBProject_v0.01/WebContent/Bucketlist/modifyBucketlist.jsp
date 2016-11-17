@@ -71,7 +71,7 @@ dl dd p.error {
 
 	<div id="container">
 		<h1>버킷수정</h1>
-		<form action="modifyBucketlist.do"   method="post">
+		<form action="bucketlist/modify.do" method="post">
 			<dl>
 				<dt>
 					제목<span> (*) </span>
