@@ -23,22 +23,22 @@ public class CooperStoreLogicTest {
 		store = new CooperStoreLogic();
 	}
 	
-	@Test
-	public void testInsertCooper() {
-		Cooper cooper = new Cooper();
-		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmdd");
-		List<String> connChains = new ArrayList<>();
-		connChains.add("asdfg");
-		cooper.setCoName("asd");
-		cooper.setCoBanner("asdf");
-		try {
-			cooper.setLastDay(new Date(dateFormat.parse("19911027").getTime()));
-		} catch (ParseException e) {
-		}
-//		cooper.setConnChains(connChains);
-		assertEquals(1, store.insertCooper(cooper));
-	}
+//	@Test
+//	public void testInsertCooper() {
+//		Cooper cooper = new Cooper();
+//		
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmdd");
+//		List<String> connChains = new ArrayList<>();
+//		connChains.add("asdfg");
+//		cooper.setCoName("asd");
+//		cooper.setCoBanner("asdf");
+//		try {
+//			cooper.setLastDay(new Date(dateFormat.parse("19911027").getTime()));
+//		} catch (ParseException e) {
+//		}
+////		cooper.setConnChains(connChains);
+//		assertEquals(1, store.insertCooper(cooper));
+//	}
 	
 /*
 	@Test
