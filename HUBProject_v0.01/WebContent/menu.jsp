@@ -33,7 +33,8 @@ h1 {
 			<div class="col-md-12">
 				<br>
 				<ul class="tab">
-					<li><a href="/HUBProject_v0.01/listBucketlist.do" >버킷리스트</a></li>
+					<li><a href="bucketlist/list.do" >버킷리스트</a></li>
+					<!-- /HUBProject_v0.01/listBucketlist.do -->
 					
 					<li><a href="/HUBProject_v0.01/list.do">도움리스트</a></li>
 					
