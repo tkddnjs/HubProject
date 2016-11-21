@@ -7,17 +7,16 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import domain.Friend;
-import store.pacade.FriendStore;
+import store.pacade.FollowStore;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FriendStoreLogicTest {
 
-	private FriendStore store;
+	private FollowStore store;
 	
 	@Before
 	public void init(){
-		store = new FriendStoreLogic();
+		store = new FollowStoreLogic();
 	}
 	
 	
