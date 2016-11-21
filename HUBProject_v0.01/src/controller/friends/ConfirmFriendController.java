@@ -16,6 +16,7 @@ import service.pacade.FriendService;
 public class ConfirmFriendController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	
 	private FriendService service;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

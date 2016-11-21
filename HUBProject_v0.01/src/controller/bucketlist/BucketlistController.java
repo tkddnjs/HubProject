@@ -15,6 +15,7 @@ import service.pacade.BucketlistService;
 @RequestMapping("bucketlist")
 public class BucketlistController {
 	
+	
 	@Autowired
 	private BucketlistService bucketlistService;
 	

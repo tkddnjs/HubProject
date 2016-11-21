@@ -14,6 +14,8 @@ import service.pacade.GroupService;
 public class ExitGroupController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
+	
 	private GroupService service;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

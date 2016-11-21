@@ -17,6 +17,7 @@ import service.pacade.ListService;
 public class ListAutoCompleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
 	private ListService service;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -14,6 +14,7 @@ import service.pacade.PostService;
 public class FindPostController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
 	private PostService service;	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -14,6 +14,7 @@ import service.pacade.CooperService;
 public class FindCooperController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
 	private CooperService service;
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
