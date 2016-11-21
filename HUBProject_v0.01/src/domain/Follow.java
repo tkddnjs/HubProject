@@ -1,13 +1,13 @@
 package domain;
 
-public class Friend {
+public class Follow {
 	private String userId;
-	private String friendId;
+	private String followId;
 //	private String relation;
 	private int relation;
 	private boolean confirm;
 
-	public Friend() {
+	public Follow() {
 	}
 
 	public String getUserId() {
@@ -18,12 +18,12 @@ public class Friend {
 		this.userId = userId;
 	}
 
-	public String getFriendId() {
-		return friendId;
+	public String getFollowId() {
+		return followId;
 	}
 
-	public void setFriendId(String friendId) {
-		this.friendId = friendId;
+	public void setFollowId(String friendId) {
+		this.followId = friendId;
 	}
 
 //	public String getRelation() {

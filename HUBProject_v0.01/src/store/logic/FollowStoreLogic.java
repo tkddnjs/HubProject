@@ -5,33 +5,33 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import domain.Friend;
+import domain.Follow;
 import store.factory.SqlSessionFactoryProvider;
-import store.mapper.FriendMapper;
-import store.pacade.FriendStore;
+import store.mapper.FollowMapper;
+import store.pacade.FollowStore;
 
-public class FriendStoreLogic implements FriendStore {
+public class FollowStoreLogic implements FollowStore {
 
 	private SqlSessionFactory factory;
 
-	public FriendStoreLogic() {
+	public FollowStoreLogic() {
 		factory = SqlSessionFactoryProvider.getSqlSessionFactory();
 	}
 
 	@Override
-	public int insertFriend(Friend friend) {
+	public int insertFollow(Follow follow) {
 		SqlSession session = factory.openSession();
 		int result = 0;
 		
-		Friend temp = new Friend();
-		temp.setFriendId(friend.getUserId());
-		temp.setUserId(friend.getFriendId());
-		temp.setRelation((3-friend.getRelation())%3);
+		Follow temp = new Follow();
+		temp.setFollowId(follow.getUserId());
+		temp.setUserId(follow.getFollowId());
+		temp.setRelation((3-follow.getRelation())%3);
 		temp.setConfirm(false);
 		try {
-			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			result = mapper.insertFriend(friend);
-			result *= mapper.insertFriend(temp);
+			FollowMapper mapper = session.getMapper(FollowMapper.class);
+			result = mapper.insertFollow(follow);
+			result *= mapper.insertFollow(temp);
 			if (result > 0) {
 				session.commit();
 			} else {
@@ -45,12 +45,12 @@ public class FriendStoreLogic implements FriendStore {
 	}
 
 	@Override
-	public int deleteFriend(Friend friend) {
+	public int deleteFollow(Follow follow) {
 		SqlSession session = factory.openSession();
 		int result = 0;
 		try {
-			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			result = mapper.deleteFriend(friend);
+			FollowMapper mapper = session.getMapper(FollowMapper.class);
+			result = mapper.deleteFollow(follow);
 			if (result > 0) {
 				session.commit();
 			} else {
@@ -63,12 +63,12 @@ public class FriendStoreLogic implements FriendStore {
 	}
 	
 	@Override
-	public int updateFriendConfirm(Friend friend) {
+	public int updateFollowConfirm(Follow follow) {
 		SqlSession session = factory.openSession();
 		int result = 0;
 		try {
-			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			result = mapper.updateFriendConfirm(friend);
+			FollowMapper mapper = session.getMapper(FollowMapper.class);
+			result = mapper.updateFollowConfirm(follow);
 			if (result > 0) {
 				session.commit();
 			} else {
@@ -81,11 +81,11 @@ public class FriendStoreLogic implements FriendStore {
 	}
 
 	@Override
-	public List<Friend> selectAll(String userId) {
+	public List<Follow> selectAll(String userId) {
 		SqlSession session = factory.openSession();
 
 		try {
-			FriendMapper mapper = session.getMapper(FriendMapper.class);
+			FollowMapper mapper = session.getMapper(FollowMapper.class);
 			return mapper.selectAll(userId);
 		} finally {
 			session.close();
@@ -93,36 +93,36 @@ public class FriendStoreLogic implements FriendStore {
 	}
 
 	@Override
-	public List<Friend> selectRequestedFriends(String userId) {
+	public List<Follow> selectRequestedFollows(String userId) {
 		SqlSession session = factory.openSession();
 		
 		try {
-			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			return mapper.selectRequestedFriends(userId);
+			FollowMapper mapper = session.getMapper(FollowMapper.class);
+			return mapper.selectRequestedFollows(userId);
 		} finally {
 			session.close();
 		}
 	}
 	
 	@Override
-	public List<Friend> selectFriendsByConnChain(String userId, String connChain) {
+	public List<Follow> selectFollowsByConnChain(String userId, String connChain) {
 		SqlSession session = factory.openSession();
 
 		try {
-			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			return mapper.selectFriendsByConnChain(userId, connChain);
+			FollowMapper mapper = session.getMapper(FollowMapper.class);
+			return mapper.selectFollowsByConnChain(userId, connChain);
 		} finally {
 			session.close();
 		}
 	}
 
 	@Override
-	public List<Friend> selectFriendsByRelation(Friend friend) {
+	public List<Follow> selectFollowsByRelation(Follow follow) {
 		SqlSession session = factory.openSession();
 
 		try {
-			FriendMapper mapper = session.getMapper(FriendMapper.class);
-			return mapper.selectFriendsByRelation(friend);
+			FollowMapper mapper = session.getMapper(FollowMapper.class);
+			return mapper.selectFollowsByRelation(follow);
 		} finally {
 			session.close();
 		}

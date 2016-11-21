@@ -2,6 +2,8 @@ package service.logic;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import domain.Bucketlist;
 import service.pacade.BucketlistService;
 import store.logic.BucketlistStoreLogic;
@@ -9,6 +11,7 @@ import store.logic.ConnChainStoreLogic;
 import store.pacade.BucketlistStore;
 import store.pacade.ConnChainStore;
 
+@Service
 public class BucketlistServiceLogic implements BucketlistService {
 
 	private BucketlistStore store;

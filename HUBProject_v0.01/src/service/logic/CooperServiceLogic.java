@@ -2,11 +2,14 @@ package service.logic;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import domain.Cooper;
 import service.pacade.CooperService;
 import store.logic.CooperStoreLogic;
 import store.pacade.CooperStore;
 
+@Service
 public class CooperServiceLogic implements CooperService {
 
 	private CooperStore store;
