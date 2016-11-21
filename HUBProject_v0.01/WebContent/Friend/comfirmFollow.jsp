@@ -62,15 +62,12 @@ h1 {
 		<%@ include file="/header/header.jspf"%>
 	</div>
 
-	<h3 align="center"> 친구를 삭제했습니다. </h3>
+	<h3 align="center"> 새로운 친구가 등록되었습니다. </h3>
 
-	<form action="/HUBProject_v0.01/listFriend.do" method="post">
+	<form action="/HUBProject_v0.01/follow/listAll.do" method="get">
 		<div class="input-append pull-right">
 			<button class="btn btn-xs btn-default btn-block" type="submit">확인</button>
 		</div>
-		<input type="hidden" name="userId" value="${userId }">
-		<input type="hidden" name="searchOpt" value="${searchOpt }">
-		<input type="hidden" name="connChain" value="${connChain }">
 	</form>
 	
 </body>

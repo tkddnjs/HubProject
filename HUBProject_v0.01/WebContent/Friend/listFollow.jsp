@@ -44,7 +44,7 @@ h1 {
 
 
 	<div class="input-append pull-right">
-		<form action="/HUBProject_v0.01/listFriend.do" method="post"
+		<form action="/HUBProject_v0.01/follow/listAll.do" method="post"
 			class="form-inline">
 			<select class="ring" name="searchOpt">
 				<option value="1">연결고리</option>
@@ -70,7 +70,7 @@ h1 {
 		</thead>
 
 		<tbody>
-			<c:forEach items="${friends }" var="friend" varStatus="status">
+			<c:forEach items="${follows }" var="follow" varStatus="status">
 				<c:choose>
 					<c:when test="${isRequest }">
 						<tr>
@@ -78,16 +78,16 @@ h1 {
 						<td>
 							<form action="/HUBProject_v0.01/userDetail.do" method="post">
 								<button class="btn btn-xs btn-default btn-block" type="submit"
-									name="userId" value="${friend.friendId }">${friend.friendId }</button>
-								<input type="hidden" name="listOpt" value="${friend.relation }">
+									name="userId" value="${follow.followId }">${follow.followId }</button>
+								<input type="hidden" name="listOpt" value="${follow.relation }">
 							</form>
 						</td>
 						<td>
 							<c:choose>
-								<c:when test="${friend.relation eq 1}">
+								<c:when test="${follow.relation eq 1}">
 								내가 도움을 주는 관계							
 								</c:when>
-								<c:when test="${friend.relation eq 2}">
+								<c:when test="${follow.relation eq 2}">
 								내가 도움을 받는 관계
 								</c:when>
 								<c:otherwise>
@@ -96,16 +96,16 @@ h1 {
 							</c:choose>
 						</td>
 						<td>
-							<form action="/HUBProject_v0.01/confirmFriend.do" method="post">
+							<form action="/HUBProject_v0.01/follow/confirm.do" method="post">
 								<button class="btn btn-xs btn-default btn-block" type="submit">수락</button>
-								<input type="hidden" name="friendId" value="${friend.friendId }">
+								<input type="hidden" name="followId" value="${follow.followId }">
 								<input type="hidden" name="searchOpt" value="${searchOpt }">
 							</form>
 						</td>
 						<td>
-							<form action="/HUBProject_v0.01/removeFriend.do" method="post">
+							<form action="/HUBProject_v0.01/follow/remove.do" method="post">
 								<button class="btn btn-xs btn-default btn-block" type="submit">거절</button>
-								<input type="hidden" name="friendId" value="${friend.friendId }">
+								<input type="hidden" name="followId" value="${follow.followId }">
 								<input type="hidden" name="searchOpt" value="${searchOpt }">
 							</form>
 						</td>
@@ -118,15 +118,15 @@ h1 {
 						<td>
 							<form action="/HUBProject_v0.01/userDetail.do" method="post">
 								<button class="btn btn-xs btn-default btn-block" type="submit"
-									name="userId" value="${friend.friendId }">${friend.friendId }</button>
-								<input type="hidden" name="listOpt" value="${friend.relation }">
+									name="userId" value="${follow.followId }">${follow.followId }</button>
+								<input type="hidden" name="listOpt" value="${follow.relation }">
 							</form>
 						</td>
 						<td><c:choose>
-								<c:when test="${friend.relation eq 1}">
+								<c:when test="${follow.relation eq 1}">
 								내가 도움을 주는 관계							
 								</c:when>
-								<c:when test="${friend.relation eq 2}">
+								<c:when test="${follow.relation eq 2}">
 								내가 도움을 받는 관계
 								</c:when>
 								<c:otherwise>
@@ -135,7 +135,6 @@ h1 {
 							</c:choose></td>
 						</tr>
 					</c:otherwise>
-			
 			
 				</c:choose>
 			</c:forEach>
