@@ -1,6 +1,8 @@
 package domain;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class Cooper {
@@ -50,8 +52,15 @@ public class Cooper {
 		return lastDay;
 	}
 
-	public void setLastDay(Date lastDay) {
-		this.lastDay = lastDay;
+	public void setLastDay(String lastDay) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyymmdd");
+		Date lDay = null;
+		try {
+			lDay = new Date(dateFormat.parse(lastDay).getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.lastDay = lDay;
 	}
 
 	public List<String> getConnChains() {

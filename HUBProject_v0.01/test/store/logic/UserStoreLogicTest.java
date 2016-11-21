@@ -21,24 +21,24 @@ public class UserStoreLogicTest {
 		store = new UserStoreLogic(); 
 	}
 	
-	@Test
-	public void testInsertUser() {
-		User user = new User();
-		user.setUserId("감자먹기대회");
-		user.setAdmin(false);
-		user.setPicture("picture.jpg");
-		user.setPw("asasd");
-		user.setEmail("email@coa.com");
-		user.setListOption(3);
-		user.setIntroduce("asdafafqegscvwhqefahegsg");
-		
-		List<String> connChains = new ArrayList<>();
-		connChains.add("공원산책하기");
-		connChains.add("감자먹기");
-		user.setConnChains(connChains);
-		
-		assertEquals(1, store.insertUser(user));
-	}
+//	@Test
+//	public void testInsertUser() {
+//		User user = new User();
+//		user.setUserId("감자먹기대회");
+//		user.setAdmin(false);
+//		user.setPicture("picture.jpg");
+//		user.setPw("asasd");
+//		user.setEmail("email@coa.com");
+//		user.setListOption(3);
+//		user.setIntroduce("asdafafqegscvwhqefahegsg");
+//		
+//		List<String> connChains = new ArrayList<>();
+//		connChains.add("공원산책하기");
+//		connChains.add("감자먹기");
+//		user.setConnChains(connChains);
+//		
+//		assertEquals(1, store.insertUser(user));
+//	}
 //
 //	@Test
 //	public void testUpdateUser() {
