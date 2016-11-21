@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
 			if(isAdmin == false){
 				session = request.getSession();
 				session.setAttribute("userId", userId);
-				response.sendRedirect("listBucketlist.do");
+				response.sendRedirect("bucketlist/list.do");
 			}else{
 				session = request.getSession();
 				session.setAttribute("userId", userId);

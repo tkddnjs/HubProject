@@ -1,4 +1,4 @@
-package controller.bucketlist;
+package controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,7 +21,7 @@ public class BucketlistController {
 	
 	@RequestMapping(value="register.do", method=RequestMethod.POST)
 	public ModelAndView registerBucketlist(HttpSession session){
-		ModelAndView mav = new ModelAndView("Bucketlist/registerBucketlist.jsp");
+		ModelAndView mav = new ModelAndView("Bucketlist/registerBucketlist");
 		mav.addObject("userId", session.getAttribute("userId"));
 		return mav;
 	}
@@ -34,7 +34,7 @@ public class BucketlistController {
 	
 	@RequestMapping(value="modify.do", method=RequestMethod.POST)
 	public ModelAndView modifyBucketlist(int bucketlistId){
-		ModelAndView mav = new ModelAndView("Bucketlist/modifyBucketlist.jsp");
+		ModelAndView mav = new ModelAndView("Bucketlist/modifyBucketlist");
 		mav.addObject("bucketlist", bucketlistService.findBucketlistByBucketlistId(bucketlistId));
 		return mav;
 	}
@@ -53,14 +53,14 @@ public class BucketlistController {
 	
 	@RequestMapping(value="detail.do", method=RequestMethod.POST)
 	public ModelAndView detailBucketlist(int bucketlistId){
-		ModelAndView mav = new ModelAndView("Bucketlist/detailBucketlist.jsp");
+		ModelAndView mav = new ModelAndView("Bucketlist/detailBucketlist");
 		mav.addObject("bucketlist", bucketlistService.findBucketlistByBucketlistId(bucketlistId));
 		return mav;
 	}
 	
-	@RequestMapping(value="list.do", method=RequestMethod.POST)
+	@RequestMapping(value="list.do", method=RequestMethod.GET)
 	public ModelAndView listBucketlist(HttpSession session){
-		ModelAndView mav = new ModelAndView("Bucketlist/listBucketlist.jsp");
+		ModelAndView mav = new ModelAndView("Bucketlist/bucketlist");
 		String userId = (String) session.getAttribute("userId");
 		mav.addObject("bucketlists", bucketlistService.findAll(userId));
 		return mav;
